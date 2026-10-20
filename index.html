@@ -3,49 +3,241 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nezzy Premium</title>
+    <title>Nezzy Cake</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        body {
-            background-color: #1c1c1e;
-            color: #ffffff;
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
+        * {
+            box-sizing: border-box;
             margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            user-select: none;
         }
-        .card {
-            background: #2c2c2e;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+
+        body {
+            background: linear-gradient(180deg, #180d28 0%, #0d0617 100%);
+            color: #ffffff;
+            padding: 16px;
+            padding-bottom: 30px;
+            min-height: 100vh;
         }
-        button {
-            background-color: #007aff;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: bold;
+
+        /* Banner & Mascot section */
+        .mascot-banner {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(79, 70, 229, 0.2) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 24px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 25px rgba(126, 34, 206, 0.2);
+        }
+
+        .banner-text h2 {
+            font-size: 22px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #c084fc, #e879f9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .banner-text p {
+            font-size: 13px;
+            color: #d8b4fe;
+            margin-top: 4px;
+        }
+
+        .mascot-img {
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 2px solid #c084fc;
+            object-fit: cover;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        .section-title {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #a855f7;
+            margin-bottom: 12px;
+            font-weight: 700;
+            padding-left: 4px;
+        }
+
+        /* Grid buttons */
+        .grid-menu {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .menu-card {
+            background: rgba(39, 24, 61, 0.6);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 18px;
+            padding: 16px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .menu-card:active {
+            transform: scale(0.96);
+            background: rgba(147, 51, 234, 0.4);
+        }
+
+        .card-icon {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f3e8ff;
+        }
+
+        /* List buttons */
+        .list-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .list-btn {
+            background: rgba(39, 24, 61, 0.6);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .list-btn:active {
+            background: rgba(147, 51, 234, 0.3);
+        }
+
+        .btn-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 15px;
+            color: #f3e8ff;
+        }
+
+        .admin-card {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(185, 28, 28, 0.1) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            display: none; /* Faqat adminlarga ko'rinadi */
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Nezzy Premium! ✨</h1>
-    
-    <div class="card">
-        <h3>Xizmatlarimiz</h3>
-        <p>Ajoyib mahsulotlar va xizmatlar to'plami.</p>
-        <button onclick="Telegram.WebApp.showAlert('Tez orada yangi xizmatlar qo\'shiladi!')">Batafsil</button>
+
+    <!-- Banner -->
+    <div class="mascot-banner">
+        <div class="banner-text">
+            <h2>Nezzy_cake ✨</h2>
+            <p>Mazali va betakror shirinliklar dunyosiga xush kelibsiz!</p>
+        </div>
+        <!-- Maskot rasmi -->
+        <img src="https://i.ibb.co/L5BfCpx/mascot.png" alt="Nezzy Cake Mascot" class="mascot-img">
+    </div>
+
+    <!-- Asosiy menyu bo'limlari -->
+    <div class="section-title">ASOSIY MENYU</div>
+
+    <div class="grid-menu">
+        <div class="menu-card" onclick="openAction('Tort Katalogi')">
+            <div class="card-icon">🎂</div>
+            <div class="card-title">Tort Katalogi</div>
+        </div>
+
+        <div class="menu-card" onclick="openAction('Narxlar')">
+            <div class="card-icon">💰</div>
+            <div class="card-title">Narxlar</div>
+        </div>
+
+        <div class="menu-card" onclick="openAction('Buyurtma berish')">
+            <div class="card-icon">🛍️</div>
+            <div class="card-title">Buyurtma berish</div>
+        </div>
+
+        <div class="menu-card" onclick="openAction('Bizning manzil')">
+            <div class="card-icon">📍</div>
+            <div class="card-title">Bizning manzil</div>
+        </div>
+    </div>
+
+    <div class="section-title">BOG'LANISH VA MA'LUMOT</div>
+
+    <div class="list-menu">
+        <div class="list-btn" onclick="openAction('Ma\'lumot')">
+            <div class="btn-left"><span>ℹ️</span> Ma'lumot</div>
+            <div>❯</div>
+        </div>
+
+        <div class="list-btn" onclick="openLink('https://t.me/')">
+            <div class="btn-left"><span>💬</span> Telegram Gruppa</div>
+            <div>❯</div>
+        </div>
+
+        <div class="list-btn" onclick="openLink('https://t.me/')">
+            <div class="btn-left"><span>📢</span> Telegram Kanal</div>
+            <div>❯</div>
+        </div>
+
+        <div class="list-btn" onclick="openAction('Admin')">
+            <div class="btn-left"><span>👤</span> Admin bilan bog'lanish</div>
+            <div>❯</div>
+        </div>
+
+        <!-- Faqat Admin uchun bo'lim -->
+        <div class="list-btn admin-card" id="adminPanel" onclick="openAction('Admin Panel')">
+            <div class="btn-left" style="color: #fca5a5;"><span>🔐</span> Admin Panel</div>
+            <div style="color: #fca5a5;">❯</div>
+        </div>
     </div>
 
     <script>
-        Telegram.WebApp.ready();
-        Telegram.WebApp.expand(); // Ekranni to'liq ochish
+        const tg = window.Telegram.WebApp;
+        tg.ready();
+        tg.expand();
+
+        // SIZNING TELEGRAM ID'INGIZ (Shu yerga o'z ID'ingizni yozing)
+        const ADMIN_ID = 123456789; 
+
+        // Foydalanuvchi Admin yoki yo'qligini aniqlash
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            if (tg.initDataUnsafe.user.id === ADMIN_ID) {
+                document.getElementById('adminPanel').style.display = 'flex';
+            }
+        } else {
+            // Test rejimida admin panelni ko'rsatib turish
+            document.getElementById('adminPanel').style.display = 'flex';
+        }
+
+        function openAction(title) {
+            tg.showAlert("Siz '" + title + "' bo'limini tanladingiz!");
+        }
+
+        function openLink(url) {
+            tg.openTelegramLink(url);
+        }
     </script>
 </body>
 </html>
