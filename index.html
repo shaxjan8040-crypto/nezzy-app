@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nezzy Cake</title>
+    <title>Nezzy Cake - Luxury Store</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         * {
@@ -14,95 +14,115 @@
             user-select: none;
         }
 
+        /* Sehrli neon va o'zgarib turuvchi orqa fon animatsiyasi */
         body {
-            background: linear-gradient(180deg, #180d28 0%, #0d0617 100%);
+            background: linear-gradient(135deg, #0a0212 0%, #1f083b 50%, #0d021a 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 12s ease infinite;
             color: #ffffff;
             padding: 16px;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Qimirlab/Aylanib turuvchi bezak stikerlar */
-        .floating-sticker {
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Ekran bo'ylab uchib yuruvchi neon yulduzlar va stikerlar */
+        .floating-element {
             position: fixed;
             z-index: 99;
             pointer-events: none;
-            font-size: 26px;
-            animation: floatAnim 3s ease-in-out infinite alternate;
+            animation: floatSticker 4s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 8px rgba(192, 132, 252, 0.8));
         }
 
-        .sticker-1 { top: 15px; right: 15px; animation-delay: 0s; }
-        .sticker-2 { bottom: 20px; left: 15px; animation-delay: 1.5s; }
+        .el-1 { top: 10px; right: 12px; font-size: 28px; animation-delay: 0s; }
+        .el-2 { bottom: 15px; left: 15px; font-size: 26px; animation-delay: 1.5s; }
+        .el-3 { top: 40%; left: 5px; font-size: 20px; animation-delay: 0.8s; opacity: 0.7; }
+        .el-4 { top: 60%; right: 8px; font-size: 22px; animation-delay: 2s; opacity: 0.7; }
 
-        @keyframes floatAnim {
+        @keyframes floatSticker {
             0% { transform: translateY(0px) rotate(0deg) scale(1); }
-            100% { transform: translateY(-12px) rotate(15deg) scale(1.1); }
+            100% { transform: translateY(-15px) rotate(20deg) scale(1.15); }
         }
 
-        /* Banner & Mascot section */
+        /* Hasharotdek yonib-o'chuvchi neon ramka (Glow effect) */
         .mascot-banner {
-            background: linear-gradient(135deg, rgba(147, 51, 234, 0.3) 0%, rgba(79, 70, 229, 0.2) 100%);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 24px;
-            padding: 16px;
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.4) 0%, rgba(49, 10, 101, 0.6) 100%);
+            border: 2px solid rgba(192, 132, 252, 0.6);
+            border-radius: 26px;
+            padding: 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
-            box-shadow: 0 10px 25px rgba(126, 34, 206, 0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 0 25px rgba(168, 85, 247, 0.4), inset 0 0 15px rgba(232, 121, 249, 0.2);
+            animation: neonPulse 3s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            0% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.3); border-color: rgba(168, 85, 247, 0.4); }
+            100% { box-shadow: 0 0 30px rgba(232, 121, 249, 0.7); border-color: rgba(232, 121, 249, 0.9); }
         }
 
         .banner-text h2 {
-            font-size: 20px;
-            font-weight: 800;
-            background: linear-gradient(45deg, #c084fc, #e879f9);
+            font-size: 22px;
+            font-weight: 900;
+            background: linear-gradient(45deg, #e879f9, #c084fc, #38bdf8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 10px rgba(232, 121, 249, 0.5);
         }
 
         .banner-text p {
             font-size: 12px;
-            color: #d8b4fe;
+            color: #f3e8ff;
             margin-top: 4px;
+            font-weight: 500;
         }
 
         .mascot-img {
-            width: 75px;
-            height: 75px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 2px solid #c084fc;
+            border: 3px solid #e879f9;
             object-fit: cover;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            box-shadow: 0 0 15px #c084fc;
         }
 
         /* TORTLAR LENTASI (SLIDER) */
         .slider-container {
             width: 100%;
             overflow: hidden;
-            background: rgba(39, 24, 61, 0.4);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            border-radius: 20px;
+            background: rgba(30, 10, 50, 0.6);
+            border: 1px solid rgba(192, 132, 252, 0.4);
+            border-radius: 22px;
             padding: 12px 0;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
+            box-shadow: inset 0 0 15px rgba(168, 85, 247, 0.2);
         }
 
         .slider-track {
             display: flex;
             gap: 12px;
             width: max-content;
-            animation: scrollSlider 25s linear infinite;
+            animation: scrollSlider 30s linear infinite;
         }
 
         .cake-slide {
             width: 110px;
             height: 110px;
-            border-radius: 14px;
+            border-radius: 16px;
             overflow: hidden;
-            border: 2px solid rgba(192, 132, 252, 0.4);
+            border: 2px solid #e879f9;
             flex-shrink: 0;
-            background: #27183d;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
         }
 
         .cake-slide img {
@@ -117,96 +137,138 @@
         }
 
         .section-title {
-            font-size: 12px;
+            font-size: 13px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: #a855f7;
-            margin-bottom: 12px;
-            font-weight: 700;
-            padding-left: 4px;
+            letter-spacing: 1.5px;
+            color: #d8b4fe;
+            margin-bottom: 14px;
+            font-weight: 800;
+            padding-left: 6px;
+            text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
         }
 
-        /* Grid buttons */
+        /* ULTRA 3D NEON TUGMALAR (GLAVNIY MENYU) */
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
+            gap: 14px;
+            margin-bottom: 24px;
         }
 
         .menu-card {
-            background: rgba(39, 24, 61, 0.6);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            border-radius: 18px;
-            padding: 16px;
+            background: linear-gradient(145deg, rgba(45, 18, 79, 0.8), rgba(26, 8, 48, 0.9));
+            border: 1.5px solid rgba(192, 132, 252, 0.4);
+            border-radius: 20px;
+            padding: 18px 12px;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 2px rgba(255, 255, 255, 0.15);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Tugma bosilganda sehrli yorug'lik tarqalishi */
+        .menu-card::after {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(232,121,249,0.3) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .menu-card:active::after {
+            opacity: 1;
+        }
+
+        .menu-card:hover {
+            border-color: #e879f9;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px rgba(192, 132, 252, 0.5), inset 0 0 10px rgba(232, 121, 249, 0.4);
         }
 
         .menu-card:active {
-            transform: scale(0.96);
-            background: rgba(147, 51, 234, 0.4);
+            transform: scale(0.95);
         }
 
         .card-icon {
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 8px;
+            filter: drop-shadow(0 0 10px rgba(232, 121, 249, 0.6));
+            animation: bounceIcon 2s infinite ease-in-out;
+        }
+
+        @keyframes bounceIcon {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-4px); }
         }
 
         .card-title {
             font-size: 14px;
-            font-weight: 700;
-            color: #f3e8ff;
+            font-weight: 800;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* List buttons */
+        /* RO'YXAT KARTALARI (BOG'LANISH) */
         .list-menu {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
             margin-bottom: 20px;
         }
 
         .list-btn {
-            background: rgba(39, 24, 61, 0.6);
-            border: 1px solid rgba(168, 85, 247, 0.2);
-            border-radius: 16px;
-            padding: 14px 18px;
+            background: linear-gradient(135deg, rgba(45, 18, 79, 0.6), rgba(26, 8, 48, 0.7));
+            border: 1px solid rgba(192, 132, 252, 0.3);
+            border-radius: 18px;
+            padding: 15px 18px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            transition: all 0.25s ease;
+        }
+
+        .list-btn:hover {
+            border-color: #c084fc;
+            background: rgba(60, 24, 104, 0.8);
+            box-shadow: 0 0 15px rgba(192, 132, 252, 0.3);
+        }
+
+        .list-btn:active {
+            transform: scale(0.97);
         }
 
         .btn-left {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 600;
+            gap: 14px;
+            font-weight: 700;
             font-size: 15px;
             color: #f3e8ff;
         }
 
         .admin-card {
-            background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(185, 28, 28, 0.1) 100%);
-            border: 1px solid rgba(239, 68, 68, 0.4);
+            background: linear-gradient(135deg, rgba(153, 27, 27, 0.4), rgba(127, 29, 29, 0.6));
+            border: 1px solid rgba(248, 113, 113, 0.6);
             display: none;
+            box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         }
 
-        /* --- TORT KATALOGI SAHIFASI (MODAL) --- */
+        /* --- TORT KATALOGI SAHIFASI --- */
         #catalogPage {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #0d0617;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, #0a0212 0%, #1f083b 100%);
             z-index: 1000;
             overflow-y: auto;
             padding: 16px;
@@ -220,40 +282,43 @@
             margin-bottom: 20px;
             position: sticky;
             top: 0;
-            background: rgba(13, 6, 23, 0.95);
-            padding: 10px 0;
-            backdrop-filter: blur(10px);
+            background: rgba(10, 2, 18, 0.95);
+            padding: 12px 0;
+            backdrop-filter: blur(15px);
             z-index: 10;
+            border-bottom: 1px solid rgba(192, 132, 252, 0.3);
         }
 
         .back-btn {
-            background: rgba(168, 85, 247, 0.2);
-            border: 1px solid #c084fc;
+            background: linear-gradient(45deg, #9333ea, #c084fc);
+            border: none;
             color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 12px;
-            font-weight: 700;
+            padding: 8px 18px;
+            border-radius: 14px;
+            font-weight: 800;
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
         }
 
         .catalog-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
+            gap: 14px;
         }
 
         .catalog-item {
-            background: rgba(39, 24, 61, 0.6);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 16px;
+            background: rgba(45, 18, 79, 0.7);
+            border: 1.5px solid rgba(192, 132, 252, 0.4);
+            border-radius: 18px;
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
             transition: transform 0.2s;
         }
 
         .catalog-item:active {
-            transform: scale(0.97);
+            transform: scale(0.96);
         }
 
         .catalog-item img {
@@ -263,60 +328,64 @@
         }
 
         .catalog-item-info {
-            padding: 10px;
+            padding: 12px;
             text-align: center;
         }
 
         .catalog-item-title {
             font-size: 13px;
-            font-weight: 700;
+            font-weight: 800;
             color: #f3e8ff;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
         }
 
         .order-item-btn {
-            background: linear-gradient(45deg, #a855f7, #ec4899);
+            background: linear-gradient(45deg, #c084fc, #ec4899);
             border: none;
             color: white;
-            padding: 6px 12px;
-            border-radius: 10px;
+            padding: 8px 12px;
+            border-radius: 12px;
             font-size: 12px;
-            font-weight: 700;
+            font-weight: 800;
             width: 100%;
             cursor: pointer;
+            box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
         }
     </style>
 </head>
 <body>
 
-    <!-- Qimirlab turadigan stikerlar -->
-    <div class="floating-sticker sticker-1">🧁</div>
-    <div class="floating-sticker sticker-2">✨</div>
+    <!-- Sehrli uchib yuruvchi neon elementlar -->
+    <div class="floating-element el-1">🧁</div>
+    <div class="floating-element el-2">✨</div>
+    <div class="floating-element el-3">💖</div>
+    <div class="floating-element el-4">👑</div>
 
     <!-- Asosiy Ekran -->
     <div id="mainPage">
         <div class="mascot-banner">
             <div class="banner-text">
                 <h2>Nezzy_cake ✨</h2>
-                <p>Mazali va betakror shirinliklar!</p>
+                <p>Mazali va betakror shirinliklar olami!</p>
             </div>
             <img src="https://i.ibb.co/L5BfCpx/mascot.png" alt="Mascot" class="mascot-img">
         </div>
 
         <div class="slider-container">
             <div class="slider-track">
-                <div class="cake-slide"><img src="https://i.ibb.co/RTJm7xCZ/img1.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/9JyxgL1/img2.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/ynVX2vWF/img3.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/CK050D2t/img4.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/HfJ4Z4qx/img5.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/RTJm7xCZ/img1.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/9JyxgL1/img2.jpg"></div>
-                <div class="cake-slide"><img src="https://i.ibb.co/ynVX2vWF/img3.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/ZpV2RJgd/IMG-20261021-005548-600.jpg"></div>
+                <!-- Uzluksiz oqim uchun -->
+                <div class="cake-slide"><img src="https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg"></div>
             </div>
         </div>
 
-        <div class="section-title">ASOSIY MENYU</div>
+        <div class="section-title">✨ ASOSIY MENYU ✨</div>
 
         <div class="grid-menu">
             <div class="menu-card" onclick="openCatalog()">
@@ -340,24 +409,24 @@
             </div>
         </div>
 
-        <div class="section-title">BOG'LANISH VA MA'LUMOT</div>
+        <div class="section-title">🔗 BOG'LANISH VA MA'LUMOT</div>
 
         <div class="list-menu">
             <div class="list-btn" onclick="openAction('Ma\'lumot')">
                 <div class="btn-left"><span>ℹ️</span> Ma'lumot</div>
-                <div>❯</div>
+                <div style="color: #c084fc;">❯</div>
             </div>
             <div class="list-btn" onclick="openLink('https://t.me/')">
                 <div class="btn-left"><span>💬</span> Telegram Gruppa</div>
-                <div>❯</div>
+                <div style="color: #c084fc;">❯</div>
             </div>
             <div class="list-btn" onclick="openLink('https://t.me/')">
                 <div class="btn-left"><span>📢</span> Telegram Kanal</div>
-                <div>❯</div>
+                <div style="color: #c084fc;">❯</div>
             </div>
             <div class="list-btn" onclick="openAction('Admin')">
                 <div class="btn-left"><span>👤</span> Admin bilan bog'lanish</div>
-                <div>❯</div>
+                <div style="color: #c084fc;">❯</div>
             </div>
             <div class="list-btn admin-card" id="adminPanel" onclick="openAction('Admin Panel')">
                 <div class="btn-left" style="color: #fca5a5;"><span>🔐</span> Admin Panel</div>
@@ -370,7 +439,7 @@
     <div id="catalogPage">
         <div class="catalog-header">
             <button class="back-btn" onclick="closeCatalog()">❮ Orqaga</button>
-            <h3 style="color: #c084fc;">Tort Katalogi ✨</h3>
+            <h3 style="color: #e879f9; text-shadow: 0 0 10px rgba(232,121,249,0.5);">Tort Katalogi ✨</h3>
         </div>
 
         <div class="catalog-grid" id="catalogGrid">
@@ -393,28 +462,28 @@
             document.getElementById('adminPanel').style.display = 'flex';
         }
 
-        // Siz yuborgan barcha ImgBB rasmlar ro'yxati
         const cakeImages = [
-            "https://i.ibb.co/mV0c2Nt0/img1.jpg", "https://i.ibb.co/ZrQWVCx/img2.jpg",
-            "https://i.ibb.co/n8rd7nzy/img3.jpg", "https://i.ibb.co/Fkzcmbks/img4.jpg",
-            "https://i.ibb.co/Rk9jGS62/img5.jpg", "https://i.ibb.co/HLWcvp9n/img6.jpg",
-            "https://i.ibb.co/svd08LTy/img7.jpg", "https://i.ibb.co/FkCJD5Gk/img8.jpg",
-            "https://i.ibb.co/mwWPL9D/img9.jpg", "https://i.ibb.co/g2xDr57/img10.jpg",
-            "https://i.ibb.co/qLyRJ4j1/img11.jpg", "https://i.ibb.co/twxXXLdz/img12.jpg",
-            "https://i.ibb.co/SDwDvhhr/img13.jpg", "https://i.ibb.co/vv68F0BR/img14.jpg",
-            "https://i.ibb.co/xWyQWmM/img15.jpg", "https://i.ibb.co/m57tP3gN/img16.jpg",
-            "https://i.ibb.co/G3kcfSj7/img17.jpg", "https://i.ibb.co/jk3vGYQf/img18.jpg",
-            "https://i.ibb.co/jvCKy0Mb/img19.jpg", "https://i.ibb.co/99gHyDmN/img20.jpg",
-            "https://i.ibb.co/4g2qxBqx/img21.jpg", "https://i.ibb.co/pBdHx75b/img22.jpg",
-            "https://i.ibb.co/mVDwCpP3/img23.jpg", "https://i.ibb.co/MkvN4hqv/img24.jpg",
-            "https://i.ibb.co/C5mzbTdj/img25.jpg", "https://i.ibb.co/Bvgt8wh/img26.jpg",
-            "https://i.ibb.co/MDJ90vFk/img27.jpg", "https://i.ibb.co/TqR6nnv5/img28.jpg",
-            "https://i.ibb.co/BH0ST0dw/img29.jpg", "https://i.ibb.co/LDVjsF67/img30.jpg",
-            "https://i.ibb.co/ccf81vhT/img31.jpg", "https://i.ibb.co/LDMwCh71/img32.jpg",
-            "https://i.ibb.co/P0Myd67/img33.jpg", "https://i.ibb.co/wZsqvm07/img34.jpg",
-            "https://i.ibb.co/XxRJg9jV/img35.jpg", "https://i.ibb.co/C300qSp5/img36.jpg",
-            "https://i.ibb.co/HLWwR9YC/img37.jpg", "https://i.ibb.co/hRFMV0MW/img38.jpg",
-            "https://i.ibb.co/d4nP3vt1/img39.jpg", "https://i.ibb.co/zWRvZYch/img40.jpg"
+            "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg",
+            "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
+            "https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg",
+            "https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg",
+            "https://i.ibb.co/ZpV2RJgd/IMG-20261021-005548-600.jpg",
+            "https://i.ibb.co/SDhkT7ZR/IMG-20261021-005549-100.jpg",
+            "https://i.ibb.co/xStpxVnJ/IMG-20261021-005535-994.jpg",
+            "https://i.ibb.co/Ngbpy9wg/IMG-20261021-005539-391.jpg",
+            "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg",
+            "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg",
+            "https://i.ibb.co/HLFrhM4g/IMG-20261021-005543-290.jpg",
+            "https://i.ibb.co/gbPVV4nd/IMG-20261021-005544-050.jpg",
+            "https://i.ibb.co/kV2VcRR1/IMG-20261021-005543-218.jpg",
+            "https://i.ibb.co/LhXfFVPH/IMG-20261021-005526-088.jpg",
+            "https://i.ibb.co/snhrn5F/IMG-20261021-005522-289.jpg",
+            "https://i.ibb.co/KxH78JSK/IMG-20261021-005519-059.jpg",
+            "https://i.ibb.co/yB5WmjJ0/IMG-20261021-005519-866.jpg",
+            "https://i.ibb.co/SwVX0gMy/IMG-20261021-005509-083.jpg",
+            "https://i.ibb.co/pvHDfVzb/IMG-20261021-005509-215.jpg",
+            "https://i.ibb.co/7JCtrfxX/IMG-20261021-005503-562.jpg",
+            "https://i.ibb.co/FqXrtGrt/IMG-20261021-004445-598.jpg"
         ];
 
         function openCatalog() {
@@ -424,7 +493,7 @@
             cakeImages.forEach((url, index) => {
                 grid.innerHTML += `
                     <div class="catalog-item">
-                        <img src="${url}" alt="Nezzy Cake ${index + 1}">
+                        <img src="${url}" alt="Nezzy Tort #${index + 1}">
                         <div class="catalog-item-info">
                             <div class="catalog-item-title">Nezzy Tort #${index + 1}</div>
                             <button class="order-item-btn" onclick="orderCake(${index + 1})">Buyurtma berish</button>
