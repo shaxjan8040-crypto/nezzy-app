@@ -14,7 +14,6 @@
             user-select: none;
         }
 
-        /* Sehrli neon va o'zgarib turuvchi orqa fon animatsiyasi */
         body {
             background: linear-gradient(135deg, #0a0212 0%, #1f083b 50%, #0d021a 100%);
             background-size: 400% 400%;
@@ -33,7 +32,7 @@
             100% { background-position: 0% 50%; }
         }
 
-        /* Ekran bo'ylab uchib yuruvchi neon yulduzlar va stikerlar */
+        /* Uchib yuruvchi neon elementlar */
         .floating-element {
             position: fixed;
             z-index: 99;
@@ -52,7 +51,7 @@
             100% { transform: translateY(-15px) rotate(20deg) scale(1.15); }
         }
 
-        /* Hasharotdek yonib-o'chuvchi neon ramka (Glow effect) */
+        /* Banner */
         .mascot-banner {
             background: linear-gradient(135deg, rgba(88, 28, 135, 0.4) 0%, rgba(49, 10, 101, 0.6) 100%);
             border: 2px solid rgba(192, 132, 252, 0.6);
@@ -72,7 +71,7 @@
         }
 
         .banner-text h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 900;
             background: linear-gradient(45deg, #e879f9, #c084fc, #38bdf8);
             -webkit-background-clip: text;
@@ -81,7 +80,7 @@
         }
 
         .banner-text p {
-            font-size: 12px;
+            font-size: 11px;
             color: #f3e8ff;
             margin-top: 4px;
             font-weight: 500;
@@ -96,7 +95,7 @@
             box-shadow: 0 0 15px #c084fc;
         }
 
-        /* TORTLAR LENTASI (SLIDER) */
+        /* Slider */
         .slider-container {
             width: 100%;
             overflow: hidden;
@@ -147,7 +146,7 @@
             text-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
         }
 
-        /* ULTRA 3D NEON TUGMALAR (GLAVNIY MENYU) */
+        /* Grid buttons */
         .grid-menu {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -172,20 +171,6 @@
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* Tugma bosilganda sehrli yorug'lik tarqalishi */
-        .menu-card::after {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(232,121,249,0.3) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.4s;
-        }
-
-        .menu-card:active::after {
-            opacity: 1;
-        }
-
         .menu-card:hover {
             border-color: #e879f9;
             transform: translateY(-4px);
@@ -200,12 +185,6 @@
             font-size: 36px;
             margin-bottom: 8px;
             filter: drop-shadow(0 0 10px rgba(232, 121, 249, 0.6));
-            animation: bounceIcon 2s infinite ease-in-out;
-        }
-
-        @keyframes bounceIcon {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-4px); }
         }
 
         .card-title {
@@ -215,7 +194,7 @@
             text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* RO'YXAT KARTALARI (BOG'LANISH) */
+        /* List buttons */
         .list-menu {
             display: flex;
             flex-direction: column;
@@ -262,8 +241,8 @@
             box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
         }
 
-        /* --- TORT KATALOGI SAHIFASI --- */
-        #catalogPage {
+        /* UMUMIY SUB-SAHIFALAR (Katalog, Narxlar, Admin) */
+        .sub-page {
             display: none;
             position: fixed;
             top: 0; left: 0;
@@ -275,7 +254,7 @@
             padding-bottom: 60px;
         }
 
-        .catalog-header {
+        .sub-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -300,6 +279,7 @@
             box-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
         }
 
+        /* Katalog Grid */
         .catalog-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -314,11 +294,6 @@
             display: flex;
             flex-direction: column;
             box-shadow: 0 6px 15px rgba(0,0,0,0.4);
-            transition: transform 0.2s;
-        }
-
-        .catalog-item:active {
-            transform: scale(0.96);
         }
 
         .catalog-item img {
@@ -351,11 +326,104 @@
             cursor: pointer;
             box-shadow: 0 0 12px rgba(236, 72, 153, 0.5);
         }
+
+        /* NARXLAR KARTALARI STILI */
+        .price-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .price-card {
+            background: linear-gradient(135deg, rgba(45, 18, 79, 0.7), rgba(30, 10, 50, 0.9));
+            border: 1.5px solid rgba(192, 132, 252, 0.4);
+            border-radius: 18px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .price-info h3 {
+            font-size: 18px;
+            font-weight: 900;
+            color: #e879f9;
+            text-shadow: 0 0 8px rgba(232,121,249,0.4);
+        }
+
+        .price-info p {
+            font-size: 13px;
+            color: #d8b4fe;
+            margin-top: 2px;
+            font-weight: 600;
+        }
+
+        .price-badge {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid #c084fc;
+            padding: 8px 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 800;
+            color: #38bdf8;
+        }
+
+        /* ADMIN BILAN BOG'LANISH STILI */
+        .admin-profile {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .admin-avatar {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            border: 3px solid #e879f9;
+            object-fit: cover;
+            box-shadow: 0 0 20px rgba(232,121,249,0.6);
+            margin-bottom: 15px;
+        }
+
+        .admin-name {
+            font-size: 20px;
+            font-weight: 900;
+            color: #ffffff;
+            margin-bottom: 5px;
+        }
+
+        .admin-desc {
+            font-size: 13px;
+            color: #d8b4fe;
+            margin-bottom: 25px;
+        }
+
+        .contact-btn {
+            background: linear-gradient(135deg, #9333ea, #4f46e5);
+            border: 1.5px solid rgba(192, 132, 252, 0.5);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: white;
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            margin-bottom: 14px;
+            box-shadow: 0 6px 20px rgba(147, 51, 234, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .contact-btn:active {
+            transform: scale(0.96);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Sehrli uchib yuruvchi neon elementlar -->
+    <!-- Uchib yuruvchi neon elementlar -->
     <div class="floating-element el-1">🧁</div>
     <div class="floating-element el-2">✨</div>
     <div class="floating-element el-3">💖</div>
@@ -368,7 +436,8 @@
                 <h2>Nezzy_cake ✨</h2>
                 <p>Mazali va betakror shirinliklar olami!</p>
             </div>
-            <img src="https://i.ibb.co/L5BfCpx/mascot.png" alt="Mascot" class="mascot-img">
+            <!-- Yangi maskot rasmi -->
+            <img src="https://i.ibb.co/skNFhwV/file-0000000057b881f4a07c0bd879361205.png" alt="Nezzy Cake" class="mascot-img">
         </div>
 
         <div class="slider-container">
@@ -378,7 +447,6 @@
                 <div class="cake-slide"><img src="https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg"></div>
                 <div class="cake-slide"><img src="https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg"></div>
                 <div class="cake-slide"><img src="https://i.ibb.co/ZpV2RJgd/IMG-20261021-005548-600.jpg"></div>
-                <!-- Uzluksiz oqim uchun -->
                 <div class="cake-slide"><img src="https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg"></div>
                 <div class="cake-slide"><img src="https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg"></div>
                 <div class="cake-slide"><img src="https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg"></div>
@@ -388,7 +456,7 @@
         <div class="section-title">✨ ASOSIY MENYU ✨</div>
 
         <div class="grid-menu">
-            <div class="menu-card" onclick="openCatalog()">
+            <div class="menu-card" onclick="openPage('catalogPage')">
                 <div class="card-icon">🎂</div>
                 <div class="card-title">Tort Katalogi</div>
             </div>
@@ -398,12 +466,12 @@
                 <div class="card-title">Buyurtma berish</div>
             </div>
 
-            <div class="menu-card" onclick="openAction('Narxlar')">
+            <div class="menu-card" onclick="openPage('pricesPage')">
                 <div class="card-icon">💰</div>
                 <div class="card-title">Narxlar</div>
             </div>
 
-            <div class="menu-card" onclick="openAction('Bizning manzil')">
+            <div class="menu-card" onclick="openLocation()">
                 <div class="card-icon">📍</div>
                 <div class="card-title">Bizning manzil</div>
             </div>
@@ -416,16 +484,16 @@
                 <div class="btn-left"><span>ℹ️</span> Ma'lumot</div>
                 <div style="color: #c084fc;">❯</div>
             </div>
-            <div class="list-btn" onclick="openLink('https://t.me/')">
+            <div class="list-btn" onclick="openLink('https://t.me/nezzy_cakeee')">
                 <div class="btn-left"><span>💬</span> Telegram Gruppa</div>
                 <div style="color: #c084fc;">❯</div>
             </div>
-            <div class="list-btn" onclick="openLink('https://t.me/')">
+            <div class="list-btn" onclick="openLink('https://t.me/nezzy_cakee')">
                 <div class="btn-left"><span>📢</span> Telegram Kanal</div>
                 <div style="color: #c084fc;">❯</div>
             </div>
-            <div class="list-btn" onclick="openAction('Admin')">
-                <div class="btn-left"><span>👤</span> Admin bilan bog'lanish</div>
+            <div class="list-btn" onclick="openPage('adminPage')">
+                <div class="btn-left"><span>👤</span> Admin</div>
                 <div style="color: #c084fc;">❯</div>
             </div>
             <div class="list-btn admin-card" id="adminPanel" onclick="openAction('Admin Panel')">
@@ -435,15 +503,109 @@
         </div>
     </div>
 
-    <!-- TORT KATALOGI SAHIFASI -->
-    <div id="catalogPage">
-        <div class="catalog-header">
-            <button class="back-btn" onclick="closeCatalog()">❮ Orqaga</button>
-            <h3 style="color: #e879f9; text-shadow: 0 0 10px rgba(232,121,249,0.5);">Tort Katalogi ✨</h3>
+    <!-- 1. TORT KATALOGI SAHIFASI -->
+    <div id="catalogPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('catalogPage')">❮ Orqaga</button>
+            <h3 style="color: #e879f9;">Tort Katalogi ✨</h3>
         </div>
+        <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
 
-        <div class="catalog-grid" id="catalogGrid">
-            <!-- Rasmlar avtomatik yuklanadi -->
+    <!-- 2. NARXLAR SAHIFASI -->
+    <div id="pricesPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('pricesPage')">❮ Orqaga</button>
+            <h3 style="color: #e879f9;">Tort Narxlari 💰</h3>
+        </div>
+        <div class="price-list">
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>70 000 so'm</h3>
+                    <p>😄 5-6 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>90 000 so'm</h3>
+                    <p>😄 7-8 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>100 000 so'm</h3>
+                    <p>😄 8-10 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>125 000 so'm</h3>
+                    <p>😄 12-15 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>170 000 so'm</h3>
+                    <p>😄 18-20 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>220 000 so'm</h3>
+                    <p>😄 25-28 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>250 000 so'm</h3>
+                    <p>😄 28-30 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>300 000 so'm</h3>
+                    <p>😄 30-35 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+            <div class="price-card">
+                <div class="price-info">
+                    <h3>350 000 so'm</h3>
+                    <p>😄 35-40 kishiga yetadi</p>
+                </div>
+                <div class="price-badge">🎂</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. ADMIN BILAN BOG'LANISH SAHIFASI -->
+    <div id="adminPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('adminPage')">❮ Orqaga</button>
+            <h3 style="color: #e879f9;">Admin bilan bog'lanish 👤</h3>
+        </div>
+        <div class="admin-profile">
+            <!-- Dumaloq admin rasmi -->
+            <img src="https://i.ibb.co/35X6yLpj/file-00000000422c820aaa54782721fd47a8.png" alt="Admin" class="admin-avatar">
+            <div class="admin-name">Nezzy Cake Admin</div>
+            <div class="admin-desc">Savollar va buyurtmalar uchun murojaat qiling!</div>
+
+            <!-- Telegramga o'tish tugmasi -->
+            <a href="https://t.me/shaxjan_2" target="_blank" class="contact-btn">
+                <span>💬</span> Telegram orqali yozish (@shaxjan_2)
+            </a>
+
+            <!-- Telefon raqamga qo'ng'iroq qilish tugmasi -->
+            <a href="tel:+998940268001" class="contact-btn" style="background: linear-gradient(135deg, #10b981, #059669);">
+                <span>📞</span> Qo'ng'iroq qilish (+998 94 026 80 01)
+            </a>
         </div>
     </div>
 
@@ -453,7 +615,6 @@
         tg.expand();
 
         const ADMIN_ID = 123456789;
-
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             if (tg.initDataUnsafe.user.id === ADMIN_ID) {
                 document.getElementById('adminPanel').style.display = 'flex';
@@ -472,41 +633,34 @@
             "https://i.ibb.co/xStpxVnJ/IMG-20261021-005535-994.jpg",
             "https://i.ibb.co/Ngbpy9wg/IMG-20261021-005539-391.jpg",
             "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg",
-            "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg",
-            "https://i.ibb.co/HLFrhM4g/IMG-20261021-005543-290.jpg",
-            "https://i.ibb.co/gbPVV4nd/IMG-20261021-005544-050.jpg",
-            "https://i.ibb.co/kV2VcRR1/IMG-20261021-005543-218.jpg",
-            "https://i.ibb.co/LhXfFVPH/IMG-20261021-005526-088.jpg",
-            "https://i.ibb.co/snhrn5F/IMG-20261021-005522-289.jpg",
-            "https://i.ibb.co/KxH78JSK/IMG-20261021-005519-059.jpg",
-            "https://i.ibb.co/yB5WmjJ0/IMG-20261021-005519-866.jpg",
-            "https://i.ibb.co/SwVX0gMy/IMG-20261021-005509-083.jpg",
-            "https://i.ibb.co/pvHDfVzb/IMG-20261021-005509-215.jpg",
-            "https://i.ibb.co/7JCtrfxX/IMG-20261021-005503-562.jpg",
-            "https://i.ibb.co/FqXrtGrt/IMG-20261021-004445-598.jpg"
+            "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg"
         ];
 
-        function openCatalog() {
-            const grid = document.getElementById('catalogGrid');
-            grid.innerHTML = '';
-            
-            cakeImages.forEach((url, index) => {
-                grid.innerHTML += `
-                    <div class="catalog-item">
-                        <img src="${url}" alt="Nezzy Tort #${index + 1}">
-                        <div class="catalog-item-info">
-                            <div class="catalog-item-title">Nezzy Tort #${index + 1}</div>
-                            <button class="order-item-btn" onclick="orderCake(${index + 1})">Buyurtma berish</button>
-                        </div>
+        // Katalog rasmlarini yuklash
+        const grid = document.getElementById('catalogGrid');
+        cakeImages.forEach((url, index) => {
+            grid.innerHTML += `
+                <div class="catalog-item">
+                    <img src="${url}" alt="Nezzy Tort #${index + 1}">
+                    <div class="catalog-item-info">
+                        <div class="catalog-item-title">Nezzy Tort #${index + 1}</div>
+                        <button class="order-item-btn" onclick="orderCake(${index + 1})">Buyurtma berish</button>
                     </div>
-                `;
-            });
+                </div>
+            `;
+        });
 
-            document.getElementById('catalogPage').style.display = 'block';
+        function openPage(pageId) {
+            document.getElementById(pageId).style.display = 'block';
         }
 
-        function closeCatalog() {
-            document.getElementById('catalogPage').style.display = 'none';
+        function closePage(pageId) {
+            document.getElementById(pageId).style.display = 'none';
+        }
+
+        function openLocation() {
+            // Jizzax koordinatalari bo'yicha Google Maps ochish
+            window.open('https://maps.google.com/?q=40.1075360,67.8381850', '_blank');
         }
 
         function orderCake(number) {
