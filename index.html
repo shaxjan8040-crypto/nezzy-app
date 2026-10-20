@@ -20,6 +20,25 @@
             padding: 16px;
             padding-bottom: 40px;
             min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Qimirlab/Aylanib turuvchi bezak stikerlar */
+        .floating-sticker {
+            position: fixed;
+            z-index: 99;
+            pointer-events: none;
+            font-size: 26px;
+            animation: floatAnim 3s ease-in-out infinite alternate;
+        }
+
+        .sticker-1 { top: 15px; right: 15px; animation-delay: 0s; }
+        .sticker-2 { bottom: 20px; left: 15px; animation-delay: 1.5s; }
+
+        @keyframes floatAnim {
+            0% { transform: translateY(0px) rotate(0deg) scale(1); }
+            100% { transform: translateY(-12px) rotate(15deg) scale(1.1); }
         }
 
         /* Banner & Mascot section */
@@ -67,7 +86,6 @@
             border-radius: 20px;
             padding: 12px 0;
             margin-bottom: 20px;
-            position: relative;
         }
 
         .slider-track {
@@ -75,10 +93,6 @@
             gap: 12px;
             width: max-content;
             animation: scrollSlider 25s linear infinite;
-        }
-
-        .slider-track:hover {
-            animation-play-state: paused;
         }
 
         .cake-slide {
@@ -98,12 +112,8 @@
         }
 
         @keyframes scrollSlider {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
 
         .section-title {
@@ -171,11 +181,6 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .list-btn:active {
-            background: rgba(147, 51, 234, 0.3);
         }
 
         .btn-left {
@@ -192,100 +197,184 @@
             border: 1px solid rgba(239, 68, 68, 0.4);
             display: none;
         }
+
+        /* --- TORT KATALOGI SAHIFASI (MODAL) --- */
+        #catalogPage {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #0d0617;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 16px;
+            padding-bottom: 60px;
+        }
+
+        .catalog-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            position: sticky;
+            top: 0;
+            background: rgba(13, 6, 23, 0.95);
+            padding: 10px 0;
+            backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .back-btn {
+            background: rgba(168, 85, 247, 0.2);
+            border: 1px solid #c084fc;
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .catalog-item {
+            background: rgba(39, 24, 61, 0.6);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.2s;
+        }
+
+        .catalog-item:active {
+            transform: scale(0.97);
+        }
+
+        .catalog-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .catalog-item-info {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .catalog-item-title {
+            font-size: 13px;
+            font-weight: 700;
+            color: #f3e8ff;
+            margin-bottom: 6px;
+        }
+
+        .order-item-btn {
+            background: linear-gradient(45deg, #a855f7, #ec4899);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            width: 100%;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Banner -->
-    <div class="mascot-banner">
-        <div class="banner-text">
-            <h2>Nezzy_cake ✨</h2>
-            <p>Mazali va betakror shirinliklar!</p>
+    <!-- Qimirlab turadigan stikerlar -->
+    <div class="floating-sticker sticker-1">🧁</div>
+    <div class="floating-sticker sticker-2">✨</div>
+
+    <!-- Asosiy Ekran -->
+    <div id="mainPage">
+        <div class="mascot-banner">
+            <div class="banner-text">
+                <h2>Nezzy_cake ✨</h2>
+                <p>Mazali va betakror shirinliklar!</p>
+            </div>
+            <img src="https://i.ibb.co/L5BfCpx/mascot.png" alt="Mascot" class="mascot-img">
         </div>
-        <img src="https://i.ibb.co/L5BfCpx/mascot.png" alt="Nezzy Cake Mascot" class="mascot-img">
+
+        <div class="slider-container">
+            <div class="slider-track">
+                <div class="cake-slide"><img src="https://i.ibb.co/RTJm7xCZ/img1.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/9JyxgL1/img2.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/ynVX2vWF/img3.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/CK050D2t/img4.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/HfJ4Z4qx/img5.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/RTJm7xCZ/img1.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/9JyxgL1/img2.jpg"></div>
+                <div class="cake-slide"><img src="https://i.ibb.co/ynVX2vWF/img3.jpg"></div>
+            </div>
+        </div>
+
+        <div class="section-title">ASOSIY MENYU</div>
+
+        <div class="grid-menu">
+            <div class="menu-card" onclick="openCatalog()">
+                <div class="card-icon">🎂</div>
+                <div class="card-title">Tort Katalogi</div>
+            </div>
+
+            <div class="menu-card" onclick="openAction('Buyurtma berish')">
+                <div class="card-icon">🛍️</div>
+                <div class="card-title">Buyurtma berish</div>
+            </div>
+
+            <div class="menu-card" onclick="openAction('Narxlar')">
+                <div class="card-icon">💰</div>
+                <div class="card-title">Narxlar</div>
+            </div>
+
+            <div class="menu-card" onclick="openAction('Bizning manzil')">
+                <div class="card-icon">📍</div>
+                <div class="card-title">Bizning manzil</div>
+            </div>
+        </div>
+
+        <div class="section-title">BOG'LANISH VA MA'LUMOT</div>
+
+        <div class="list-menu">
+            <div class="list-btn" onclick="openAction('Ma\'lumot')">
+                <div class="btn-left"><span>ℹ️</span> Ma'lumot</div>
+                <div>❯</div>
+            </div>
+            <div class="list-btn" onclick="openLink('https://t.me/')">
+                <div class="btn-left"><span>💬</span> Telegram Gruppa</div>
+                <div>❯</div>
+            </div>
+            <div class="list-btn" onclick="openLink('https://t.me/')">
+                <div class="btn-left"><span>📢</span> Telegram Kanal</div>
+                <div>❯</div>
+            </div>
+            <div class="list-btn" onclick="openAction('Admin')">
+                <div class="btn-left"><span>👤</span> Admin bilan bog'lanish</div>
+                <div>❯</div>
+            </div>
+            <div class="list-btn admin-card" id="adminPanel" onclick="openAction('Admin Panel')">
+                <div class="btn-left" style="color: #fca5a5;"><span>🔐</span> Admin Panel</div>
+                <div style="color: #fca5a5;">❯</div>
+            </div>
+        </div>
     </div>
 
-    <!-- 10 TA TORT RASMI AYLANIB TURADIGAN LENTA (SIZIING RASMLaringiz) -->
-    <div class="slider-container">
-        <div class="slider-track" id="cakeSlider">
-            <!-- 1-blok: Siz yuborgan 10 ta rasm -->
-            <div class="cake-slide"><img src="https://i.ibb.co/RTJm7xCZ/img1.jpg" alt="Tort 1"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/9JyxgL1/img2.jpg" alt="Tort 2"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/ynVX2vWF/img3.jpg" alt="Tort 3"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/CK050D2t/img4.jpg" alt="Tort 4"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/HfJ4Z4qx/img5.jpg" alt="Tort 5"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/gbKBD9ZL/img6.jpg" alt="Tort 6"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/WWXQnhH6/img7.jpg" alt="Tort 7"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/LDVjsF67/img8.jpg" alt="Tort 8"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/mVDwCpP3/img9.jpg" alt="Tort 9"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/QvqrW0xD/img10.jpg" alt="Tort 10"></div>
-            
-            <!-- 2-blok: Uzluksiz aylanishi uchun aynan shu 10 ta rasm takrorlanadi -->
-            <div class="cake-slide"><img src="https://i.ibb.co/RTJm7xCZ/img1.jpg" alt="Tort 1"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/9JyxgL1/img2.jpg" alt="Tort 2"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/ynVX2vWF/img3.jpg" alt="Tort 3"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/CK050D2t/img4.jpg" alt="Tort 4"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/HfJ4Z4qx/img5.jpg" alt="Tort 5"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/gbKBD9ZL/img6.jpg" alt="Tort 6"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/WWXQnhH6/img7.jpg" alt="Tort 7"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/LDVjsF67/img8.jpg" alt="Tort 8"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/mVDwCpP3/img9.jpg" alt="Tort 9"></div>
-            <div class="cake-slide"><img src="https://i.ibb.co/QvqrW0xD/img10.jpg" alt="Tort 10"></div>
-        </div>
-    </div>
-
-    <!-- Asosiy menyu bo'limlari -->
-    <div class="section-title">ASOSIY MENYU</div>
-
-    <div class="grid-menu">
-        <div class="menu-card" onclick="openAction('Tort Katalogi')">
-            <div class="card-icon">🎂</div>
-            <div class="card-title">Tort Katalogi</div>
+    <!-- TORT KATALOGI SAHIFASI -->
+    <div id="catalogPage">
+        <div class="catalog-header">
+            <button class="back-btn" onclick="closeCatalog()">❮ Orqaga</button>
+            <h3 style="color: #c084fc;">Tort Katalogi ✨</h3>
         </div>
 
-        <div class="menu-card" onclick="openAction('Buyurtma berish')">
-            <div class="card-icon">🛍️</div>
-            <div class="card-title">Buyurtma berish</div>
-        </div>
-
-        <div class="menu-card" onclick="openAction('Narxlar')">
-            <div class="card-icon">💰</div>
-            <div class="card-title">Narxlar</div>
-        </div>
-
-        <div class="menu-card" onclick="openAction('Bizning manzil')">
-            <div class="card-icon">📍</div>
-            <div class="card-title">Bizning manzil</div>
-        </div>
-    </div>
-
-    <div class="section-title">BOG'LANISH VA MA'LUMOT</div>
-
-    <div class="list-menu">
-        <div class="list-btn" onclick="openAction('Ma\'lumot')">
-            <div class="btn-left"><span>ℹ️</span> Ma'lumot</div>
-            <div>❯</div>
-        </div>
-
-        <div class="list-btn" onclick="openLink('https://t.me/')">
-            <div class="btn-left"><span>💬</span> Telegram Gruppa</div>
-            <div>❯</div>
-        </div>
-
-        <div class="list-btn" onclick="openLink('https://t.me/')">
-            <div class="btn-left"><span>📢</span> Telegram Kanal</div>
-            <div>❯</div>
-        </div>
-
-        <div class="list-btn" onclick="openAction('Admin')">
-            <div class="btn-left"><span>👤</span> Admin bilan bog'lanish</div>
-            <div>❯</div>
-        </div>
-
-        <!-- Faqat Admin uchun bo'lim -->
-        <div class="list-btn admin-card" id="adminPanel" onclick="openAction('Admin Panel')">
-            <div class="btn-left" style="color: #fca5a5;"><span>🔐</span> Admin Panel</div>
-            <div style="color: #fca5a5;">❯</div>
+        <div class="catalog-grid" id="catalogGrid">
+            <!-- Rasmlar avtomatik yuklanadi -->
         </div>
     </div>
 
@@ -294,7 +383,7 @@
         tg.ready();
         tg.expand();
 
-        const ADMIN_ID = 123456789; 
+        const ADMIN_ID = 123456789;
 
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             if (tg.initDataUnsafe.user.id === ADMIN_ID) {
@@ -302,6 +391,57 @@
             }
         } else {
             document.getElementById('adminPanel').style.display = 'flex';
+        }
+
+        // Siz yuborgan barcha ImgBB rasmlar ro'yxati
+        const cakeImages = [
+            "https://i.ibb.co/mV0c2Nt0/img1.jpg", "https://i.ibb.co/ZrQWVCx/img2.jpg",
+            "https://i.ibb.co/n8rd7nzy/img3.jpg", "https://i.ibb.co/Fkzcmbks/img4.jpg",
+            "https://i.ibb.co/Rk9jGS62/img5.jpg", "https://i.ibb.co/HLWcvp9n/img6.jpg",
+            "https://i.ibb.co/svd08LTy/img7.jpg", "https://i.ibb.co/FkCJD5Gk/img8.jpg",
+            "https://i.ibb.co/mwWPL9D/img9.jpg", "https://i.ibb.co/g2xDr57/img10.jpg",
+            "https://i.ibb.co/qLyRJ4j1/img11.jpg", "https://i.ibb.co/twxXXLdz/img12.jpg",
+            "https://i.ibb.co/SDwDvhhr/img13.jpg", "https://i.ibb.co/vv68F0BR/img14.jpg",
+            "https://i.ibb.co/xWyQWmM/img15.jpg", "https://i.ibb.co/m57tP3gN/img16.jpg",
+            "https://i.ibb.co/G3kcfSj7/img17.jpg", "https://i.ibb.co/jk3vGYQf/img18.jpg",
+            "https://i.ibb.co/jvCKy0Mb/img19.jpg", "https://i.ibb.co/99gHyDmN/img20.jpg",
+            "https://i.ibb.co/4g2qxBqx/img21.jpg", "https://i.ibb.co/pBdHx75b/img22.jpg",
+            "https://i.ibb.co/mVDwCpP3/img23.jpg", "https://i.ibb.co/MkvN4hqv/img24.jpg",
+            "https://i.ibb.co/C5mzbTdj/img25.jpg", "https://i.ibb.co/Bvgt8wh/img26.jpg",
+            "https://i.ibb.co/MDJ90vFk/img27.jpg", "https://i.ibb.co/TqR6nnv5/img28.jpg",
+            "https://i.ibb.co/BH0ST0dw/img29.jpg", "https://i.ibb.co/LDVjsF67/img30.jpg",
+            "https://i.ibb.co/ccf81vhT/img31.jpg", "https://i.ibb.co/LDMwCh71/img32.jpg",
+            "https://i.ibb.co/P0Myd67/img33.jpg", "https://i.ibb.co/wZsqvm07/img34.jpg",
+            "https://i.ibb.co/XxRJg9jV/img35.jpg", "https://i.ibb.co/C300qSp5/img36.jpg",
+            "https://i.ibb.co/HLWwR9YC/img37.jpg", "https://i.ibb.co/hRFMV0MW/img38.jpg",
+            "https://i.ibb.co/d4nP3vt1/img39.jpg", "https://i.ibb.co/zWRvZYch/img40.jpg"
+        ];
+
+        function openCatalog() {
+            const grid = document.getElementById('catalogGrid');
+            grid.innerHTML = '';
+            
+            cakeImages.forEach((url, index) => {
+                grid.innerHTML += `
+                    <div class="catalog-item">
+                        <img src="${url}" alt="Nezzy Cake ${index + 1}">
+                        <div class="catalog-item-info">
+                            <div class="catalog-item-title">Nezzy Tort #${index + 1}</div>
+                            <button class="order-item-btn" onclick="orderCake(${index + 1})">Buyurtma berish</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('catalogPage').style.display = 'block';
+        }
+
+        function closeCatalog() {
+            document.getElementById('catalogPage').style.display = 'none';
+        }
+
+        function orderCake(number) {
+            tg.showAlert("Siz " + number + "-raqamli tortni tanladingiz! Admin bilan bog'laning.");
         }
 
         function openAction(title) {
