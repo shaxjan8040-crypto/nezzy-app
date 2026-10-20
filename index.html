@@ -18,7 +18,7 @@
             background: linear-gradient(180deg, #180d28 0%, #0d0617 100%);
             color: #ffffff;
             padding: 16px;
-            padding-bottom: 30px;
+            padding-bottom: 40px;
             min-height: 100vh;
         }
 
@@ -31,12 +31,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             box-shadow: 0 10px 25px rgba(126, 34, 206, 0.2);
         }
 
         .banner-text h2 {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 800;
             background: linear-gradient(45deg, #c084fc, #e879f9);
             -webkit-background-clip: text;
@@ -44,18 +44,66 @@
         }
 
         .banner-text p {
-            font-size: 13px;
+            font-size: 12px;
             color: #d8b4fe;
             margin-top: 4px;
         }
 
         .mascot-img {
-            width: 85px;
-            height: 85px;
+            width: 75px;
+            height: 75px;
             border-radius: 50%;
             border: 2px solid #c084fc;
             object-fit: cover;
             box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+        }
+
+        /* TORTLAR LENTASI (SLIDER) */
+        .slider-container {
+            width: 100%;
+            overflow: hidden;
+            background: rgba(39, 24, 61, 0.4);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 20px;
+            padding: 12px 0;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            gap: 12px;
+            width: max-content;
+            animation: scrollSlider 25s linear infinite;
+        }
+
+        .slider-track:hover {
+            animation-play-state: paused;
+        }
+
+        .cake-slide {
+            width: 110px;
+            height: 110px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 2px solid rgba(192, 132, 252, 0.4);
+            flex-shrink: 0;
+            background: #27183d;
+        }
+
+        .cake-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes scrollSlider {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
         }
 
         .section-title {
@@ -142,7 +190,7 @@
         .admin-card {
             background: linear-gradient(135deg, rgba(220, 38, 38, 0.2) 0%, rgba(185, 28, 28, 0.1) 100%);
             border: 1px solid rgba(239, 68, 68, 0.4);
-            display: none; /* Faqat adminlarga ko'rinadi */
+            display: none;
         }
     </style>
 </head>
@@ -152,13 +200,41 @@
     <div class="mascot-banner">
         <div class="banner-text">
             <h2>Nezzy_cake ✨</h2>
-            <p>Mazali va betakror shirinliklar dunyosiga xush kelibsiz!</p>
+            <p>Mazali va betakror shirinliklar!</p>
         </div>
-        <!-- Maskot rasmi -->
         <img src="https://i.ibb.co/L5BfCpx/mascot.png" alt="Nezzy Cake Mascot" class="mascot-img">
     </div>
 
-    <!-- Asosiy menyu bo'limlari -->
+    <!-- 10 TA TORT RASMI AYLANIB TURADIGAN LENTA (KARUSEL) -->
+    <div class="slider-container">
+        <div class="slider-track" id="cakeSlider">
+            <!-- Rasmlar avtomatik takrorlanib oqib turadi -->
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Tort 1"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136" alt="Tort 2"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b" alt="Tort 3"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c" alt="Tort 4"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136" alt="Tort 5"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187" alt="Tort 6"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1582716401301-b244abdc8355" alt="Tort 7"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729" alt="Tort 8"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f" alt="Tort 9"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad" alt="Tort 10"></div>
+            
+            <!-- Lentaning uzluksiz aylanishi uchun nusxasi -->
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587" alt="Tort 1"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136" alt="Tort 2"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1588195538326-c5b1e9f80a1b" alt="Tort 3"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c" alt="Tort 4"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1535141192574-5d4897c13136" alt="Tort 5"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187" alt="Tort 6"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1582716401301-b244abdc8355" alt="Tort 7"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729" alt="Tort 8"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1542826438-bd32f43d626f" alt="Tort 9"></div>
+            <div class="cake-slide"><img src="https://images.unsplash.com/photo-1533134242443-d4fd215305ad" alt="Tort 10"></div>
+        </div>
+    </div>
+
+    <!-- Asosiy menyu bo'limlari (Narxlar va Bizning manzil pastga tushirildi) -->
     <div class="section-title">ASOSIY MENYU</div>
 
     <div class="grid-menu">
@@ -167,14 +243,14 @@
             <div class="card-title">Tort Katalogi</div>
         </div>
 
-        <div class="menu-card" onclick="openAction('Narxlar')">
-            <div class="card-icon">💰</div>
-            <div class="card-title">Narxlar</div>
-        </div>
-
         <div class="menu-card" onclick="openAction('Buyurtma berish')">
             <div class="card-icon">🛍️</div>
             <div class="card-title">Buyurtma berish</div>
+        </div>
+
+        <div class="menu-card" onclick="openAction('Narxlar')">
+            <div class="card-icon">💰</div>
+            <div class="card-title">Narxlar</div>
         </div>
 
         <div class="menu-card" onclick="openAction('Bizning manzil')">
@@ -218,16 +294,13 @@
         tg.ready();
         tg.expand();
 
-        // SIZNING TELEGRAM ID'INGIZ (Shu yerga o'z ID'ingizni yozing)
         const ADMIN_ID = 123456789; 
 
-        // Foydalanuvchi Admin yoki yo'qligini aniqlash
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             if (tg.initDataUnsafe.user.id === ADMIN_ID) {
                 document.getElementById('adminPanel').style.display = 'flex';
             }
         } else {
-            // Test rejimida admin panelni ko'rsatib turish
             document.getElementById('adminPanel').style.display = 'flex';
         }
 
@@ -241,3 +314,4 @@
     </script>
 </body>
 </html>
+            
