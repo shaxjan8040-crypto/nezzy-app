@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Nezzy Cake Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
@@ -24,7 +24,7 @@
             background-color: #0d0617;
         }
 
-        /* ORQA FONDAGI VALS TUSHUVCHI PERSONAJLAR */
+        /* ORQA FONDAGI VALS TUSHUVCHI PERSONAJLAR (MASKOT VA QIZALOQ) */
         .waltz-background {
             position: fixed;
             top: 0; left: 0;
@@ -40,13 +40,13 @@
 
         .waltz-box {
             position: relative;
-            width: 220px;
-            height: 220px;
+            width: 240px;
+            height: 240px;
             display: flex;
             align-items: center;
             justify-content: center;
-            animation: waltzRotate 10s infinite linear;
-            filter: drop-shadow(0 0 25px rgba(232, 121, 249, 0.5));
+            animation: waltzRotate 12s infinite linear;
+            filter: drop-shadow(0 0 25px rgba(232, 121, 249, 0.6));
         }
 
         .waltz-char {
@@ -84,7 +84,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: rgba(13, 6, 23, 0.6);
+            background: rgba(13, 6, 23, 0.65);
             z-index: 1;
             pointer-events: none;
         }
@@ -106,7 +106,7 @@
             background: rgba(147, 51, 234, 0.5);
             border: 1px solid #c084fc;
             border-radius: 50%;
-            width: 32px; height: 32px;
+            width: 34px; height: 34px;
             display: flex; align-items: center; justify-content: center;
             cursor: pointer; font-size: 14px;
             box-shadow: 0 0 10px rgba(192, 132, 252, 0.6);
@@ -169,7 +169,7 @@
             color: #d8b4fe; margin-bottom: 10px; font-weight: 800; padding-left: 4px;
         }
 
-        /* 50% KICHRAYTIRILGAN NEON DIODLI 3D TUGMALAR */
+        /* 50% KICHRAYTIRILGAN, NEON DIOD LENTALI KETMA-KET 3D TUGMALAR */
         .menu-column {
             display: flex;
             flex-direction: column;
@@ -179,13 +179,13 @@
 
         .btn-neon-3d {
             position: relative;
-            padding: 2px; /* Diod simulyatsiyasi uchun chegarasi */
+            padding: 2.5px;
             border-radius: 12px;
             background: linear-gradient(90deg, #e879f9, #38bdf8, #c084fc, #e879f9);
             background-size: 300% 300%;
-            animation: neonDiodAnim 4s linear infinite;
+            animation: neonDiodAnim 3s linear infinite;
             cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 0 8px rgba(232, 121, 249, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), 0 0 10px rgba(232, 121, 249, 0.5);
             transition: transform 0.15s ease;
         }
 
@@ -219,6 +219,7 @@
 
         .admin-diod {
             background: linear-gradient(90deg, #ef4444, #f59e0b, #ef4444) !important;
+            animation: neonDiodAnim 2s linear infinite !important;
         }
 
         /* SAHIFALAR O'TISHIDAGI ANİMATSIYA */
@@ -234,7 +235,7 @@
             padding: 14px;
             padding-bottom: 60px;
             opacity: 0;
-            transform: translateY(15px) scale(0.96);
+            transform: translateY(20px) scale(0.95);
             transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
@@ -255,7 +256,6 @@
             padding: 6px 14px; border-radius: 10px; font-weight: 800; font-size: 12px; cursor: pointer;
         }
 
-        /* FORMA VA ELEMENTLAR */
         .form-group { margin-bottom: 12px; }
         .form-group label { display: block; font-size: 11px; font-weight: 700; color: #d8b4fe; margin-bottom: 4px; }
         .form-control {
@@ -289,7 +289,7 @@
         <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=soft-piano-100-bpm-121529.mp3" type="audio/mp3">
     </audio>
 
-    <!-- ORQA FONDAGI JONLI VALS (MASKOT VA QIZALOQ) -->
+    <!-- ORQA FONDAGI JONLI VALS TUSHAYOTGAN MASKOT VA QIZALOQ -->
     <div class="waltz-background">
         <div class="waltz-box">
             <img src="https://i.ibb.co/ZpT3mZdD/IMG-20261020-233346-251.jpg" class="waltz-char char-girl" alt="Princess">
@@ -557,7 +557,7 @@
         tg.ready();
         tg.expand();
 
-        const MY_ADMIN_ID = 811234567; // Admin Telegram ID
+        const MY_ADMIN_ID = 811234567;
 
         let currentUser = {
             id: 9999999,
@@ -571,7 +571,6 @@
             if (tg.initDataUnsafe.user.photo_url) currentUser.avatar = tg.initDataUnsafe.user.photo_url;
         }
 
-        // MUSIQA PLAY / PAUSE
         const bgMusic = document.getElementById('bgMusic');
         let isMusicPlaying = false;
 
@@ -596,7 +595,6 @@
             }
         }, { once: true });
 
-        // Obunachilar bazasiga yozish
         let appUsers = JSON.parse(localStorage.getItem('nezzy_users') || '[]');
         if (!appUsers.some(u => u.id === currentUser.id)) {
             appUsers.push(currentUser);
@@ -609,12 +607,10 @@
         document.getElementById('profileAvatarImg').src = currentUser.avatar;
         document.getElementById('profileId').innerText = "Telegram ID: " + currentUser.id;
 
-        // Admin Panel
         if (currentUser.id === MY_ADMIN_ID || true) {
             document.getElementById('adminPanel').style.display = 'block';
         }
 
-        // Rasmlar
         const cakeImages = [
             "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
             "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg",
@@ -641,7 +637,6 @@
             `;
         });
 
-        // Form va saqlash
         let uploadedImageBase64 = "";
         function previewImage(event) {
             const file = event.target.files[0];
@@ -797,7 +792,6 @@
             tg.showAlert("Buyurtma tasdiqlandi!");
         }
 
-        /* ANİMATSION O'TISH */
         function openPage(pageId) {
             const page = document.getElementById(pageId);
             page.style.display = 'block';
