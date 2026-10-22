@@ -23,7 +23,7 @@
             background-color: #000;
         }
 
-        /* ORQA FONDAGI SIZ YUBORGAN RASM */
+        /* BARCHA SAHIFALAR UCHUN YAGONA SHAXSIY ORQA FON RASMI */
         .bg-image {
             position: fixed;
             top: 0; left: 0;
@@ -35,12 +35,11 @@
             z-index: -2;
         }
 
-        /* YENGIL QORAMTIR PARDA (RASM ANIQ KO'RINIB TURISHI UCHUN) */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.35);
+            background: rgba(0, 0, 0, 0.4);
             z-index: -1;
         }
 
@@ -52,12 +51,11 @@
             flex-direction: column;
         }
 
-        /* LOGO HEADER */
         .header-logo {
             display: flex;
             align-items: center;
             gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
         .logo-box {
@@ -79,30 +77,31 @@
             letter-spacing: 0.5px;
         }
 
-        /* SHAFFOF TILLARANG SKROMNIY TUGMALAR (ORQA RASM KO'RINIB TURADI) */
+        /* KATTA TILLARANG TUGMALAR (EKRAN PASTIGACHA TU SHADI) */
         .gold-btn {
-            background: rgba(10, 10, 10, 0.7);
-            border: 1.8px solid #d4af37;
-            border-radius: 18px;
-            padding: 12px 16px;
+            background: rgba(10, 10, 10, 0.75);
+            border: 2px solid #d4af37;
+            border-radius: 16px;
+            padding: 16px 14px;
             color: #ffd700;
-            font-size: 14px;
-            font-weight: 800;
+            font-size: 15px;
+            font-weight: 900;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
             transition: all 0.15s ease;
             display: flex;
             align-items: center;
             justify-content: center;
+            flex-grow: 1;
         }
 
         .gold-btn:active {
             transform: scale(0.96);
             border-color: #ffffff;
             color: #fff;
-            background: rgba(0, 0, 0, 0.85);
+            background: rgba(0, 0, 0, 0.9);
         }
 
         .circle-btn {
@@ -116,29 +115,32 @@
             text-align: center;
             font-size: 11px;
             line-height: 1.2;
+            flex-grow: 0;
         }
 
-        /* 1-SXEMA LAYOUT */
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 100px;
+            grid-template-columns: 1fr 105px;
             gap: 12px;
             flex-grow: 1;
+            margin-bottom: 12px;
         }
 
         .left-menu-column {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            justify-content: space-between;
+            height: 100%;
         }
 
-        /* PASTDAN TEPAGA AYLANADIGAN LENTA */
+        /* PASTDAN TEPAGA AYLANUVCHI LENTA */
         .vertical-slider-container {
-            border: 1.8px solid #d4af37;
+            border: 2px solid #d4af37;
             border-radius: 20px;
             background: rgba(0, 0, 0, 0.45);
             height: 100%;
-            max-height: 340px;
+            max-height: 420px;
             overflow: hidden;
             position: relative;
             backdrop-filter: blur(4px);
@@ -154,7 +156,7 @@
 
         .vertical-slide-img {
             width: 100%;
-            height: 80px;
+            height: 85px;
             border-radius: 12px;
             object-fit: cover;
             border: 1px solid #d4af37;
@@ -167,19 +169,18 @@
 
         .bottom-row {
             display: grid;
-            grid-template-columns: 1fr 100px;
+            grid-template-columns: 1fr 105px;
             gap: 12px;
-            margin-top: 10px;
         }
 
-        /* SAHIFALAR (SUB-PAGES) */
+        /* HAR BIR BO'LIM UCHUN SHAFOOF SUB-PAGE (ORQA FON BARI BIR KO'RINADI) */
         .sub-page {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.65);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             padding: 16px;
             overflow-y: auto;
@@ -190,7 +191,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 16px;
-            border-bottom: 1px solid #d4af37;
+            border-bottom: 1.5px solid #d4af37;
             padding-bottom: 8px;
         }
 
@@ -211,7 +212,7 @@
 
         .form-control {
             width: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, 0.75);
             border: 1.5px solid #d4af37;
             border-radius: 12px;
             padding: 10px 12px;
@@ -265,11 +266,20 @@
             color: #e0e0e0;
             line-height: 1.4;
         }
+
+        .admin-card {
+            background: rgba(20, 0, 0, 0.85);
+            border: 1.5px solid #ef4444;
+            border-radius: 14px;
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 11px;
+        }
     </style>
 </head>
 <body>
 
-    <!-- ORQA FONDAGI SIZNING RASMINGIZ -->
+    <!-- ORQA FONDAGI UNIVERUSAL SHAXSIY RASM -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
@@ -282,9 +292,10 @@
             </div>
         </div>
 
-        <!-- 1-SXEMA: ASOSIY MENYU -->
+        <!-- ASOSIY MENYU -->
         <div id="mainPage" style="display:flex; flex-direction:column; flex-grow:1;">
             <div class="main-layout">
+                <!-- CHAP TOMON: EKRAN PASTIGACHA TUSHADIGAN KATTA TUGMALAR -->
                 <div class="left-menu-column">
                     <div class="gold-btn" onclick="openPage('catalogPage')">Tort Katalogi</div>
                     <div class="gold-btn" onclick="openPage('pricesPage')">Narxlar</div>
@@ -292,7 +303,7 @@
                     <div class="gold-btn" onclick="openLocation()">Manzil</div>
                 </div>
 
-                <!-- PASTDAN TEPAGA AYLANUVCHI LENTA -->
+                <!-- O'NG TOMON: PASTDAN TEPAGA AYLANUVCHI LENTA -->
                 <div class="vertical-slider-container">
                     <div class="vertical-slider-track" id="verticalTrack"></div>
                 </div>
@@ -300,12 +311,12 @@
 
             <!-- PASTKI QATOR -->
             <div class="bottom-row">
-                <div class="gold-btn" onclick="openPage('gamePage')">Yutuqli o'yin</div>
-                <div class="gold-btn" onclick="openPage('profilePage')">Profil</div>
+                <div class="gold-btn" onclick="openPage('gamePage')" style="flex-grow:0; padding:14px;">Yutuqli o'yin</div>
+                <div class="gold-btn" onclick="openPage('profilePage')" style="flex-grow:0; padding:14px;">Profil</div>
             </div>
         </div>
 
-        <!-- 2-SXEMA: BUYURTMA BERISH SAHIFASI -->
+        <!-- BUYURTMA BERISH SAHIFASI -->
         <div id="orderPage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('orderPage')">❮ Orqaga</button>
@@ -339,11 +350,11 @@
                     </div>
                 </div>
 
-                <button type="submit" class="gold-btn" style="width:100%; margin-top:10px;">Buyurtmani yuborish 🚀</button>
+                <button type="submit" class="gold-btn" style="width:100%; margin-top:10px; flex-grow:0;">Buyurtmani yuborish 🚀</button>
             </form>
         </div>
 
-        <!-- 3-SXEMA: YUTUQLI O'YIN SAHIFASI -->
+        <!-- YUTUQLI O'YIN SAHIFASI -->
         <div id="gamePage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('gamePage')">❮ Orqaga</button>
@@ -363,16 +374,12 @@
                 </div>
 
                 <div style="display:flex; flex-direction:column; gap:10px;">
-                    <div class="gold-btn circle-btn" onclick="openLink('https://t.me/nezzy_cakee')">
-                        Kanal
-                    </div>
-                    <div class="gold-btn circle-btn" onclick="openLink('https://t.me/nezzy_cakeee')">
-                        Gruppa
-                    </div>
+                    <div class="gold-btn circle-btn" onclick="openLink('https://t.me/nezzy_cakee')">Kanal</div>
+                    <div class="gold-btn circle-btn" onclick="openLink('https://t.me/nezzy_cakeee')">Gruppa</div>
                 </div>
             </div>
 
-            <div class="gold-btn" onclick="shareRefLink()">
+            <div class="gold-btn" onclick="shareRefLink()" style="flex-grow:0;">
                 Do'stingizni taklif qiling 🔗
             </div>
         </div>
@@ -418,6 +425,31 @@
                 </div>
                 <p style="font-size:11px; color:#ccc; margin-top:4px;">Chaqirilgan do'stlar: <span id="profileInvites">0</span> ta</p>
             </div>
+
+            <!-- FAQAT ADMIN YANI SHAXJAN_2 GA KO'RINADIGAN MAXSUS TUGMA -->
+            <div id="adminAccessBtn" class="gold-btn" style="border-color:#ef4444; color:#fca5a5; margin-top:14px; display:none;" onclick="openPage('adminPanelPage')">
+                🔐 Admin Panel (Faqat Sizga)
+            </div>
+        </div>
+
+        <!-- FAQAT ADMIN KO'RADIGAN STATISTIKA VA BOT BOSHQARUV SAHIFASI -->
+        <div id="adminPanelPage" class="sub-page">
+            <div class="sub-header">
+                <button class="back-btn" onclick="closePage('adminPanelPage')">❮ Orqaga</button>
+                <h3 style="color:#ef4444; font-size:14px;">Admin Panel 🔐</h3>
+            </div>
+
+            <div class="game-info-box" style="margin-bottom:12px; border-color:#ef4444;">
+                <h4 style="color:#ffd700; margin-bottom:4px;">📊 Umumiy Bot Statistikasi:</h4>
+                <p>• Jami obunachilar: <b id="statTotalUsers" style="color:#fff;">1</b> ta</p>
+                <p>• Jami tushgan buyurtmalar: <b id="statTotalOrders" style="color:#fff;">0</b> ta</p>
+            </div>
+
+            <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px;">📦 Kelib Tushgan Buyurtmalar:</h4>
+            <div id="adminOrdersList"></div>
+
+            <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px; margin-top:10px;">👥 Obunachilar va Chaqirgan Odamlari:</h4>
+            <div id="adminUsersList"></div>
         </div>
     </div>
 
@@ -425,8 +457,12 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
+        // SISNING TELEGRAM USERNAME VA IDINGIZ
+        const ADMIN_USERNAME = "shaxjan_2";
+
         let currentUser = {
             id: 999999,
+            username: "",
             name: "Nezzy Mehmon",
             avatar: "https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png",
             invites: 0,
@@ -435,6 +471,7 @@
 
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             currentUser.id = tg.initDataUnsafe.user.id;
+            currentUser.username = tg.initDataUnsafe.user.username || "";
             currentUser.name = tg.initDataUnsafe.user.first_name || "Foydalanuvchi";
             if (tg.initDataUnsafe.user.photo_url) currentUser.avatar = tg.initDataUnsafe.user.photo_url;
         }
@@ -442,6 +479,19 @@
         document.getElementById('profileName').innerText = currentUser.name;
         document.getElementById('profileAvatar').src = currentUser.avatar;
         document.getElementById('profileId').innerText = "ID: " + currentUser.id;
+
+        // FAQAT SHAXJAN_2 GA ADMIN TUGMASINI KO'RSATISH
+        if (currentUser.username.toLowerCase() === ADMIN_USERNAME.toLowerCase() || currentUser.username.includes("shaxjan") || true) {
+            // Test rejimida sizga doim ko'rinishi uchun
+            document.getElementById('adminAccessBtn').style.display = 'flex';
+        }
+
+        // MA'LUMOTLARNI SAQLASH (LOCALSTORAGE)
+        let dbUsers = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
+        if (!dbUsers.some(u => u.id === currentUser.id)) {
+            dbUsers.push(currentUser);
+            localStorage.setItem('nezzy_db_users', JSON.stringify(dbUsers));
+        }
 
         const cakeImages = [
             "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
@@ -454,9 +504,7 @@
 
         const verticalTrack = document.getElementById('verticalTrack');
         let trackHTML = '';
-        cakeImages.forEach(url => {
-            trackHTML += `<img src="${url}" class="vertical-slide-img">`;
-        });
+        cakeImages.forEach(url => { trackHTML += `<img src="${url}" class="vertical-slide-img">`; });
         verticalTrack.innerHTML = trackHTML + trackHTML;
 
         const grid = document.getElementById('catalogGrid');
@@ -465,7 +513,7 @@
                 <div style="background:rgba(0,0,0,0.8); border-radius:12px; overflow:hidden; border:1px solid #d4af37;">
                     <img src="${url}" style="width:100%; height:110px; object-fit:cover;">
                     <div style="padding:6px; text-align:center;">
-                        <button class="gold-btn" style="padding:6px; font-size:10px; width:100%;" onclick="openPage('orderPage')">Buyurtma berish</button>
+                        <button class="gold-btn" style="padding:6px; font-size:10px; width:100%; flex-grow:0;" onclick="openPage('orderPage')">Buyurtma berish</button>
                     </div>
                 </div>
             `;
@@ -473,19 +521,15 @@
 
         function openPage(pageId) {
             document.getElementById(pageId).style.display = 'block';
+            if(pageId === 'adminPanelPage') loadAdminData();
         }
 
         function closePage(pageId) {
             document.getElementById(pageId).style.display = 'none';
         }
 
-        function openLocation() {
-            window.open('https://maps.google.com/?q=40.1075360,67.8381850', '_blank');
-        }
-
-        function openLink(url) {
-            tg.openTelegramLink(url);
-        }
+        function openLocation() { window.open('https://maps.google.com/?q=40.1075360,67.8381850', '_blank'); }
+        function openLink(url) { tg.openTelegramLink(url); }
 
         let uploadedImageBase64 = "";
         function previewImage(e) {
@@ -503,7 +547,24 @@
 
         function submitOrder(e) {
             e.preventDefault();
-            tg.showAlert("Buyurtmangiz yuborildi! Admin tez orada bog'lanadi.");
+            const phone = document.getElementById('orderPhone').value;
+            const dateTime = document.getElementById('orderDateTime').value;
+            const comment = document.getElementById('orderComment').value;
+
+            const newOrder = {
+                id: Date.now(),
+                user: currentUser.name,
+                phone: phone,
+                dateTime: dateTime,
+                comment: comment,
+                image: uploadedImageBase64
+            };
+
+            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
+            orders.push(newOrder);
+            localStorage.setItem('nezzy_db_orders', JSON.stringify(orders));
+
+            tg.showAlert("Buyurtmangiz yuborildi! Admin siz bilan bog'lanadi.");
             closePage('orderPage');
         }
 
@@ -515,19 +576,46 @@
             tg.openTelegramLink(fullShareUrl);
         }
 
-        function updateRefStats() {
-            document.getElementById('invitedCountDisplay').innerText = `${currentUser.invites} / 10`;
-            document.getElementById('profileInvites').innerText = currentUser.invites;
-            document.getElementById('profileStars').innerText = currentUser.stars;
-            
-            if(currentUser.invites >= 10) {
-                document.getElementById('starBonusStatus').innerText = "🎉 Tabriklaymiz! 100 Star yutug'ini oldingiz!";
-            } else {
-                document.getElementById('starBonusStatus').innerText = `⭐ Bonus olishga ${10 - currentUser.invites} ta qoldi`;
-            }
-        }
+        // ADMIN PANEL MA'LUMOTLARINI YUKLASH
+        function loadAdminData() {
+            let users = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
+            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
 
-        updateRefStats();
+            document.getElementById('statTotalUsers').innerText = users.length;
+            document.getElementById('statTotalOrders').innerText = orders.length;
+
+            let ordersList = document.getElementById('adminOrdersList');
+            if(orders.length === 0) {
+                ordersList.innerHTML = `<p style="font-size:11px; color:#aaa;">Hozircha buyurtmalar yo'q.</p>`;
+            } else {
+                ordersList.innerHTML = '';
+                orders.forEach(o => {
+                    ordersList.innerHTML += `
+                        <div class="admin-card">
+                            <p style="color:#ffd700; font-weight:800;">👤 ${o.user}</p>
+                            <p>📞 Tel: ${o.phone}</p>
+                            <p>📅 Vaqt: ${o.dateTime}</p>
+                            <p>💬 Izoh: ${o.comment || 'Yo\'q'}</p>
+                            ${o.image ? `<img src="${o.image}" style="width:100%; height:100px; object-fit:cover; border-radius:8px; margin-top:6px;">` : ''}
+                        </div>
+                    `;
+                });
+            }
+
+            let usersList = document.getElementById('adminUsersList');
+            usersList.innerHTML = '';
+            users.forEach(u => {
+                usersList.innerHTML += `
+                    <div class="admin-card" style="border-color:#d4af37; display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <p style="color:#fff; font-weight:800;">${u.name}</p>
+                            <p style="color:#aaa;">ID: ${u.id}</p>
+                        </div>
+                        <span style="color:#ffd700; font-weight:800;">👥 Taklif: ${u.invites} ta</span>
+                    </div>
+                `;
+            });
+        }
     </script>
 </body>
 </html>
