@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="uz">
 <head>
@@ -21,24 +20,28 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            background: #0d0d0d;
+            background-color: #000;
         }
 
-        /* QORA BILDURUVCHI FO-RASM */
+        /* ORQA FONDAGI SIZ YUBORGAN RASM */
         .bg-image {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: url('https://i.ibb.co/3mDvxJVm/IMG-20261022-194002-989.jpg') center/cover no-repeat;
-            z-index: 0;
+            background-image: url('https://i.ibb.co/MkYfzXKk/IMG-20261022-194002-989.jpg');
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: -2;
         }
 
+        /* YENGIL QORAMTIR PARDA (RASM ANIQ KO'RINIB TURISHI UCHUN) */
         .bg-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.75);
-            z-index: 1;
+            background: rgba(0, 0, 0, 0.35);
+            z-index: -1;
         }
 
         .app-content {
@@ -58,14 +61,15 @@
         }
 
         .logo-box {
-            background: linear-gradient(135deg, #000, #1a1a1a);
+            background: rgba(0, 0, 0, 0.75);
             border: 2px solid #d4af37;
             border-radius: 14px;
             padding: 6px 14px;
             display: flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(5px);
         }
 
         .logo-title {
@@ -75,9 +79,9 @@
             letter-spacing: 0.5px;
         }
 
-        /* TILLARANG SKROMNIY TUGMALAR */
+        /* SHAFFOF TILLARANG SKROMNIY TUGMALAR (ORQA RASM KO'RINIB TURADI) */
         .gold-btn {
-            background: linear-gradient(145deg, #141414, #050505);
+            background: rgba(10, 10, 10, 0.7);
             border: 1.8px solid #d4af37;
             border-radius: 18px;
             padding: 12px 16px;
@@ -86,7 +90,8 @@
             font-weight: 800;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 0 6px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+            backdrop-filter: blur(4px);
             transition: all 0.15s ease;
             display: flex;
             align-items: center;
@@ -97,6 +102,7 @@
             transform: scale(0.96);
             border-color: #ffffff;
             color: #fff;
+            background: rgba(0, 0, 0, 0.85);
         }
 
         .circle-btn {
@@ -112,7 +118,7 @@
             line-height: 1.2;
         }
 
-        /* 1-SXEMA: MAIN PAGE LAYOUT */
+        /* 1-SXEMA LAYOUT */
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 100px;
@@ -130,11 +136,12 @@
         .vertical-slider-container {
             border: 1.8px solid #d4af37;
             border-radius: 20px;
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.45);
             height: 100%;
             max-height: 340px;
             overflow: hidden;
             position: relative;
+            backdrop-filter: blur(4px);
         }
 
         .vertical-slider-track {
@@ -171,7 +178,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(10, 10, 10, 0.95);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 16px;
@@ -198,14 +205,13 @@
             cursor: pointer;
         }
 
-        /* FORMA ELEMENTLARI (BUYURTMA BERISH) */
         .form-group {
             margin-bottom: 10px;
         }
 
         .form-control {
             width: 100%;
-            background: rgba(20, 20, 20, 0.8);
+            background: rgba(0, 0, 0, 0.7);
             border: 1.5px solid #d4af37;
             border-radius: 12px;
             padding: 10px 12px;
@@ -221,7 +227,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(15, 15, 15, 0.7);
+            background: rgba(0, 0, 0, 0.6);
             cursor: pointer;
             position: relative;
             background-size: cover;
@@ -236,7 +242,6 @@
             cursor: pointer;
         }
 
-        /* 2-SXEMA LAYOUT (BUYURTMA) */
         .order-layout-grid {
             display: grid;
             grid-template-columns: 1fr 90px;
@@ -244,7 +249,6 @@
             align-items: end;
         }
 
-        /* 3-SXEMA LAYOUT (YUTUQLI O'YIN) */
         .game-layout-grid {
             display: grid;
             grid-template-columns: 1fr 90px;
@@ -253,7 +257,7 @@
         }
 
         .game-info-box {
-            background: rgba(18, 18, 18, 0.85);
+            background: rgba(0, 0, 0, 0.75);
             border: 1.5px solid #d4af37;
             border-radius: 16px;
             padding: 12px;
@@ -265,6 +269,7 @@
 </head>
 <body>
 
+    <!-- ORQA FONDAGI SIZNING RASMINGIZ -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
@@ -280,7 +285,6 @@
         <!-- 1-SXEMA: ASOSIY MENYU -->
         <div id="mainPage" style="display:flex; flex-direction:column; flex-grow:1;">
             <div class="main-layout">
-                <!-- CHAP TOMON TUGMALAR -->
                 <div class="left-menu-column">
                     <div class="gold-btn" onclick="openPage('catalogPage')">Tort Katalogi</div>
                     <div class="gold-btn" onclick="openPage('pricesPage')">Narxlar</div>
@@ -288,11 +292,9 @@
                     <div class="gold-btn" onclick="openLocation()">Manzil</div>
                 </div>
 
-                <!-- O'NG TOMON: PASTDAN TEPAGA AYLANUVCHI LENTA -->
+                <!-- PASTDAN TEPAGA AYLANUVCHI LENTA -->
                 <div class="vertical-slider-container">
-                    <div class="vertical-slider-track" id="verticalTrack">
-                        <!-- Rasmlar avtomatik yuklanadi -->
-                    </div>
+                    <div class="vertical-slider-track" id="verticalTrack"></div>
                 </div>
             </div>
 
@@ -332,7 +334,6 @@
                         </div>
                     </div>
 
-                    <!-- AYLANASI SIMON ADMIN BOG'LANISH TUGMASI -->
                     <div class="gold-btn circle-btn" onclick="openLink('https://t.me/shaxjan_2')">
                         <span>Admin bilan boglanish</span>
                     </div>
@@ -355,14 +356,12 @@
             </div>
 
             <div class="game-layout-grid">
-                <!-- FOYDALANUVCHI CHAQIRGAN ODAMLARI SANAGICHI -->
                 <div class="game-info-box" style="display:flex; flex-direction:column; justify-content:center; text-align:center;">
                     <span style="font-size:12px; color:#aaa;">Siz taklif qilgan odamlar:</span>
                     <span id="invitedCountDisplay" style="font-size:28px; font-weight:900; color:#ffd700; margin:4px 0;">0 / 10</span>
                     <span style="font-size:11px; color:#ffd700;" id="starBonusStatus">⭐ Bonus olishga 10 ta qoldi</span>
                 </div>
 
-                <!-- O'NG TOMON AYLANASI TUGMALAR -->
                 <div style="display:flex; flex-direction:column; gap:10px;">
                     <div class="gold-btn circle-btn" onclick="openLink('https://t.me/nezzy_cakee')">
                         Kanal
@@ -373,7 +372,6 @@
                 </div>
             </div>
 
-            <!-- DO'STLARNI TAKLIF QILISH TUGMASI -->
             <div class="gold-btn" onclick="shareRefLink()">
                 Do'stingizni taklif qiling 🔗
             </div>
@@ -445,7 +443,6 @@
         document.getElementById('profileAvatar').src = currentUser.avatar;
         document.getElementById('profileId').innerText = "ID: " + currentUser.id;
 
-        // VERTIKAL LENTA RASMLARI VA KATALOG
         const cakeImages = [
             "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
             "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg",
@@ -460,12 +457,12 @@
         cakeImages.forEach(url => {
             trackHTML += `<img src="${url}" class="vertical-slide-img">`;
         });
-        verticalTrack.innerHTML = trackHTML + trackHTML; // Uzluksiz oqim uchun
+        verticalTrack.innerHTML = trackHTML + trackHTML;
 
         const grid = document.getElementById('catalogGrid');
         cakeImages.forEach(url => {
             grid.innerHTML += `
-                <div style="background:rgba(20,20,20,0.85); border-radius:12px; overflow:hidden; border:1px solid #d4af37;">
+                <div style="background:rgba(0,0,0,0.8); border-radius:12px; overflow:hidden; border:1px solid #d4af37;">
                     <img src="${url}" style="width:100%; height:110px; object-fit:cover;">
                     <div style="padding:6px; text-align:center;">
                         <button class="gold-btn" style="padding:6px; font-size:10px; width:100%;" onclick="openPage('orderPage')">Buyurtma berish</button>
@@ -510,19 +507,14 @@
             closePage('orderPage');
         }
 
-        /* SHAXSIY TAKLIF HAVOLASI VA REFEARAL TIZIMI */
         function shareRefLink() {
-            // Har bir foydalanuvchi uchun uning IDsi bilan maxsus taklif havolasi
-            const botUsername = "nezzy_premium_bot"; // Botingiz username'i
+            const botUsername = "nezzy_premium_bot";
             const refLink = `https://t.me/${botUsername}?start=ref_${currentUser.id}`;
             const shareText = `Nezzy Cake shirinliklar botiga taklif qilaman! Mazali tortlarga buyurtma bering:`;
-            
-            // Telegram ulashish oynasini ochish
             const fullShareUrl = `https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(shareText)}`;
             tg.openTelegramLink(fullShareUrl);
         }
 
-        // Referal holatini yangilash
         function updateRefStats() {
             document.getElementById('invitedCountDisplay').innerText = `${currentUser.invites} / 10`;
             document.getElementById('profileInvites').innerText = currentUser.invites;
