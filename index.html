@@ -23,7 +23,7 @@
             background-color: #000;
         }
 
-        /* BARCHA SAHIFALAR UCHUN YAGONA SHAXSIY ORQA FON RASMI */
+        /* SHAXSIY ORQA FON RASMI */
         .bg-image {
             position: fixed;
             top: 0; left: 0;
@@ -39,7 +39,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 0, 0, 0.45);
             z-index: -1;
         }
 
@@ -54,12 +54,12 @@
         .header-logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
             margin-bottom: 12px;
         }
 
         .logo-box {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             border: 2px solid #d4af37;
             border-radius: 14px;
             padding: 6px 14px;
@@ -77,14 +77,14 @@
             letter-spacing: 0.5px;
         }
 
-        /* KATTA TILLARANG TUGMALAR (EKRAN PASTIGACHA TU SHADI) */
+        /* KATTA TILLARANG TUGMALAR */
         .gold-btn {
-            background: rgba(10, 10, 10, 0.75);
+            background: rgba(10, 10, 10, 0.8);
             border: 2px solid #d4af37;
             border-radius: 16px;
-            padding: 16px 14px;
+            padding: 14px 12px;
             color: #ffd700;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: 900;
             text-align: center;
             cursor: pointer;
@@ -101,7 +101,7 @@
             transform: scale(0.96);
             border-color: #ffffff;
             color: #fff;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.95);
         }
 
         .circle-btn {
@@ -121,15 +121,15 @@
         .main-layout {
             display: grid;
             grid-template-columns: 1fr 105px;
-            gap: 12px;
+            gap: 10px;
             flex-grow: 1;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
         }
 
         .left-menu-column {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
             justify-content: space-between;
             height: 100%;
         }
@@ -140,7 +140,7 @@
             border-radius: 20px;
             background: rgba(0, 0, 0, 0.45);
             height: 100%;
-            max-height: 420px;
+            max-height: 440px;
             overflow: hidden;
             position: relative;
             backdrop-filter: blur(4px);
@@ -170,17 +170,17 @@
         .bottom-row {
             display: grid;
             grid-template-columns: 1fr 105px;
-            gap: 12px;
+            gap: 10px;
         }
 
-        /* HAR BIR BO'LIM UCHUN SHAFOOF SUB-PAGE (ORQA FON BARI BIR KO'RINADI) */
+        /* SUB-PAGES */
         .sub-page {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(0, 0, 0, 0.65);
-            backdrop-filter: blur(8px);
+            background: rgba(0, 0, 0, 0.75);
+            backdrop-filter: blur(10px);
             z-index: 1000;
             padding: 16px;
             overflow-y: auto;
@@ -190,7 +190,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
             border-bottom: 1.5px solid #d4af37;
             padding-bottom: 8px;
         }
@@ -212,7 +212,7 @@
 
         .form-control {
             width: 100%;
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             border: 1.5px solid #d4af37;
             border-radius: 12px;
             padding: 10px 12px;
@@ -224,7 +224,7 @@
         .image-upload-box {
             border: 1.8px dashed #d4af37;
             border-radius: 16px;
-            height: 110px;
+            height: 100px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -258,15 +258,43 @@
         }
 
         .game-info-box {
-            background: rgba(0, 0, 0, 0.75);
+            background: rgba(0, 0, 0, 0.8);
             border: 1.5px solid #d4af37;
             border-radius: 16px;
             padding: 12px;
             font-size: 11px;
             color: #e0e0e0;
             line-height: 1.4;
+            margin-bottom: 10px;
         }
 
+        /* KATALOG KATEGORIYALARI */
+        .category-tab-bar {
+            display: flex;
+            gap: 8px;
+            overflow-x: auto;
+            padding-bottom: 8px;
+            margin-bottom: 10px;
+        }
+
+        .cat-btn {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+            cursor: pointer;
+        }
+
+        .cat-btn.active {
+            background: #d4af37;
+            color: #000;
+        }
+
+        /* ADMIN CARD */
         .admin-card {
             background: rgba(20, 0, 0, 0.85);
             border: 1.5px solid #ef4444;
@@ -275,48 +303,124 @@
             margin-bottom: 10px;
             font-size: 11px;
         }
+
+        .status-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 800;
+            margin-top: 4px;
+        }
+
+        .status-pending { background: #f59e0b; color: #000; }
+        .status-baking { background: #3b82f6; color: #fff; }
+        .status-ready { background: #10b981; color: #fff; }
     </style>
 </head>
 <body>
 
-    <!-- ORQA FONDAGI UNIVERUSAL SHAXSIY RASM -->
     <div class="bg-image"></div>
     <div class="bg-overlay"></div>
 
     <div class="app-content">
-        <!-- LOGO HEADER -->
+        <!-- HEADER LOGO -->
         <div class="header-logo">
             <div class="logo-box">
                 <span style="font-size:20px;">🍰</span>
                 <span class="logo-title">Nezzy Cake</span>
+            </div>
+            <div class="logo-box" onclick="openPage('faqPage')" style="cursor:pointer; padding:6px 10px;">
+                <span style="font-size:12px; color:#ffd700; font-weight:800;">📖 Yo'riqnoma</span>
             </div>
         </div>
 
         <!-- ASOSIY MENYU -->
         <div id="mainPage" style="display:flex; flex-direction:column; flex-grow:1;">
             <div class="main-layout">
-                <!-- CHAP TOMON: EKRAN PASTIGACHA TUSHADIGAN KATTA TUGMALAR -->
                 <div class="left-menu-column">
                     <div class="gold-btn" onclick="openPage('catalogPage')">Tort Katalogi</div>
+                    <div class="gold-btn" onclick="openPage('customCakePage')">👨‍🍳 Tort Konstruktori</div>
                     <div class="gold-btn" onclick="openPage('pricesPage')">Narxlar</div>
                     <div class="gold-btn" onclick="openPage('orderPage')">Buyurtma berish</div>
                     <div class="gold-btn" onclick="openLocation()">Manzil</div>
                 </div>
 
-                <!-- O'NG TOMON: PASTDAN TEPAGA AYLANUVCHI LENTA -->
                 <div class="vertical-slider-container">
                     <div class="vertical-slider-track" id="verticalTrack"></div>
                 </div>
             </div>
 
-            <!-- PASTKI QATOR -->
             <div class="bottom-row">
                 <div class="gold-btn" onclick="openPage('gamePage')" style="flex-grow:0; padding:14px;">Yutuqli o'yin</div>
                 <div class="gold-btn" onclick="openPage('profilePage')" style="flex-grow:0; padding:14px;">Profil</div>
             </div>
         </div>
 
-        <!-- BUYURTMA BERISH SAHIFASI -->
+        <!-- KATALOG SAHIFASI (KATEGORIYALAR BILAN) -->
+        <div id="catalogPage" class="sub-page">
+            <div class="sub-header">
+                <button class="back-btn" onclick="closePage('catalogPage')">❮ Orqaga</button>
+                <h3 style="color:#ffd700; font-size:14px;">Tort Katalogi</h3>
+            </div>
+
+            <div class="category-tab-bar">
+                <div class="cat-btn active" onclick="filterCatalog('all', this)">Barchasi</div>
+                <div class="cat-btn" onclick="filterCatalog('bento', this)">Bento tortlar</div>
+                <div class="cat-btn" onclick="filterCatalog('kids', this)">Bolalar uchun</div>
+                <div class="cat-btn" onclick="filterCatalog('wedding', this)">To'y & Bayram</div>
+                <div class="cat-btn" onclick="filterCatalog('dessert', this)">Trifli / Cheesecake</div>
+            </div>
+
+            <div id="catalogGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
+        </div>
+
+        <!-- TORT KONSTRUKTORI (INTERAKTIV YIG'ISH) -->
+        <div id="customCakePage" class="sub-page">
+            <div class="sub-header">
+                <button class="back-btn" onclick="closePage('customCakePage')">❮ Orqaga</button>
+                <h3 style="color:#ffd700; font-size:14px;">Tort Konstruktori 👨‍🍳</h3>
+            </div>
+
+            <div class="game-info-box">
+                <b style="color:#ffd700;">O'zingiz xohlagan tortni yig'ing:</b>
+            </div>
+
+            <div class="form-group">
+                <label style="font-size:11px; color:#ffd700;">1. Biskvit turini tanlang:</label>
+                <select id="cakeBiskvit" class="form-control" onchange="calcCustomPrice()">
+                    <option value="80000">Shokoladli (+80 000 so'm)</option>
+                    <option value="75000">Vanilli (+75 000 so'm)</option>
+                    <option value="90000">Red Velvet (+90 000 so'm)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label style="font-size:11px; color:#ffd700;">2. Krem turini tanlang:</label>
+                <select id="cakeKrem" class="form-control" onchange="calcCustomPrice()">
+                    <option value="20000">Krem-chiz (+20 000 so'm)</option>
+                    <option value="15000">Shokoladli ganash (+15 000 so'm)</option>
+                    <option value="25000">Sguщenka & Saroy (+25 000 so'm)</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label style="font-size:11px; color:#ffd700;">3. Ichki meva va nachinka:</label>
+                <select id="cakeFilling" class="form-control" onchange="calcCustomPrice()">
+                    <option value="15000">Qulpnay & Banan (+15 000 so'm)</option>
+                    <option value="20000">Yong'oq & Karamel (+20 000 so'm)</option>
+                    <option value="10000">Gilos va Shokolad (+10 000 so'm)</option>
+                </select>
+            </div>
+
+            <div class="game-info-box" style="text-align:center; font-size:13px;">
+                Taxminiy Narx: <b id="customPriceTotal" style="color:#ffd700; font-size:16px;">115 000 so'm</b>
+            </div>
+
+            <button class="gold-btn" style="width:100%;" onclick="orderCustomCake()">Ushbu tortga buyurtma berish 🚀</button>
+        </div>
+
+        <!-- BUYURTMA BERISH SAHIFASI (DOSTAVKA HISOB-KITOBI BILAN) -->
         <div id="orderPage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('orderPage')">❮ Orqaga</button>
@@ -335,10 +439,21 @@
                     <input type="tel" id="orderPhone" class="form-control" placeholder="Tel: +998 90 123 45 67" required>
                 </div>
 
+                <div class="form-group">
+                    <select id="deliveryType" class="form-control" onchange="toggleDeliveryInput()">
+                        <option value="self">O'zi olib ketadi (Olib ketish)</option>
+                        <option value="delivery">Yetkazib berish (Dostavka +15 000 so'm)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="addressInputBox" style="display:none;">
+                    <input type="text" id="orderAddress" class="form-control" placeholder="Yetkazish manzili (Ko'cha, uy, xonadon)">
+                </div>
+
                 <div class="order-layout-grid">
                     <div>
                         <div class="form-group">
-                            <input type="text" id="orderDateTime" class="form-control" placeholder="Olib ketish sanasi va vaxti" required>
+                            <input type="text" id="orderDateTime" class="form-control" placeholder="Sana va vaqt" required>
                         </div>
                         <div class="form-group">
                             <textarea id="orderComment" class="form-control" rows="2" placeholder="Qushimcha izoh"></textarea>
@@ -354,6 +469,27 @@
             </form>
         </div>
 
+        <!-- YO'RIQNOMA (FAQ) -->
+        <div id="faqPage" class="sub-page">
+            <div class="sub-header">
+                <button class="back-btn" onclick="closePage('faqPage')">❮ Orqaga</button>
+                <h3 style="color:#ffd700; font-size:14px;">Yo'riqnoma va Ma'lumot 📖</h3>
+            </div>
+
+            <div class="game-info-box">
+                <b style="color:#ffd700;">🎂 Qanday buyurtma beriladi?</b><br>
+                1. Tort Katalogidan yoki Tort Konstruktoridan xohlagan tortingizni tanlang.<br>
+                2. Buyurtma berish tugmasini bosib rasmi, telefon raqamingiz va vaqtini kiritib yuboring.<br>
+                3. Admin siz bilan bog'lanib buyurtmangizni tasdiqlaydi!
+            </div>
+
+            <div class="game-info-box">
+                <b style="color:#ffd700;">🚚 Yetkazib berish va To'lov:</b><br>
+                • Toshkent va Jizzax shahri bo'ylab yetkazib berish xizmati bor.<br>
+                • To'lovni Click, Payme yoki naqd shaklda amalga oshirishingiz mumkin.
+            </div>
+        </div>
+
         <!-- YUTUQLI O'YIN SAHIFASI -->
         <div id="gamePage" class="sub-page">
             <div class="sub-header">
@@ -361,7 +497,7 @@
                 <h3 style="color:#ffd700; font-size:14px;">Yutuqli o'yin 🎁</h3>
             </div>
 
-            <div class="game-info-box" style="margin-bottom:10px;">
+            <div class="game-info-box">
                 <b style="color:#ffd700;">Uyin shartlari:</b><br>
                 10 ta odam chaqirganingiz uchun sizga 100 ta star (yulduzcha) sovga qilinadi. Taklif qilgan odamingiz bizning botdan ruyxatdan utsa sizni xisobingizga +1 odam qushiladi. Yutuqni 10 ta odam taklif qilib bulganingizdan sung olasiz!
             </div>
@@ -384,15 +520,6 @@
             </div>
         </div>
 
-        <!-- KATALOG SAHIFASI -->
-        <div id="catalogPage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('catalogPage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:14px;">Tort Katalogi</h3>
-            </div>
-            <div id="catalogGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
-        </div>
-
         <!-- NARXLAR SAHIFASI -->
         <div id="pricesPage" class="sub-page">
             <div class="sub-header">
@@ -410,45 +537,64 @@
             </div>
         </div>
 
-        <!-- PROFIL SAHIFASI -->
+        <!-- PROFIL SAHIFASI (TUG'ILGAN KUN ESLATMASI VA BUYURTMA STATUSLARI BILAN) -->
         <div id="profilePage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('profilePage')">❮ Orqaga</button>
                 <h3 style="color:#ffd700; font-size:14px;">Profil 👤</h3>
             </div>
             <div class="game-info-box" style="text-align:center;">
-                <img id="profileAvatar" src="https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png" style="width:70px; height:70px; border-radius:50%; border:2px solid #d4af37; margin-bottom:8px;">
+                <img id="profileAvatar" src="https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png" style="width:65px; height:65px; border-radius:50%; border:2px solid #d4af37; margin-bottom:8px;">
                 <h3 id="profileName" style="color:#fff;">Foydalanuvchi</h3>
                 <p id="profileId" style="color:#aaa; font-size:11px;">ID: ...</p>
-                <div style="margin-top:10px; font-size:14px; color:#ffd700; font-weight:800;">
+                <div style="margin-top:8px; font-size:13px; color:#ffd700; font-weight:800;">
                     ⭐ Balansingiz: <span id="profileStars">0</span> Star
                 </div>
-                <p style="font-size:11px; color:#ccc; margin-top:4px;">Chaqirilgan do'stlar: <span id="profileInvites">0</span> ta</p>
             </div>
 
-            <!-- FAQAT ADMIN YANI SHAXJAN_2 GA KO'RINADIGAN MAXSUS TUGMA -->
+            <!-- TUG'ILGAN KUN ESLATMASI -->
+            <div class="game-info-box">
+                <b style="color:#ffd700;">🎂 Yaqiningizning Tug'ilgan Kuni Eslatmasi:</b>
+                <input type="text" id="bdayName" class="form-control" placeholder="Ismi (Masalan: Onajonim)" style="margin-top:6px;">
+                <input type="date" id="bdayDate" class="form-control" style="margin-top:6px;">
+                <button class="gold-btn" style="width:100%; margin-top:6px; padding:8px;" onclick="saveBirthday()">Eslatmani Saqlash 🔔</button>
+                <div id="savedBdayList" style="margin-top:8px; font-size:11px; color:#ccc;"></div>
+            </div>
+
+            <!-- BUYURTMA STATUSLARI -->
+            <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px;">📦 Mening Buyurtmalarim:</h4>
+            <div id="myOrdersList"></div>
+
+            <!-- FAQAT SHAXJAN_2 GA ADMIN BUTTON -->
             <div id="adminAccessBtn" class="gold-btn" style="border-color:#ef4444; color:#fca5a5; margin-top:14px; display:none;" onclick="openPage('adminPanelPage')">
                 🔐 Admin Panel (Faqat Sizga)
             </div>
         </div>
 
-        <!-- FAQAT ADMIN KO'RADIGAN STATISTIKA VA BOT BOSHQARUV SAHIFASI -->
+        <!-- FAQAT ADMIN PANEL (RASSILKA VA STATUS O'ZGARTIRISH BILAN) -->
         <div id="adminPanelPage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('adminPanelPage')">❮ Orqaga</button>
                 <h3 style="color:#ef4444; font-size:14px;">Admin Panel 🔐</h3>
             </div>
 
-            <div class="game-info-box" style="margin-bottom:12px; border-color:#ef4444;">
+            <div class="game-info-box" style="border-color:#ef4444;">
                 <h4 style="color:#ffd700; margin-bottom:4px;">📊 Umumiy Bot Statistikasi:</h4>
                 <p>• Jami obunachilar: <b id="statTotalUsers" style="color:#fff;">1</b> ta</p>
-                <p>• Jami tushgan buyurtmalar: <b id="statTotalOrders" style="color:#fff;">0</b> ta</p>
+                <p>• Jami buyurtmalar: <b id="statTotalOrders" style="color:#fff;">0</b> ta</p>
+            </div>
+
+            <!-- ADMIN RASSILKA (XABAR YUBORISH) -->
+            <div class="game-info-box" style="border-color:#ef4444;">
+                <h4 style="color:#ffd700; margin-bottom:4px;">📢 Obunachilarga Xabar Yuborish (Rassilka):</h4>
+                <textarea id="broadcastText" class="form-control" rows="2" placeholder="Xabar matnini yozing..."></textarea>
+                <button class="gold-btn" style="width:100%; margin-top:6px; padding:8px;" onclick="sendBroadcast()">Barcha obunachilarga yuborish 🚀</button>
             </div>
 
             <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px;">📦 Kelib Tushgan Buyurtmalar:</h4>
             <div id="adminOrdersList"></div>
 
-            <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px; margin-top:10px;">👥 Obunachilar va Chaqirgan Odamlari:</h4>
+            <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px; margin-top:10px;">👥 Obunachilar:</h4>
             <div id="adminUsersList"></div>
         </div>
     </div>
@@ -457,7 +603,6 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
-        // SISNING TELEGRAM USERNAME VA IDINGIZ
         const ADMIN_USERNAME = "shaxjan_2";
 
         let currentUser = {
@@ -480,13 +625,10 @@
         document.getElementById('profileAvatar').src = currentUser.avatar;
         document.getElementById('profileId').innerText = "ID: " + currentUser.id;
 
-        // FAQAT SHAXJAN_2 GA ADMIN TUGMASINI KO'RSATISH
         if (currentUser.username.toLowerCase() === ADMIN_USERNAME.toLowerCase() || currentUser.username.includes("shaxjan") || true) {
-            // Test rejimida sizga doim ko'rinishi uchun
             document.getElementById('adminAccessBtn').style.display = 'flex';
         }
 
-        // MA'LUMOTLARNI SAQLASH (LOCALSTORAGE)
         let dbUsers = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
         if (!dbUsers.some(u => u.id === currentUser.id)) {
             dbUsers.push(currentUser);
@@ -494,40 +636,69 @@
         }
 
         const cakeImages = [
-            "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
-            "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg",
-            "https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg",
-            "https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg",
-            "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg",
-            "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg"
+            { url: "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg", cat: "bento", title: "Bento Tort #1" },
+            { url: "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg", cat: "kids", title: "Bolalar Torti" },
+            { url: "https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg", cat: "wedding", title: "To'y Torti Luxury" },
+            { url: "https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg", cat: "dessert", title: "Shokoladli Cheesecake" },
+            { url: "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg", cat: "bento", title: "Bento Love" },
+            { url: "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg", cat: "kids", title: "Multik Tort" }
         ];
 
         const verticalTrack = document.getElementById('verticalTrack');
         let trackHTML = '';
-        cakeImages.forEach(url => { trackHTML += `<img src="${url}" class="vertical-slide-img">`; });
+        cakeImages.forEach(item => { trackHTML += `<img src="${item.url}" class="vertical-slide-img">`; });
         verticalTrack.innerHTML = trackHTML + trackHTML;
 
-        const grid = document.getElementById('catalogGrid');
-        cakeImages.forEach(url => {
-            grid.innerHTML += `
-                <div style="background:rgba(0,0,0,0.8); border-radius:12px; overflow:hidden; border:1px solid #d4af37;">
-                    <img src="${url}" style="width:100%; height:110px; object-fit:cover;">
-                    <div style="padding:6px; text-align:center;">
-                        <button class="gold-btn" style="padding:6px; font-size:10px; width:100%; flex-grow:0;" onclick="openPage('orderPage')">Buyurtma berish</button>
-                    </div>
-                </div>
-            `;
-        });
+        function renderCatalog(filter = "all") {
+            const grid = document.getElementById('catalogGrid');
+            grid.innerHTML = '';
+            cakeImages.forEach(item => {
+                if(filter === "all" || item.cat === filter) {
+                    grid.innerHTML += `
+                        <div style="background:rgba(0,0,0,0.8); border-radius:12px; overflow:hidden; border:1px solid #d4af37;">
+                            <img src="${item.url}" style="width:100%; height:100px; object-fit:cover;">
+                            <div style="padding:6px; text-align:center;">
+                                <p style="font-size:10px; color:#ffd700; font-weight:800; margin-bottom:4px;">${item.title}</p>
+                                <button class="gold-btn" style="padding:4px; font-size:10px; width:100%; flex-grow:0;" onclick="openPage('orderPage')">Buyurtma berish</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+        }
+        renderCatalog();
+
+        function filterCatalog(cat, btn) {
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderCatalog(cat);
+        }
+
+        function calcCustomPrice() {
+            let b = parseInt(document.getElementById('cakeBiskvit').value);
+            let k = parseInt(document.getElementById('cakeKrem').value);
+            let f = parseInt(document.getElementById('cakeFilling').value);
+            let total = b + k + f;
+            document.getElementById('customPriceTotal').innerText = total.toLocaleString() + " so'm";
+        }
+
+        function orderCustomCake() {
+            openPage('orderPage');
+            document.getElementById('orderComment').value = "Konstruktor tort: Biskvit/Krem/Nachinka mos ravishda tanlandi.";
+        }
+
+        function toggleDeliveryInput() {
+            let type = document.getElementById('deliveryType').value;
+            document.getElementById('addressInputBox').style.display = (type === 'delivery') ? 'block' : 'none';
+        }
 
         function openPage(pageId) {
             document.getElementById(pageId).style.display = 'block';
             if(pageId === 'adminPanelPage') loadAdminData();
+            if(pageId === 'profilePage') loadUserProfileData();
         }
 
-        function closePage(pageId) {
-            document.getElementById(pageId).style.display = 'none';
-        }
-
+        function closePage(pageId) { document.getElementById(pageId).style.display = 'none'; }
         function openLocation() { window.open('https://maps.google.com/?q=40.1075360,67.8381850', '_blank'); }
         function openLink(url) { tg.openTelegramLink(url); }
 
@@ -550,33 +721,72 @@
             const phone = document.getElementById('orderPhone').value;
             const dateTime = document.getElementById('orderDateTime').value;
             const comment = document.getElementById('orderComment').value;
+            const delivery = document.getElementById('deliveryType').value;
+            const address = document.getElementById('orderAddress').value;
 
             const newOrder = {
                 id: Date.now(),
+                userId: currentUser.id,
                 user: currentUser.name,
                 phone: phone,
                 dateTime: dateTime,
                 comment: comment,
-                image: uploadedImageBase64
+                delivery: delivery === 'delivery' ? `Dostavka: ${address}` : "Olib ketish",
+                image: uploadedImageBase64,
+                status: "Kutilmoqda ⏳"
             };
 
             let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
             orders.push(newOrder);
             localStorage.setItem('nezzy_db_orders', JSON.stringify(orders));
 
-            tg.showAlert("Buyurtmangiz yuborildi! Admin siz bilan bog'lanadi.");
+            tg.showAlert("Buyurtmangiz muvaffaqiyatli qabul qilindi! Admin tez orada bog'lanadi.");
             closePage('orderPage');
+        }
+
+        function saveBirthday() {
+            let name = document.getElementById('bdayName').value;
+            let date = document.getElementById('bdayDate').value;
+            if(!name || !date) return tg.showAlert("Ma'lumotlarni to'liq kiriting!");
+            
+            let list = JSON.parse(localStorage.getItem('nezzy_bday_' + currentUser.id) || '[]');
+            list.push({ name, date });
+            localStorage.setItem('nezzy_bday_' + currentUser.id, JSON.stringify(list));
+            tg.showAlert("Eslatma saqlandi!");
+            loadUserProfileData();
+        }
+
+        function loadUserProfileData() {
+            let list = JSON.parse(localStorage.getItem('nezzy_bday_' + currentUser.id) || '[]');
+            let container = document.getElementById('savedBdayList');
+            container.innerHTML = '';
+            list.forEach(i => { container.innerHTML += `<div>📍 ${i.name} - ${i.date}</div>`; });
+
+            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
+            let myOrders = orders.filter(o => o.userId === currentUser.id);
+            let myOrdersContainer = document.getElementById('myOrdersList');
+            myOrdersContainer.innerHTML = '';
+            if(myOrders.length === 0) {
+                myOrdersContainer.innerHTML = '<p style="font-size:11px; color:#aaa;">Hali buyurtmalar berilmagan.</p>';
+            } else {
+                myOrders.forEach(o => {
+                    myOrdersContainer.innerHTML += `
+                        <div class="game-info-box">
+                            <p style="color:#ffd700; font-weight:800;">📅 ${o.dateTime}</p>
+                            <p>Status: <span class="status-badge status-pending">${o.status}</span></p>
+                        </div>
+                    `;
+                });
+            }
         }
 
         function shareRefLink() {
             const botUsername = "nezzy_premium_bot";
             const refLink = `https://t.me/${botUsername}?start=ref_${currentUser.id}`;
             const shareText = `Nezzy Cake shirinliklar botiga taklif qilaman! Mazali tortlarga buyurtma bering:`;
-            const fullShareUrl = `https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(shareText)}`;
-            tg.openTelegramLink(fullShareUrl);
+            tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(shareText)}`);
         }
 
-        // ADMIN PANEL MA'LUMOTLARINI YUKLASH
         function loadAdminData() {
             let users = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
             let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
@@ -585,36 +795,38 @@
             document.getElementById('statTotalOrders').innerText = orders.length;
 
             let ordersList = document.getElementById('adminOrdersList');
-            if(orders.length === 0) {
-                ordersList.innerHTML = `<p style="font-size:11px; color:#aaa;">Hozircha buyurtmalar yo'q.</p>`;
-            } else {
-                ordersList.innerHTML = '';
-                orders.forEach(o => {
-                    ordersList.innerHTML += `
-                        <div class="admin-card">
-                            <p style="color:#ffd700; font-weight:800;">👤 ${o.user}</p>
-                            <p>📞 Tel: ${o.phone}</p>
-                            <p>📅 Vaqt: ${o.dateTime}</p>
-                            <p>💬 Izoh: ${o.comment || 'Yo\'q'}</p>
-                            ${o.image ? `<img src="${o.image}" style="width:100%; height:100px; object-fit:cover; border-radius:8px; margin-top:6px;">` : ''}
+            ordersList.innerHTML = '';
+            orders.forEach((o, index) => {
+                ordersList.innerHTML += `
+                    <div class="admin-card">
+                        <p style="color:#ffd700; font-weight:800;">👤 ${o.user}</p>
+                        <p>📞 Tel: ${o.phone}</p>
+                        <p>📍 ${o.delivery}</p>
+                        <p>📅 Vaqt: ${o.dateTime}</p>
+                        <p>💬 Izoh: ${o.comment || 'Yo\'q'}</p>
+                        <p style="margin-top:4px;">Status: <b>${o.status}</b></p>
+                        <div style="display:flex; gap:6px; margin-top:6px;">
+                            <button onclick="updateOrderStatus(${index}, 'Tayyorlanmoqda 👨‍🍳')" style="font-size:9px; padding:4px;">👨‍🍳 Tayyorlanmoqda</button>
+                            <button onclick="updateOrderStatus(${index}, 'Tayyor ✅')" style="font-size:9px; padding:4px;">✅ Tayyor</button>
                         </div>
-                    `;
-                });
-            }
-
-            let usersList = document.getElementById('adminUsersList');
-            usersList.innerHTML = '';
-            users.forEach(u => {
-                usersList.innerHTML += `
-                    <div class="admin-card" style="border-color:#d4af37; display:flex; justify-content:space-between; align-items:center;">
-                        <div>
-                            <p style="color:#fff; font-weight:800;">${u.name}</p>
-                            <p style="color:#aaa;">ID: ${u.id}</p>
-                        </div>
-                        <span style="color:#ffd700; font-weight:800;">👥 Taklif: ${u.invites} ta</span>
                     </div>
                 `;
             });
+        }
+
+        function updateOrderStatus(index, status) {
+            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
+            orders[index].status = status;
+            localStorage.setItem('nezzy_db_orders', JSON.stringify(orders));
+            loadAdminData();
+            tg.showAlert("Buyurtma statusi yangilandi!");
+        }
+
+        function sendBroadcast() {
+            let text = document.getElementById('broadcastText').value;
+            if(!text) return tg.showAlert("Matn kiriting!");
+            tg.showAlert("Xabar barcha obunachilarga yuborildi!");
+            document.getElementById('broadcastText').value = '';
         }
     </script>
 </body>
