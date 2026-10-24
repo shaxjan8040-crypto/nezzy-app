@@ -3,14 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nezzy Cake - Premium Confectionery</title>
+    <title>Nezzy Cake - Cyber Luxury</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             user-select: none;
         }
 
@@ -20,10 +21,10 @@
             min-height: 100vh;
             overflow-x: hidden;
             position: relative;
-            background-color: #000;
+            background-color: #030007;
         }
 
-        /* ORQA FONDAGI SHAXSIY RASMINGIZ */
+        /* ORQA FON RASMI VA NEO-FIOLETOVIY PARDALAR */
         .bg-image {
             position: fixed;
             top: 0; left: 0;
@@ -31,17 +32,27 @@
             background-image: url('https://i.ibb.co/MkYfzXKk/IMG-20261022-194002-989.jpg');
             background-size: cover;
             background-position: center center;
-            background-repeat: no-repeat;
-            z-index: -2;
+            z-index: -3;
         }
 
-        .bg-overlay {
+        .bg-glow-overlay {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(5, 2, 10, 0.7);
-            backdrop-filter: blur(3px);
+            background: radial-gradient(circle at center, rgba(35, 10, 60, 0.7) 0%, rgba(3, 0, 7, 0.92) 90%);
+            backdrop-filter: blur(5px);
+            z-index: -2;
+        }
+
+        /* YONIB-O'CHUVCHI NEON NAQISH CHIZIQARI */
+        .neon-grid-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
+            background-size: 25px 25px;
             z-index: -1;
+            pointer-events: none;
         }
 
         .app-content {
@@ -52,63 +63,79 @@
             flex-direction: column;
         }
 
-        /* HEADER LOGO */
-        .header-logo {
+        /* ZAMONAVIY HEADER */
+        .header-box {
+            background: rgba(15, 8, 30, 0.8);
+            border: 1.5px solid rgba(212, 175, 55, 0.5);
+            border-radius: 20px;
+            padding: 10px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             margin-bottom: 12px;
-        }
-
-        .logo-box {
-            background: rgba(15, 10, 25, 0.85);
-            border: 1.5px solid #d4af37;
-            border-radius: 14px;
-            padding: 6px 14px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(10px);
         }
 
         .logo-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 900;
-            background: linear-gradient(45deg, #ffd700, #ff8c00);
+            background: linear-gradient(135deg, #fff 20%, #ffd700 80%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* PREMIUM TILLARANG TUGMALAR */
-        .gold-btn {
-            background: linear-gradient(145deg, rgba(20, 15, 30, 0.9), rgba(5, 3, 10, 0.95));
+        /* YONIB-O'CHUVCHI NEON CHIROQLI TUGMALAR (NEON PULSE BUTTONS) */
+        .cyber-btn {
+            position: relative;
+            background: linear-gradient(135deg, #120a22 0%, #080310 100%);
             border: 1.5px solid #d4af37;
-            border-radius: 14px;
-            padding: 12px 10px;
+            border-radius: 16px;
+            padding: 12px 14px;
             color: #ffd700;
             font-size: 13px;
             font-weight: 800;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.8), inset 0 0 6px rgba(212, 175, 55, 0.15);
-            transition: all 0.2s ease;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3), inset 0 0 8px rgba(168, 85, 247, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             align-items: center;
             justify-content: center;
             width: 100%;
+            overflow: hidden;
         }
 
-        .gold-btn:active {
-            transform: scale(0.95);
-            border-color: #fff;
-            color: #fff;
-            background: rgba(40, 30, 60, 0.95);
+        /* Yonib o'chuvchi neon hoshiya effekti */
+        .cyber-btn::after {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, #d4af37, #a855f7, #38bdf8, #d4af37);
+            background-size: 400%;
+            z-index: -1;
+            border-radius: 18px;
+            opacity: 0.6;
+            animation: neonGlowPulse 6s linear infinite;
         }
 
-        /* ASOSIY 2 USTUNLI TARKIB */
+        @keyframes neonGlowPulse {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .cyber-btn:active {
+            transform: scale(0.96);
+            box-shadow: 0 0 20px rgba(232, 121, 249, 0.8);
+        }
+
+        /* ASOSIY TARKIB: 2 USTUNLI ZAMONAVIY GRID */
         .main-layout {
             display: grid;
-            grid-template-columns: 1fr 95px;
+            grid-template-columns: 1fr 100px;
             gap: 10px;
             flex-grow: 1;
             margin-bottom: 10px;
@@ -119,18 +146,19 @@
             flex-direction: column;
             gap: 8px;
             justify-content: space-between;
-            height: 100%;
         }
 
-        /* VERTIKAL TORTLAR LENTASI */
+        /* VERTIKAL AYLANUVCHI TORT LENTASI (NEON RAMKALI) */
         .vertical-slider-container {
-            border: 1.5px solid #d4af37;
-            border-radius: 18px;
-            background: rgba(10, 5, 15, 0.6);
+            border: 1.5px solid #a855f7;
+            border-radius: 20px;
+            background: rgba(10, 4, 20, 0.7);
             height: 100%;
             max-height: 420px;
             overflow: hidden;
             position: relative;
+            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+            backdrop-filter: blur(8px);
         }
 
         .vertical-slider-track {
@@ -138,15 +166,16 @@
             flex-direction: column;
             gap: 8px;
             padding: 6px;
-            animation: scrollUp 14s linear infinite;
+            animation: scrollUp 12s linear infinite;
         }
 
         .vertical-slide-img {
             width: 100%;
             height: 80px;
-            border-radius: 10px;
+            border-radius: 12px;
             object-fit: cover;
-            border: 1px solid #d4af37;
+            border: 1px solid #ffd700;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
         }
 
         @keyframes scrollUp {
@@ -154,24 +183,29 @@
             100% { transform: translateY(-50%); }
         }
 
-        /* PASTKI QATOR TUGMALARI */
         .bottom-row {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 10px;
         }
 
-        /* SUB-PAGES (ICHKI SAHIFALAR) */
+        /* SUB-PAGES (YANGI OYNA ANIMATSIYALARI) */
         .sub-page {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(5, 2, 10, 0.9);
-            backdrop-filter: blur(12px);
+            background: rgba(5, 2, 12, 0.94);
+            backdrop-filter: blur(15px);
             z-index: 1000;
             padding: 14px;
             overflow-y: auto;
+            animation: fadeInPage 0.25s ease-out;
+        }
+
+        @keyframes fadeInPage {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .sub-header {
@@ -179,41 +213,44 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 14px;
-            border-bottom: 1.5px solid #d4af37;
+            border-bottom: 1.5px solid rgba(212, 175, 55, 0.4);
             padding-bottom: 8px;
         }
 
         .back-btn {
-            background: #d4af37;
+            background: linear-gradient(135deg, #d4af37, #b8860b);
             border: none;
-            color: #000;
-            padding: 6px 12px;
-            border-radius: 8px;
-            font-weight: 800;
+            color: #030007;
+            padding: 6px 14px;
+            border-radius: 10px;
+            font-weight: 900;
             font-size: 11px;
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
         }
 
         .form-group { margin-bottom: 10px; }
         .form-control {
             width: 100%;
-            background: rgba(15, 10, 25, 0.85);
-            border: 1.5px solid #d4af37;
-            border-radius: 10px;
-            padding: 9px 11px;
+            background: rgba(15, 8, 30, 0.9);
+            border: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-radius: 12px;
+            padding: 10px 12px;
             color: #fff;
             font-size: 11px;
             outline: none;
+            transition: border-color 0.2s;
         }
+        .form-control:focus { border-color: #a855f7; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
 
         .image-upload-box {
             border: 1.5px dashed #d4af37;
-            border-radius: 12px;
+            border-radius: 14px;
             height: 95px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: rgba(15, 10, 25, 0.6);
+            background: rgba(15, 8, 30, 0.6);
             cursor: pointer;
             position: relative;
             background-size: cover;
@@ -226,35 +263,37 @@
         }
 
         .card-box {
-            background: rgba(15, 10, 25, 0.8);
-            border: 1.5px solid #d4af37;
-            border-radius: 14px;
+            background: rgba(15, 8, 30, 0.85);
+            border: 1.5px solid rgba(212, 175, 55, 0.3);
+            border-radius: 16px;
             padding: 12px;
             font-size: 11px;
             color: #e0e0e0;
             line-height: 1.4;
             margin-bottom: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* O'YIN (BARABAN) DIZAYNI */
+        /* OMADLI BARABAN O'YINI */
         .wheel-container {
             text-align: center;
-            padding: 20px;
-            background: rgba(20, 10, 35, 0.85);
+            padding: 16px;
+            background: rgba(18, 8, 32, 0.9);
             border: 2px solid #ffd700;
             border-radius: 20px;
             margin-bottom: 12px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
         }
 
         .wheel {
-            width: 150px; height: 150px;
+            width: 140px; height: 140px;
             border: 4px solid #ffd700;
             border-radius: 50%;
-            margin: 15px auto;
+            margin: 12px auto;
             display: flex; align-items: center; justify-content: center;
-            font-size: 32px;
-            background: radial-gradient(circle, #3a1c71, #d76d77, #ffaf7b);
+            font-size: 30px;
+            background: radial-gradient(circle, #4a154b, #2b0b46, #030007);
+            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
             transition: transform 3s cubic-bezier(0.15, 0.9, 0.2, 1);
         }
 
@@ -263,29 +302,31 @@
             display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px;
         }
         .cat-btn {
-            background: rgba(15,10,25,0.8); border: 1px solid #d4af37; color: #d4af37;
-            padding: 5px 10px; border-radius: 15px; font-size: 10px; font-weight: 800; white-space: nowrap; cursor: pointer;
+            background: rgba(15,8,30,0.8); border: 1px solid #d4af37; color: #d4af37;
+            padding: 5px 12px; border-radius: 15px; font-size: 10px; font-weight: 800; white-space: nowrap; cursor: pointer;
         }
-        .cat-btn.active { background: #d4af37; color: #000; }
+        .cat-btn.active { background: #d4af37; color: #000; box-shadow: 0 0 10px #ffd700; }
 
         .admin-card {
-            background: rgba(30, 5, 5, 0.85); border: 1.5px solid #ef4444; border-radius: 12px; padding: 10px; margin-bottom: 8px; font-size: 11px;
+            background: rgba(30, 5, 15, 0.9); border: 1.5px solid #ef4444; border-radius: 14px; padding: 10px; margin-bottom: 8px; font-size: 11px;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
         }
     </style>
 </head>
 <body>
 
     <div class="bg-image"></div>
-    <div class="bg-overlay"></div>
+    <div class="bg-glow-overlay"></div>
+    <div class="neon-grid-bg"></div>
 
     <div class="app-content">
-        <!-- HEADER LOGO -->
-        <div class="header-logo">
-            <div class="logo-box">
-                <span style="font-size:18px;">🍰</span>
+        <!-- HEADER -->
+        <div class="header-box">
+            <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:18px;">👑</span>
                 <span class="logo-title">Nezzy Cake</span>
             </div>
-            <div class="logo-box" onclick="openPage('faqPage')" style="cursor:pointer; padding:5px 10px;">
+            <div onclick="openPage('faqPage')" style="cursor:pointer; background:rgba(212,175,55,0.15); border:1px solid #ffd700; padding:5px 10px; border-radius:12px;">
                 <span style="font-size:11px; color:#ffd700; font-weight:800;">📖 Yo'riqnoma</span>
             </div>
         </div>
@@ -293,22 +334,25 @@
         <!-- ASOSIY MENYU -->
         <div id="mainPage" style="display:flex; flex-direction:column; flex-grow:1;">
             <div class="main-layout">
+                <!-- CHAP TUGMALAR -->
                 <div class="left-menu-column">
-                    <div class="gold-btn" onclick="openPage('catalogPage')">Tort Katalogi</div>
-                    <div class="gold-btn" onclick="openPage('customCakePage')">👨‍🍳 Tort Konstruktori</div>
-                    <div class="gold-btn" onclick="openPage('pricesPage')">Narxlar</div>
-                    <div class="gold-btn" onclick="openPage('orderPage')">Buyurtma berish</div>
-                    <div class="gold-btn" onclick="openLocation()">Manzil</div>
+                    <div class="cyber-btn" onclick="openPage('catalogPage')">🎂 Tort Katalogi</div>
+                    <div class="cyber-btn" onclick="openPage('customCakePage')">👨‍🍳 Konstruktor</div>
+                    <div class="cyber-btn" onclick="openPage('pricesPage')">💰 Narxlar</div>
+                    <div class="cyber-btn" onclick="openPage('orderPage')">🛍️ Buyurtma berish</div>
+                    <div class="cyber-btn" onclick="openLocation()">📍 Bizning manzil</div>
                 </div>
 
+                <!-- O'NG VERTIKAL LENTA -->
                 <div class="vertical-slider-container">
                     <div class="vertical-slider-track" id="verticalTrack"></div>
                 </div>
             </div>
 
+            <!-- PASTKI QATOR -->
             <div class="bottom-row">
-                <div class="gold-btn" onclick="openPage('gamePage')">🎁 Yutuqli O'yin</div>
-                <div class="gold-btn" onclick="openPage('profilePage')">👤 Profil</div>
+                <div class="cyber-btn" onclick="openPage('gamePage')">🎁 Yutuqli O'yin</div>
+                <div class="cyber-btn" onclick="openPage('profilePage')">👤 Mening Profil</div>
             </div>
         </div>
 
@@ -362,10 +406,10 @@
             <div class="card-box" style="text-align:center; font-size:13px;">
                 Umumiy Narx: <b id="customPriceTotal" style="color:#ffd700; font-size:15px;">115,000 so'm</b>
             </div>
-            <button class="gold-btn" onclick="orderCustomCake()">Ushbu tortga buyurtma berish 🚀</button>
+            <div class="cyber-btn" onclick="orderCustomCake()">Ushbu tortga buyurtma berish 🚀</div>
         </div>
 
-        <!-- 3. NARXLAR SAHIFASI -->
+        <!-- 3. NARXLAR -->
         <div id="pricesPage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('pricesPage')">❮ Orqaga</button>
@@ -413,43 +457,37 @@
                     <textarea id="orderComment" class="form-control" rows="2" placeholder="Qo'shimcha izoh..."></textarea>
                 </div>
                 <div style="display:flex; gap:8px;">
-                    <button type="submit" class="gold-btn" style="flex-grow:1;">Yuborish 🚀</button>
-                    <div class="gold-btn" style="width:110px; font-size:11px;" onclick="openLink('https://t.me/shaxjan_2')">📞 Admin</div>
+                    <button type="submit" class="cyber-btn" style="flex-grow:1;">Yuborish 🚀</button>
+                    <div class="cyber-btn" style="width:110px; font-size:11px;" onclick="openLink('https://t.me/shaxjan_2')">📞 Admin</div>
                 </div>
             </form>
         </div>
 
-        <!-- 5. YUTUQLI O'YIN VA OMADLI BARABAN -->
+        <!-- 5. YUTUQLI O'YIN & BARABAN -->
         <div id="gamePage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('gamePage')">❮ Orqaga</button>
                 <h3 style="color:#ffd700; font-size:13px;">Yutuqli O'yin & Baraban 🎁</h3>
             </div>
-
-            <!-- OMADLI BARABAN O'YINI -->
             <div class="wheel-container">
                 <h4 style="color:#ffd700; font-size:13px; margin-bottom:4px;">🎡 Omadli Baraban</h4>
-                <p style="font-size:10px; color:#ddd; margin-bottom:8px;">Barabanni aylantiring va Star yutib oling!</p>
+                <p style="font-size:10px; color:#ddd; margin-bottom:8px;">Barabanni aylantiring va mukofot yutib oling!</p>
                 <div class="wheel" id="luckyWheel">🎁</div>
-                <button class="gold-btn" id="spinBtn" onclick="spinWheel()" style="margin-top:10px;">Aylantirish 🎯</button>
+                <div class="cyber-btn" id="spinBtn" onclick="spinWheel()" style="margin-top:10px;">Aylantirish 🎯</div>
                 <p id="wheelResult" style="font-size:11px; color:#ffd700; margin-top:8px; font-weight:800;"></p>
             </div>
-
             <div class="card-box">
                 <b style="color:#ffd700;">Do'st taklif qilish sharti:</b><br>
-                10 ta do'stingizni taklif qilsangiz, avtomatik ravishda <b>100 ta Star</b> yutib olasiz! Taklif havolangiz orqali qo'shilgan har bir do'st hisobingizga +1 qo'shadi.
+                10 ta do'stingizni taklif qilsangiz, avtomatik ravishda <b>100 ta Star</b> yutib olasiz!
             </div>
-
             <div class="card-box" style="text-align:center;">
                 <span style="font-size:11px; color:#aaa;">Taklif qilgan do'stlaringiz:</span>
                 <div id="invitedCountDisplay" style="font-size:24px; font-weight:900; color:#ffd700; margin:4px 0;">0 / 10</div>
             </div>
-
-            <div class="gold-btn" onclick="shareRefLink()">Do'stlarni taklif qilish 🔗</div>
-            
+            <div class="cyber-btn" onclick="shareRefLink()">Do'stlarni taklif qilish 🔗</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div class="gold-btn" style="font-size:11px;" onclick="openLink('https://t.me/nezzy_cakee')">📢 Kanal</div>
-                <div class="gold-btn" style="font-size:11px;" onclick="openLink('https://t.me/nezzy_cakeee')">💬 Gruppa</div>
+                <div class="cyber-btn" style="font-size:11px;" onclick="openLink('https://t.me/nezzy_cakee')">📢 Kanal</div>
+                <div class="cyber-btn" style="font-size:11px;" onclick="openLink('https://t.me/nezzy_cakeee')">💬 Gruppa</div>
             </div>
         </div>
 
@@ -460,23 +498,21 @@
                 <h3 style="color:#ffd700; font-size:13px;">Mening Profilim 👤</h3>
             </div>
             <div class="card-box" style="text-align:center;">
-                <img id="profileAvatar" src="https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png" style="width:60px; height:60px; border-radius:50%; border:2px solid #d4af37; margin-bottom:6px;">
+                <img id="profileAvatar" src="https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png" style="width:60px; height:60px; border-radius:50%; border:2px solid #ffd700; margin-bottom:6px;">
                 <h3 id="profileName" style="color:#fff; font-size:13px;">Foydalanuvchi</h3>
                 <p id="profileId" style="color:#aaa; font-size:10px;">ID: ...</p>
                 <div style="margin-top:6px; font-size:12px; color:#ffd700; font-weight:800;">
                     ⭐ Balansingiz: <span id="profileStars">0</span> Star
                 </div>
             </div>
-
             <h4 style="color:#ffd700; font-size:11px; margin-bottom:6px;">📦 Mening Buyurtmalarim:</h4>
             <div id="myOrdersList"></div>
-
-            <div id="adminAccessBtn" class="gold-btn" style="border-color:#ef4444; color:#fca5a5; margin-top:12px; display:none;" onclick="openPage('adminPanelPage')">
+            <div id="adminAccessBtn" class="cyber-btn" style="border-color:#ef4444; color:#fca5a5; margin-top:12px; display:none;" onclick="openPage('adminPanelPage')">
                 🔐 Admin Panel (Faqat Sizga)
             </div>
         </div>
 
-        <!-- 7. FAQ (YO'RIQNOMA) -->
+        <!-- 7. FAQ -->
         <div id="faqPage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('faqPage')">❮ Orqaga</button>
@@ -485,12 +521,12 @@
             <div class="card-box">
                 <b style="color:#ffd700;">🎂 Qanday buyurtma beriladi?</b><br>
                 1. Katalogdan yoki Tort Konstruktoridan o'zingizga yoqqan tortni tanlang.<br>
-                2. Rasm va ma'lumotlarni to'ldirib yuboring.<br>
-                3. Admin tezda tasdiqlash uchun aloqaga chiqadi.
+                2. Ma'lumotlarni to'ldirib yuboring.<br>
+                3. Admin tezda tasdiqlash uchun bog'lanadi.
             </div>
         </div>
 
-        <!-- 8. MAXSUS ADMIN PANEL -->
+        <!-- 8. ADMIN PANEL -->
         <div id="adminPanelPage" class="sub-page">
             <div class="sub-header">
                 <button class="back-btn" onclick="closePage('adminPanelPage')">❮ Orqaga</button>
@@ -504,7 +540,7 @@
             <div class="card-box" style="border-color:#ef4444;">
                 <h4 style="color:#ffd700; margin-bottom:4px;">📢 Rassilka (Xabar yuborish):</h4>
                 <textarea id="broadcastText" class="form-control" rows="2" placeholder="Barcha obunachilarga xabar..."></textarea>
-                <button class="gold-btn" style="margin-top:6px; padding:6px; font-size:11px;" onclick="sendBroadcast()">Yuborish 🚀</button>
+                <div class="cyber-btn" style="margin-top:6px; padding:6px; font-size:11px;" onclick="sendBroadcast()">Yuborish 🚀</div>
             </div>
             <h4 style="color:#ffd700; font-size:11px; margin-bottom:6px;">📦 Buyurtmalar:</h4>
             <div id="adminOrdersList"></div>
@@ -518,15 +554,7 @@
         tg.ready(); tg.expand();
 
         const ADMIN_USERNAME = "shaxjan_2";
-
-        let currentUser = {
-            id: 999999,
-            username: "",
-            name: "Nezzy Mehmon",
-            avatar: "https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png",
-            invites: 0,
-            stars: 0
-        };
+        let currentUser = { id: 999999, username: "", name: "Mehmon", avatar: "https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png", invites: 0, stars: 0 };
 
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             currentUser.id = tg.initDataUnsafe.user.id;
@@ -539,7 +567,6 @@
         document.getElementById('profileAvatar').src = currentUser.avatar;
         document.getElementById('profileId').innerText = "ID: " + currentUser.id;
 
-        // ADMIN PANELNI FAQAT SIZGA KO'RSATISH
         if (currentUser.username.toLowerCase() === ADMIN_USERNAME.toLowerCase() || currentUser.username.includes("shaxjan") || true) {
             document.getElementById('adminAccessBtn').style.display = 'flex';
         }
@@ -570,11 +597,11 @@
             cakeImages.forEach(item => {
                 if(filter === "all" || item.cat === filter) {
                     grid.innerHTML += `
-                        <div style="background:rgba(15,10,25,0.85); border-radius:10px; overflow:hidden; border:1px solid #d4af37;">
+                        <div style="background:rgba(15,8,30,0.85); border-radius:10px; overflow:hidden; border:1px solid #ffd700;">
                             <img src="${item.url}" style="width:100%; height:95px; object-fit:cover;">
                             <div style="padding:5px; text-align:center;">
                                 <p style="font-size:10px; color:#ffd700; font-weight:800; margin-bottom:3px;">${item.title}</p>
-                                <button class="gold-btn" style="padding:4px; font-size:10px; width:100%;" onclick="openPage('orderPage')">Buyurtma</button>
+                                <div class="cyber-btn" style="padding:4px; font-size:10px;" onclick="openPage('orderPage')">Buyurtma</div>
                             </div>
                         </div>
                     `;
@@ -659,21 +686,20 @@
             closePage('orderPage');
         }
 
-        /* OMADLI BARABAN O'YIN LOGIKASI */
         function spinWheel() {
             const wheel = document.getElementById('luckyWheel');
             const resText = document.getElementById('wheelResult');
             const btn = document.getElementById('spinBtn');
-            btn.disabled = true;
+            btn.style.pointerEvents = 'none';
 
             let randomDegree = Math.floor(Math.random() * 3600) + 720;
             wheel.style.transform = `rotate(${randomDegree}deg)`;
 
             setTimeout(() => {
-                const prizes = ["+5 Star 🌟", "Chegirma 10% 🎉", "Keyingi safar 😅", "+2 Star ⭐"];
+                const prizes = ["+5 Star 🌟", "Chegirma 10% 🎉", "Omad sinovi 😅", "+2 Star ⭐"];
                 const won = prizes[Math.floor(Math.random() * prizes.length)];
-                resText.innerText = "Tabriklaymiz, siz yutdingiz: " + won;
-                btn.disabled = false;
+                resText.innerText = "Tabriklaymiz, yutug'ingiz: " + won;
+                btn.style.pointerEvents = 'auto';
             }, 3000);
         }
 
@@ -722,8 +748,8 @@
                         <p>💬 Izoh: ${o.comment || 'Yo\'q'}</p>
                         <p style="margin-top:4px;">Status: <b>${o.status}</b></p>
                         <div style="display:flex; gap:6px; margin-top:6px;">
-                            <button onclick="updateOrderStatus(${index}, 'Tayyorlanmoqda 👨‍🍳')" style="font-size:9px; padding:4px;">👨‍🍳 Tayyorlash</button>
-                            <button onclick="updateOrderStatus(${index}, 'Tayyor ✅')" style="font-size:9px; padding:4px;">✅ Tayyor</button>
+                            <div class="cyber-btn" onclick="updateOrderStatus(${index}, 'Tayyorlanmoqda 👨‍🍳')" style="font-size:9px; padding:4px;">👨‍🍳 Tayyorlash</div>
+                            <div class="cyber-btn" onclick="updateOrderStatus(${index}, 'Tayyor ✅')" style="font-size:9px; padding:4px;">✅ Tayyor</div>
                         </div>
                     </div>
                 `;
