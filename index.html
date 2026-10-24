@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nezzy Cake - Cyber Luxury</title>
+    <title>Nezzy Cake Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
     <style>
         * {
             box-sizing: border-box;
@@ -17,195 +17,132 @@
 
         body {
             color: #ffffff;
-            padding: 12px;
             min-height: 100vh;
-            overflow-x: hidden;
+            overflow: hidden;
             position: relative;
-            background-color: #030007;
+            background-color: #000;
         }
 
-        /* ORQA FON RASMI VA NEO-FIOLETOVIY PARDALAR */
+        /* YANGI ORQA FON RASMI (TINIQ VA MARKAZI OCHIQ) */
         .bg-image {
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background-image: url('https://i.ibb.co/MkYfzXKk/IMG-20261022-194002-989.jpg');
+            background-image: url('https://i.ibb.co/ZRZ0vWQH/1792868836205.jpg');
             background-size: cover;
             background-position: center center;
-            z-index: -3;
-        }
-
-        .bg-glow-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100vw; height: 100vh;
-            background: radial-gradient(circle at center, rgba(35, 10, 60, 0.7) 0%, rgba(3, 0, 7, 0.92) 90%);
-            backdrop-filter: blur(5px);
-            z-index: -2;
-        }
-
-        /* YONIB-O'CHUVCHI NEON NAQISH CHIZIQARI */
-        .neon-grid-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image: linear-gradient(rgba(212, 175, 55, 0.05) 1px, transparent 1px),
-                              linear-gradient(90deg, rgba(212, 175, 55, 0.05) 1px, transparent 1px);
-            background-size: 25px 25px;
+            background-repeat: no-repeat;
             z-index: -1;
-            pointer-events: none;
         }
 
-        .app-content {
+        /* TAYYOR HUDUDLAR BO'YICHA CONTAINER */
+        .app-container {
             position: relative;
-            z-index: 10;
-            min-height: 94vh;
+            width: 100vw;
+            height: 100vh;
+            padding: 16px;
             display: flex;
             flex-direction: column;
-        }
-
-        /* ZAMONAVIY HEADER */
-        .header-box {
-            background: rgba(15, 8, 30, 0.8);
-            border: 1.5px solid rgba(212, 175, 55, 0.5);
-            border-radius: 20px;
-            padding: 10px 16px;
-            display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
-            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(10px);
         }
 
-        .logo-title {
-            font-size: 17px;
-            font-weight: 900;
-            background: linear-gradient(135deg, #fff 20%, #ffd700 80%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        /* YUQORI O'NG TOMONDAGI 3 TA KICHIK ZARLI TUGMA */
+        .top-right-group {
+            position: absolute;
+            top: 16px;
+            right: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-end;
+            z-index: 10;
         }
 
-        /* YONIB-O'CHUVCHI NEON CHIROQLI TUGMALAR (NEON PULSE BUTTONS) */
-        .cyber-btn {
+        /* PASTKI CHAP TOMONDAGI 3 TA KICHIK ZARLI TUGMA */
+        .bottom-left-group {
+            position: absolute;
+            bottom: 24px;
+            left: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: flex-start;
+            z-index: 10;
+        }
+
+        /* ZARLI YALTIRAB TURUVCHI TILLARANG KICHIK TUGMALAR STILI */
+        .sparkle-btn {
             position: relative;
-            background: linear-gradient(135deg, #120a22 0%, #080310 100%);
-            border: 1.5px solid #d4af37;
-            border-radius: 16px;
-            padding: 12px 14px;
-            color: #ffd700;
-            font-size: 13px;
+            background: linear-gradient(135deg, rgba(20, 15, 5, 0.85) 0%, rgba(5, 3, 0, 0.9) 100%);
+            border: 1.5px solid #ffd700;
+            border-radius: 20px;
+            padding: 8px 14px;
+            color: #fff8dc;
+            font-size: 11px;
             font-weight: 800;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.3), inset 0 0 8px rgba(168, 85, 247, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            display: flex;
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.4), inset 0 0 8px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(4px);
+            transition: all 0.2s ease;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
+            gap: 5px;
             overflow: hidden;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
         }
 
-        /* Yonib o'chuvchi neon hoshiya effekti */
-        .cyber-btn::after {
+        /* TUGMA ICHIDAGI DOIMIY YALTIRAB TURUVCHI ZAR ANIMATSIYASI */
+        .sparkle-btn::before {
             content: '';
             position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            background: linear-gradient(45deg, #d4af37, #a855f7, #38bdf8, #d4af37);
-            background-size: 400%;
-            z-index: -1;
-            border-radius: 18px;
-            opacity: 0.6;
-            animation: neonGlowPulse 6s linear infinite;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 30%,
+                rgba(255, 255, 255, 0.8) 50%,
+                transparent 70%
+            );
+            transform: rotate(30deg);
+            animation: sparkleGlimmer 2.5s infinite linear;
         }
 
-        @keyframes neonGlowPulse {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        @keyframes sparkleGlimmer {
+            0% { transform: translateX(-100%) rotate(30deg); }
+            100% { transform: translateX(100%) rotate(30deg); }
         }
 
-        .cyber-btn:active {
-            transform: scale(0.96);
-            box-shadow: 0 0 20px rgba(232, 121, 249, 0.8);
+        /* NAQSH SIMVOLI VA CHEGARALARI */
+        .sparkle-btn::after {
+            content: '❖';
+            font-size: 8px;
+            color: #ffd700;
+            margin-left: 2px;
+            opacity: 0.8;
         }
 
-        /* ASOSIY TARKIB: 2 USTUNLI ZAMONAVIY GRID */
-        .main-layout {
-            display: grid;
-            grid-template-columns: 1fr 100px;
-            gap: 10px;
-            flex-grow: 1;
-            margin-bottom: 10px;
+        .sparkle-btn:active {
+            transform: scale(0.92);
+            border-color: #ffffff;
+            box-shadow: 0 0 18px rgba(255, 215, 0, 0.8);
         }
 
-        .left-menu-column {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            justify-content: space-between;
-        }
-
-        /* VERTIKAL AYLANUVCHI TORT LENTASI (NEON RAMKALI) */
-        .vertical-slider-container {
-            border: 1.5px solid #a855f7;
-            border-radius: 20px;
-            background: rgba(10, 4, 20, 0.7);
-            height: 100%;
-            max-height: 420px;
-            overflow: hidden;
-            position: relative;
-            box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
-            backdrop-filter: blur(8px);
-        }
-
-        .vertical-slider-track {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            padding: 6px;
-            animation: scrollUp 12s linear infinite;
-        }
-
-        .vertical-slide-img {
-            width: 100%;
-            height: 80px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 1px solid #ffd700;
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-        }
-
-        @keyframes scrollUp {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(-50%); }
-        }
-
-        .bottom-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        /* SUB-PAGES (YANGI OYNA ANIMATSIYALARI) */
+        /* SUB-PAGES (ICHKI OYNALAR) */
         .sub-page {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(5, 2, 12, 0.94);
-            backdrop-filter: blur(15px);
+            background: rgba(8, 3, 15, 0.92);
+            backdrop-filter: blur(12px);
             z-index: 1000;
-            padding: 14px;
+            padding: 16px;
             overflow-y: auto;
-            animation: fadeInPage 0.25s ease-out;
-        }
-
-        @keyframes fadeInPage {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .sub-header {
@@ -213,339 +150,143 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 14px;
-            border-bottom: 1.5px solid rgba(212, 175, 55, 0.4);
+            border-bottom: 1.5px solid #ffd700;
             padding-bottom: 8px;
         }
 
         .back-btn {
-            background: linear-gradient(135deg, #d4af37, #b8860b);
+            background: linear-gradient(135deg, #ffd700, #b8860b);
             border: none;
-            color: #030007;
-            padding: 6px 14px;
+            color: #000;
+            padding: 5px 12px;
             border-radius: 10px;
-            font-weight: 900;
+            font-weight: 800;
             font-size: 11px;
             cursor: pointer;
-            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
-        }
-
-        .form-group { margin-bottom: 10px; }
-        .form-control {
-            width: 100%;
-            background: rgba(15, 8, 30, 0.9);
-            border: 1.5px solid rgba(212, 175, 55, 0.4);
-            border-radius: 12px;
-            padding: 10px 12px;
-            color: #fff;
-            font-size: 11px;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-        .form-control:focus { border-color: #a855f7; box-shadow: 0 0 10px rgba(168, 85, 247, 0.4); }
-
-        .image-upload-box {
-            border: 1.5px dashed #d4af37;
-            border-radius: 14px;
-            height: 95px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(15, 8, 30, 0.6);
-            cursor: pointer;
-            position: relative;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .image-upload-box input {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%; opacity: 0; cursor: pointer;
         }
 
         .card-box {
-            background: rgba(15, 8, 30, 0.85);
-            border: 1.5px solid rgba(212, 175, 55, 0.3);
-            border-radius: 16px;
+            background: rgba(20, 12, 35, 0.85);
+            border: 1.5px solid rgba(255, 215, 0, 0.4);
+            border-radius: 14px;
             padding: 12px;
             font-size: 11px;
             color: #e0e0e0;
-            line-height: 1.4;
             margin-bottom: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
-        /* OMADLI BARABAN O'YINI */
-        .wheel-container {
-            text-align: center;
-            padding: 16px;
-            background: rgba(18, 8, 32, 0.9);
-            border: 2px solid #ffd700;
-            border-radius: 20px;
-            margin-bottom: 12px;
-            box-shadow: 0 0 25px rgba(212, 175, 55, 0.3);
-        }
-
-        .wheel {
-            width: 140px; height: 140px;
-            border: 4px solid #ffd700;
-            border-radius: 50%;
-            margin: 12px auto;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px;
-            background: radial-gradient(circle, #4a154b, #2b0b46, #030007);
-            box-shadow: 0 0 20px rgba(168, 85, 247, 0.6);
-            transition: transform 3s cubic-bezier(0.15, 0.9, 0.2, 1);
-        }
-
-        /* KATEGORIYALAR */
-        .category-tab-bar {
-            display: flex; gap: 6px; overflow-x: auto; padding-bottom: 6px; margin-bottom: 10px;
-        }
-        .cat-btn {
-            background: rgba(15,8,30,0.8); border: 1px solid #d4af37; color: #d4af37;
-            padding: 5px 12px; border-radius: 15px; font-size: 10px; font-weight: 800; white-space: nowrap; cursor: pointer;
-        }
-        .cat-btn.active { background: #d4af37; color: #000; box-shadow: 0 0 10px #ffd700; }
-
-        .admin-card {
-            background: rgba(30, 5, 15, 0.9); border: 1.5px solid #ef4444; border-radius: 14px; padding: 10px; margin-bottom: 8px; font-size: 11px;
-            box-shadow: 0 0 10px rgba(239, 68, 68, 0.2);
+        .form-control {
+            width: 100%;
+            background: rgba(15, 8, 30, 0.9);
+            border: 1.5px solid #ffd700;
+            border-radius: 10px;
+            padding: 8px 10px;
+            color: #fff;
+            font-size: 11px;
+            outline: none;
+            margin-bottom: 8px;
         }
     </style>
 </head>
 <body>
 
+    <!-- ORQA FON RASMI -->
     <div class="bg-image"></div>
-    <div class="bg-glow-overlay"></div>
-    <div class="neon-grid-bg"></div>
 
-    <div class="app-content">
-        <!-- HEADER -->
-        <div class="header-box">
-            <div style="display:flex; align-items:center; gap:8px;">
-                <span style="font-size:18px;">👑</span>
-                <span class="logo-title">Nezzy Cake</span>
-            </div>
-            <div onclick="openPage('faqPage')" style="cursor:pointer; background:rgba(212,175,55,0.15); border:1px solid #ffd700; padding:5px 10px; border-radius:12px;">
-                <span style="font-size:11px; color:#ffd700; font-weight:800;">📖 Yo'riqnoma</span>
-            </div>
+    <div class="app-container">
+        <!-- YUQORI O'NG TOMONDAGI 3 TA KICHIK ZARLI TUGMA -->
+        <div class="top-right-group">
+            <div class="sparkle-btn" onclick="openLocation()">📍 Bizning manzil</div>
+            <div class="sparkle-btn" onclick="openPage('adminPage')">📞 Admin bilan bog'lanish</div>
+            <div class="sparkle-btn" onclick="openPage('profilePage')">👤 Profil</div>
         </div>
 
-        <!-- ASOSIY MENYU -->
-        <div id="mainPage" style="display:flex; flex-direction:column; flex-grow:1;">
-            <div class="main-layout">
-                <!-- CHAP TUGMALAR -->
-                <div class="left-menu-column">
-                    <div class="cyber-btn" onclick="openPage('catalogPage')">🎂 Tort Katalogi</div>
-                    <div class="cyber-btn" onclick="openPage('customCakePage')">👨‍🍳 Konstruktor</div>
-                    <div class="cyber-btn" onclick="openPage('pricesPage')">💰 Narxlar</div>
-                    <div class="cyber-btn" onclick="openPage('orderPage')">🛍️ Buyurtma berish</div>
-                    <div class="cyber-btn" onclick="openLocation()">📍 Bizning manzil</div>
-                </div>
+        <!-- PASTKI CHAP TOMONDAGI 3 TA KICHIK ZARLI TUGMA -->
+        <div class="bottom-left-group">
+            <div class="sparkle-btn" onclick="openPage('catalogPage')">🎂 Tort katalogi</div>
+            <div class="sparkle-btn" onclick="openPage('pricesPage')">💰 Narxlar</div>
+            <div class="sparkle-btn" onclick="openPage('orderPage')">🛍️ Buyurtma berish</div>
+        </div>
+    </div>
 
-                <!-- O'NG VERTIKAL LENTA -->
-                <div class="vertical-slider-container">
-                    <div class="vertical-slider-track" id="verticalTrack"></div>
-                </div>
-            </div>
+    <!-- 1. TORT KATALOGI SAHIFASI -->
+    <div id="catalogPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('catalogPage')">❮ Orqaga</button>
+            <h3 style="color:#ffd700; font-size:13px;">Tort Katalogi ✨</h3>
+        </div>
+        <div id="catalogGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
+    </div>
 
-            <!-- PASTKI QATOR -->
-            <div class="bottom-row">
-                <div class="cyber-btn" onclick="openPage('gamePage')">🎁 Yutuqli O'yin</div>
-                <div class="cyber-btn" onclick="openPage('profilePage')">👤 Mening Profil</div>
-            </div>
+    <!-- 2. NARXLAR SAHIFASI -->
+    <div id="pricesPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('pricesPage')">❮ Orqaga</button>
+            <h3 style="color:#ffd700; font-size:13px;">Tort Narxlari 💰</h3>
+        </div>
+        <div style="display:flex; flex-direction:column; gap:8px; font-size:11px;">
+            <div class="card-box"><b>70 000 so'm</b> - 😄 5-6 kishilik bento tort</div>
+            <div class="card-box"><b>90 000 so'm</b> - 😄 7-8 kishilik tort</div>
+            <div class="card-box"><b>100 000 so'm</b> - 😄 8-10 kishilik maxsus</div>
+            <div class="card-box"><b>125 000 so'm</b> - 😄 12-15 kishilik bayramiy</div>
+            <div class="card-box"><b>170 000 so'm</b> - 😄 18-20 kishilik katta tort</div>
+            <div class="card-box"><b>250 000 so'm</b> - 😄 28-30 kishilik to'y torti</div>
+        </div>
+    </div>
+
+    <!-- 3. BUYURTMA BERISH SAHIFASI -->
+    <div id="orderPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('orderPage')">❮ Orqaga</button>
+            <h3 style="color:#ffd700; font-size:13px;">Buyurtma Berish 🛍️</h3>
+        </div>
+        <form onsubmit="submitOrder(event)">
+            <input type="file" id="orderImg" class="form-control" accept="image/*" required>
+            <input type="tel" id="orderPhone" class="form-control" placeholder="Tel raqamingiz: +998 90 123 45 67" required>
+            <input type="text" id="orderDate" class="form-control" placeholder="Olib ketish sanasi va vaqti" required>
+            <textarea id="orderComment" class="form-control" rows="3" placeholder="Qo'shimcha izoh..."></textarea>
+            <button type="submit" class="sparkle-btn" style="width:100%; margin-top:8px;">Buyurtmani yuborish 🚀</button>
+        </form>
+    </div>
+
+    <!-- 4. ADMIN BILAN BOG'LANISH SAHIFASI -->
+    <div id="adminPage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('adminPage')">❮ Orqaga</button>
+            <h3 style="color:#ffd700; font-size:13px;">Admin Bilan Bog'lanish 📞</h3>
+        </div>
+        <div class="card-box" style="text-align:center;">
+            <img src="https://i.ibb.co/ZRZ0vWQH/1792868836205.jpg" style="width:80px; height:80px; border-radius:50%; border:2px solid #ffd700; margin-bottom:10px; object-fit:cover;">
+            <h4 style="color:#ffd700; font-size:14px; margin-bottom:4px;">Shakhzodbek Ulmasov</h4>
+            <p style="color:#aaa; font-size:11px; margin-bottom:12px;">Nezzy Cake Bosh Admini</p>
+            <div class="sparkle-btn" style="width:100%; margin-bottom:8px;" onclick="openLink('https://t.me/shaxjan_2')">💬 Telegram: @shaxjan_2</div>
+            <a href="tel:+998940268001" style="text-decoration:none;">
+                <div class="sparkle-btn" style="width:100%;">📞 Telefon: +998 94 026 80 01</div>
+            </a>
+        </div>
+    </div>
+
+    <!-- 5. PROFIL SAHIFASI -->
+    <div id="profilePage" class="sub-page">
+        <div class="sub-header">
+            <button class="back-btn" onclick="closePage('profilePage')">❮ Orqaga</button>
+            <h3 style="color:#ffd700; font-size:13px;">Mening Profilim 👤</h3>
+        </div>
+        <div class="card-box" style="text-align:center;">
+            <h4 id="profileName" style="color:#fff; font-size:13px; margin-bottom:4px;">Foydalanuvchi</h4>
+            <p id="profileId" style="color:#aaa; font-size:10px;">ID: ...</p>
         </div>
 
-        <!-- 1. KATALOG SAHIFASI -->
-        <div id="catalogPage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('catalogPage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Tort Katalogi ✨</h3>
-            </div>
-            <div class="category-tab-bar">
-                <div class="cat-btn active" onclick="filterCatalog('all', this)">Barchasi</div>
-                <div class="cat-btn" onclick="filterCatalog('bento', this)">Bento tortlar</div>
-                <div class="cat-btn" onclick="filterCatalog('kids', this)">Bolalar uchun</div>
-                <div class="cat-btn" onclick="filterCatalog('wedding', this)">To'y & Bayram</div>
-                <div class="cat-btn" onclick="filterCatalog('dessert', this)">Cheesecake</div>
-            </div>
-            <div id="catalogGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:8px;"></div>
+        <div class="card-box">
+            <h4 style="color:#ffd700; font-size:12px; margin-bottom:8px;">📢 Rasmiy Kanallarimiz:</h4>
+            <div class="sparkle-btn" style="width:100%; margin-bottom:8px;" onclick="openLink('https://t.me/nezzy_cakee')">📢 Telegram Kanal (@nezzy_cakee)</div>
+            <div class="sparkle-btn" style="width:100%;" onclick="openLink('https://t.me/nezzy_cakeee')">💬 Telegram Gruppa (@nezzy_cakeee)</div>
         </div>
 
-        <!-- 2. TORT KONSTRUKTORI -->
-        <div id="customCakePage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('customCakePage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Tort Konstruktori 👨‍🍳</h3>
-            </div>
-            <div class="card-box">
-                <b style="color:#ffd700;">O'zingiz xohlagan tarkibni tanlang:</b>
-            </div>
-            <div class="form-group">
-                <label style="font-size:11px; color:#ffd700;">Biskvit turi:</label>
-                <select id="cakeBiskvit" class="form-control" onchange="calcCustomPrice()">
-                    <option value="80000">Shokoladli (+80,000 so'm)</option>
-                    <option value="75000">Vanilli (+75,000 so'm)</option>
-                    <option value="90000">Red Velvet (+90,000 so'm)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label style="font-size:11px; color:#ffd700;">Krem turi:</label>
-                <select id="cakeKrem" class="form-control" onchange="calcCustomPrice()">
-                    <option value="20000">Krem-chiz (+20,000 so'm)</option>
-                    <option value="15000">Shokoladli ganash (+15,000 so'm)</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label style="font-size:11px; color:#ffd700;">Nachinka & Meva:</label>
-                <select id="cakeFilling" class="form-control" onchange="calcCustomPrice()">
-                    <option value="15000">Qulpnay & Banan (+15,000 so'm)</option>
-                    <option value="20000">Yong'oq & Karamel (+20,000 so'm)</option>
-                </select>
-            </div>
-            <div class="card-box" style="text-align:center; font-size:13px;">
-                Umumiy Narx: <b id="customPriceTotal" style="color:#ffd700; font-size:15px;">115,000 so'm</b>
-            </div>
-            <div class="cyber-btn" onclick="orderCustomCake()">Ushbu tortga buyurtma berish 🚀</div>
-        </div>
-
-        <!-- 3. NARXLAR -->
-        <div id="pricesPage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('pricesPage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Tort Narxlari 💰</h3>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:6px; font-size:11px;">
-                <div class="card-box"><b>70 000 so'm</b> - 😄 5-6 kishilik bento</div>
-                <div class="card-box"><b>90 000 so'm</b> - 😄 7-8 kishilik tort</div>
-                <div class="card-box"><b>100 000 so'm</b> - 😄 8-10 kishilik maxsus</div>
-                <div class="card-box"><b>125 000 so'm</b> - 😄 12-15 kishilik bayram</div>
-                <div class="card-box"><b>170 000 so'm</b> - 😄 18-20 kishilik katta</div>
-                <div class="card-box"><b>250 000 so'm</b> - 😄 28-30 kishilik to'y uchun</div>
-            </div>
-        </div>
-
-        <!-- 4. BUYURTMA BERISH -->
-        <div id="orderPage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('orderPage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Buyurtma Berish 🛍️</h3>
-            </div>
-            <form id="orderForm" onsubmit="submitOrder(event)">
-                <div class="form-group">
-                    <div class="image-upload-box" id="uploadBox">
-                        <span id="uploadText" style="font-size:11px; color:#ffd700;">📸 Tort rasmini yuklang</span>
-                        <input type="file" accept="image/*" onchange="previewImage(event)" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <input type="tel" id="orderPhone" class="form-control" placeholder="Tel: +998 90 123 45 67" required>
-                </div>
-                <div class="form-group">
-                    <select id="deliveryType" class="form-control" onchange="toggleDeliveryInput()">
-                        <option value="self">O'zi olib ketadi (Do'kondan)</option>
-                        <option value="delivery">Yetkazib berish (Dostavka +15,000 so'm)</option>
-                    </select>
-                </div>
-                <div class="form-group" id="addressInputBox" style="display:none;">
-                    <input type="text" id="orderAddress" class="form-control" placeholder="Yetkazish manzili (Ko'cha, uy)">
-                </div>
-                <div class="form-group">
-                    <input type="text" id="orderDateTime" class="form-control" placeholder="Olib ketish sanasi va vaqti" required>
-                </div>
-                <div class="form-group">
-                    <textarea id="orderComment" class="form-control" rows="2" placeholder="Qo'shimcha izoh..."></textarea>
-                </div>
-                <div style="display:flex; gap:8px;">
-                    <button type="submit" class="cyber-btn" style="flex-grow:1;">Yuborish 🚀</button>
-                    <div class="cyber-btn" style="width:110px; font-size:11px;" onclick="openLink('https://t.me/shaxjan_2')">📞 Admin</div>
-                </div>
-            </form>
-        </div>
-
-        <!-- 5. YUTUQLI O'YIN & BARABAN -->
-        <div id="gamePage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('gamePage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Yutuqli O'yin & Baraban 🎁</h3>
-            </div>
-            <div class="wheel-container">
-                <h4 style="color:#ffd700; font-size:13px; margin-bottom:4px;">🎡 Omadli Baraban</h4>
-                <p style="font-size:10px; color:#ddd; margin-bottom:8px;">Barabanni aylantiring va mukofot yutib oling!</p>
-                <div class="wheel" id="luckyWheel">🎁</div>
-                <div class="cyber-btn" id="spinBtn" onclick="spinWheel()" style="margin-top:10px;">Aylantirish 🎯</div>
-                <p id="wheelResult" style="font-size:11px; color:#ffd700; margin-top:8px; font-weight:800;"></p>
-            </div>
-            <div class="card-box">
-                <b style="color:#ffd700;">Do'st taklif qilish sharti:</b><br>
-                10 ta do'stingizni taklif qilsangiz, avtomatik ravishda <b>100 ta Star</b> yutib olasiz!
-            </div>
-            <div class="card-box" style="text-align:center;">
-                <span style="font-size:11px; color:#aaa;">Taklif qilgan do'stlaringiz:</span>
-                <div id="invitedCountDisplay" style="font-size:24px; font-weight:900; color:#ffd700; margin:4px 0;">0 / 10</div>
-            </div>
-            <div class="cyber-btn" onclick="shareRefLink()">Do'stlarni taklif qilish 🔗</div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-top:8px;">
-                <div class="cyber-btn" style="font-size:11px;" onclick="openLink('https://t.me/nezzy_cakee')">📢 Kanal</div>
-                <div class="cyber-btn" style="font-size:11px;" onclick="openLink('https://t.me/nezzy_cakeee')">💬 Gruppa</div>
-            </div>
-        </div>
-
-        <!-- 6. PROFIL -->
-        <div id="profilePage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('profilePage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Mening Profilim 👤</h3>
-            </div>
-            <div class="card-box" style="text-align:center;">
-                <img id="profileAvatar" src="https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png" style="width:60px; height:60px; border-radius:50%; border:2px solid #ffd700; margin-bottom:6px;">
-                <h3 id="profileName" style="color:#fff; font-size:13px;">Foydalanuvchi</h3>
-                <p id="profileId" style="color:#aaa; font-size:10px;">ID: ...</p>
-                <div style="margin-top:6px; font-size:12px; color:#ffd700; font-weight:800;">
-                    ⭐ Balansingiz: <span id="profileStars">0</span> Star
-                </div>
-            </div>
-            <h4 style="color:#ffd700; font-size:11px; margin-bottom:6px;">📦 Mening Buyurtmalarim:</h4>
-            <div id="myOrdersList"></div>
-            <div id="adminAccessBtn" class="cyber-btn" style="border-color:#ef4444; color:#fca5a5; margin-top:12px; display:none;" onclick="openPage('adminPanelPage')">
-                🔐 Admin Panel (Faqat Sizga)
-            </div>
-        </div>
-
-        <!-- 7. FAQ -->
-        <div id="faqPage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('faqPage')">❮ Orqaga</button>
-                <h3 style="color:#ffd700; font-size:13px;">Yo'riqnoma 📖</h3>
-            </div>
-            <div class="card-box">
-                <b style="color:#ffd700;">🎂 Qanday buyurtma beriladi?</b><br>
-                1. Katalogdan yoki Tort Konstruktoridan o'zingizga yoqqan tortni tanlang.<br>
-                2. Ma'lumotlarni to'ldirib yuboring.<br>
-                3. Admin tezda tasdiqlash uchun bog'lanadi.
-            </div>
-        </div>
-
-        <!-- 8. ADMIN PANEL -->
-        <div id="adminPanelPage" class="sub-page">
-            <div class="sub-header">
-                <button class="back-btn" onclick="closePage('adminPanelPage')">❮ Orqaga</button>
-                <h3 style="color:#ef4444; font-size:13px;">Admin Panel 🔐</h3>
-            </div>
-            <div class="card-box" style="border-color:#ef4444;">
-                <h4 style="color:#ffd700; margin-bottom:4px;">📊 Statistika:</h4>
-                <p>• Jami obunachilar: <b id="statTotalUsers" style="color:#fff;">1</b> ta</p>
-                <p>• Jami buyurtmalar: <b id="statTotalOrders" style="color:#fff;">0</b> ta</p>
-            </div>
-            <div class="card-box" style="border-color:#ef4444;">
-                <h4 style="color:#ffd700; margin-bottom:4px;">📢 Rassilka (Xabar yuborish):</h4>
-                <textarea id="broadcastText" class="form-control" rows="2" placeholder="Barcha obunachilarga xabar..."></textarea>
-                <div class="cyber-btn" style="margin-top:6px; padding:6px; font-size:11px;" onclick="sendBroadcast()">Yuborish 🚀</div>
-            </div>
-            <h4 style="color:#ffd700; font-size:11px; margin-bottom:6px;">📦 Buyurtmalar:</h4>
-            <div id="adminOrdersList"></div>
-            <h4 style="color:#ffd700; font-size:11px; margin-bottom:6px; margin-top:10px;">👥 Obunachilar:</h4>
-            <div id="adminUsersList"></div>
+        <div class="card-box">
+            <h4 style="color:#ffd700; font-size:12px; margin-bottom:6px;">🔗 Do'stlaringizni Taklif Qiling:</h4>
+            <p style="font-size:10px; color:#ccc; margin-bottom:8px;">Shaxsiy havolangiz orqali do'stlaringizni botga taklif qiling!</p>
+            <div class="sparkle-btn" style="width:100%;" onclick="shareRefLink()">Do'stingizni taklif qilish 🔗</div>
         </div>
     </div>
 
@@ -553,222 +294,52 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
-        const ADMIN_USERNAME = "shaxjan_2";
-        let currentUser = { id: 999999, username: "", name: "Mehmon", avatar: "https://i.ibb.co/F4HSB7gB/file-0000000057b881f4a07c0bd879361205.png", invites: 0, stars: 0 };
-
+        let currentUser = { id: 999999, name: "Mehmon" };
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             currentUser.id = tg.initDataUnsafe.user.id;
-            currentUser.username = tg.initDataUnsafe.user.username || "";
             currentUser.name = tg.initDataUnsafe.user.first_name || "Foydalanuvchi";
-            if (tg.initDataUnsafe.user.photo_url) currentUser.avatar = tg.initDataUnsafe.user.photo_url;
         }
 
         document.getElementById('profileName').innerText = currentUser.name;
-        document.getElementById('profileAvatar').src = currentUser.avatar;
         document.getElementById('profileId').innerText = "ID: " + currentUser.id;
 
-        if (currentUser.username.toLowerCase() === ADMIN_USERNAME.toLowerCase() || currentUser.username.includes("shaxjan") || true) {
-            document.getElementById('adminAccessBtn').style.display = 'flex';
-        }
-
-        let dbUsers = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
-        if (!dbUsers.some(u => u.id === currentUser.id)) {
-            dbUsers.push(currentUser);
-            localStorage.setItem('nezzy_db_users', JSON.stringify(dbUsers));
-        }
-
         const cakeImages = [
-            { url: "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg", cat: "bento", title: "Bento Tort" },
-            { url: "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg", cat: "kids", title: "Bolalar Torti" },
-            { url: "https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg", cat: "wedding", title: "To'y Torti Luxury" },
-            { url: "https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg", cat: "dessert", title: "Cheesecake" },
-            { url: "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg", cat: "bento", title: "Bento Love" },
-            { url: "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg", cat: "kids", title: "Multik Tort" }
+            "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
+            "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg",
+            "https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg",
+            "https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg",
+            "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg",
+            "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg"
         ];
 
-        const verticalTrack = document.getElementById('verticalTrack');
-        let trackHTML = '';
-        cakeImages.forEach(item => { trackHTML += `<img src="${item.url}" class="vertical-slide-img">`; });
-        verticalTrack.innerHTML = trackHTML + trackHTML;
+        const grid = document.getElementById('catalogGrid');
+        cakeImages.forEach(url => {
+            grid.innerHTML += `
+                <div style="background:rgba(20,12,35,0.85); border-radius:10px; overflow:hidden; border:1px solid #ffd700;">
+                    <img src="${url}" style="width:100%; height:100px; object-fit:cover;">
+                    <div style="padding:6px; text-align:center;">
+                        <div class="sparkle-btn" style="padding:4px 8px; font-size:10px;" onclick="openPage('orderPage')">Buyurtma berish</div>
+                    </div>
+                </div>
+            `;
+        });
 
-        function renderCatalog(filter = "all") {
-            const grid = document.getElementById('catalogGrid');
-            grid.innerHTML = '';
-            cakeImages.forEach(item => {
-                if(filter === "all" || item.cat === filter) {
-                    grid.innerHTML += `
-                        <div style="background:rgba(15,8,30,0.85); border-radius:10px; overflow:hidden; border:1px solid #ffd700;">
-                            <img src="${item.url}" style="width:100%; height:95px; object-fit:cover;">
-                            <div style="padding:5px; text-align:center;">
-                                <p style="font-size:10px; color:#ffd700; font-weight:800; margin-bottom:3px;">${item.title}</p>
-                                <div class="cyber-btn" style="padding:4px; font-size:10px;" onclick="openPage('orderPage')">Buyurtma</div>
-                            </div>
-                        </div>
-                    `;
-                }
-            });
-        }
-        renderCatalog();
-
-        function filterCatalog(cat, btn) {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            renderCatalog(cat);
-        }
-
-        function calcCustomPrice() {
-            let b = parseInt(document.getElementById('cakeBiskvit').value);
-            let k = parseInt(document.getElementById('cakeKrem').value);
-            let f = parseInt(document.getElementById('cakeFilling').value);
-            let total = b + k + f;
-            document.getElementById('customPriceTotal').innerText = total.toLocaleString() + " so'm";
-        }
-
-        function orderCustomCake() {
-            openPage('orderPage');
-            document.getElementById('orderComment').value = "Konstruktor tort tanlandi.";
-        }
-
-        function toggleDeliveryInput() {
-            let type = document.getElementById('deliveryType').value;
-            document.getElementById('addressInputBox').style.display = (type === 'delivery') ? 'block' : 'none';
-        }
-
-        function openPage(pageId) {
-            document.getElementById(pageId).style.display = 'block';
-            if(pageId === 'adminPanelPage') loadAdminData();
-            if(pageId === 'profilePage') loadUserProfileData();
-        }
-
-        function closePage(pageId) { document.getElementById(pageId).style.display = 'none'; }
+        function openPage(id) { document.getElementById(id).style.display = 'block'; }
+        function closePage(id) { document.getElementById(id).style.display = 'none'; }
         function openLocation() { window.open('https://maps.google.com/?q=40.1075360,67.8381850', '_blank'); }
         function openLink(url) { tg.openTelegramLink(url); }
 
-        let uploadedImageBase64 = "";
-        function previewImage(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(ev) {
-                    uploadedImageBase64 = ev.target.result;
-                    document.getElementById('uploadBox').style.backgroundImage = `url(${uploadedImageBase64})`;
-                    document.getElementById('uploadText').innerText = "✅ Rasm yuklandi";
-                }
-                reader.readAsDataURL(file);
-            }
-        }
-
         function submitOrder(e) {
             e.preventDefault();
-            const phone = document.getElementById('orderPhone').value;
-            const dateTime = document.getElementById('orderDateTime').value;
-            const comment = document.getElementById('orderComment').value;
-            const delivery = document.getElementById('deliveryType').value;
-            const address = document.getElementById('orderAddress').value;
-
-            const newOrder = {
-                id: Date.now(),
-                userId: currentUser.id,
-                user: currentUser.name,
-                phone: phone,
-                dateTime: dateTime,
-                comment: comment,
-                delivery: delivery === 'delivery' ? `Dostavka: ${address}` : "Olib ketish",
-                image: uploadedImageBase64,
-                status: "Kutilmoqda ⏳"
-            };
-
-            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
-            orders.push(newOrder);
-            localStorage.setItem('nezzy_db_orders', JSON.stringify(orders));
-
             tg.showAlert("Buyurtmangiz muvaffaqiyatli qabul qilindi!");
             closePage('orderPage');
-        }
-
-        function spinWheel() {
-            const wheel = document.getElementById('luckyWheel');
-            const resText = document.getElementById('wheelResult');
-            const btn = document.getElementById('spinBtn');
-            btn.style.pointerEvents = 'none';
-
-            let randomDegree = Math.floor(Math.random() * 3600) + 720;
-            wheel.style.transform = `rotate(${randomDegree}deg)`;
-
-            setTimeout(() => {
-                const prizes = ["+5 Star 🌟", "Chegirma 10% 🎉", "Omad sinovi 😅", "+2 Star ⭐"];
-                const won = prizes[Math.floor(Math.random() * prizes.length)];
-                resText.innerText = "Tabriklaymiz, yutug'ingiz: " + won;
-                btn.style.pointerEvents = 'auto';
-            }, 3000);
-        }
-
-        function loadUserProfileData() {
-            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
-            let myOrders = orders.filter(o => o.userId === currentUser.id);
-            let myOrdersContainer = document.getElementById('myOrdersList');
-            myOrdersContainer.innerHTML = '';
-            if(myOrders.length === 0) {
-                myOrdersContainer.innerHTML = '<p style="font-size:11px; color:#aaa;">Hali buyurtmalar yo\'q.</p>';
-            } else {
-                myOrders.forEach(o => {
-                    myOrdersContainer.innerHTML += `
-                        <div class="card-box">
-                            <p style="color:#ffd700; font-weight:800;">📅 ${o.dateTime}</p>
-                            <p>Status: <b style="color:#10b981;">${o.status}</b></p>
-                        </div>
-                    `;
-                });
-            }
         }
 
         function shareRefLink() {
             const botUsername = "nezzy_premium_bot";
             const refLink = `https://t.me/${botUsername}?start=ref_${currentUser.id}`;
-            const shareText = `Nezzy Cake shirinliklar botiga qo'shiling va mazali tortlarga buyurtma bering!`;
+            const shareText = `Nezzy Cake shirinliklar botiga qo'shiling va mazali tortlarga buyurtma bering:`;
             tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(refLink)}&text=${encodeURIComponent(shareText)}`);
-        }
-
-        function loadAdminData() {
-            let users = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
-            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
-
-            document.getElementById('statTotalUsers').innerText = users.length;
-            document.getElementById('statTotalOrders').innerText = orders.length;
-
-            let ordersList = document.getElementById('adminOrdersList');
-            ordersList.innerHTML = '';
-            orders.forEach((o, index) => {
-                ordersList.innerHTML += `
-                    <div class="admin-card">
-                        <p style="color:#ffd700; font-weight:800;">👤 ${o.user}</p>
-                        <p>📞 Tel: ${o.phone}</p>
-                        <p>📍 ${o.delivery}</p>
-                        <p>📅 Vaqt: ${o.dateTime}</p>
-                        <p>💬 Izoh: ${o.comment || 'Yo\'q'}</p>
-                        <p style="margin-top:4px;">Status: <b>${o.status}</b></p>
-                        <div style="display:flex; gap:6px; margin-top:6px;">
-                            <div class="cyber-btn" onclick="updateOrderStatus(${index}, 'Tayyorlanmoqda 👨‍🍳')" style="font-size:9px; padding:4px;">👨‍🍳 Tayyorlash</div>
-                            <div class="cyber-btn" onclick="updateOrderStatus(${index}, 'Tayyor ✅')" style="font-size:9px; padding:4px;">✅ Tayyor</div>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-
-        function updateOrderStatus(index, status) {
-            let orders = JSON.parse(localStorage.getItem('nezzy_db_orders') || '[]');
-            orders[index].status = status;
-            localStorage.setItem('nezzy_db_orders', JSON.stringify(orders));
-            loadAdminData();
-            tg.showAlert("Status yangilandi!");
-        }
-
-        function sendBroadcast() {
-            let text = document.getElementById('broadcastText').value;
-            if(!text) return tg.showAlert("Matn kiriting!");
-            tg.showAlert("Xabar yuborildi!");
-            document.getElementById('broadcastText').value = '';
         }
     </script>
 </body>
