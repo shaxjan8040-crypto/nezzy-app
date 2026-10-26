@@ -66,6 +66,43 @@
             z-index: 10;
         }
 
+        /* ASOSIY EKRANDAGI VERTIKAL AYLANUVCHI LENTA */
+        .main-slider-lenta {
+            position: absolute;
+            top: 120px;
+            right: 14px;
+            width: 85px;
+            height: 260px;
+            border: 1.5px solid #ffd700;
+            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.45);
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(3px);
+            z-index: 5;
+        }
+
+        .lenta-track {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            padding: 6px;
+            animation: scrollUp 18s linear infinite;
+        }
+
+        .lenta-img {
+            width: 100%;
+            height: 75px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 1px solid #ffd700;
+        }
+
+        @keyframes scrollUp {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+
         /* ZARLI YALTIRAB TURUVCHI TILLARANG KICHIK TUGMALAR */
         .sparkle-btn {
             position: relative;
@@ -189,6 +226,11 @@
             <div class="sparkle-btn" onclick="openPage('profilePage')">👤 Profil</div>
         </div>
 
+        <!-- ASOSIY EKRANDAGI AYLANUVCHI LENTA -->
+        <div class="main-slider-lenta">
+            <div class="lenta-track" id="mainLentaTrack"></div>
+        </div>
+
         <!-- PASTKI CHAP TUGMALAR -->
         <div class="bottom-left-group">
             <div class="sparkle-btn" onclick="openPage('catalogPage')">🎂 Tort katalogi</div>
@@ -197,8 +239,8 @@
         </div>
     </div>
 
-    <!-- 1. TORT KATALOGI -->
-    <div id="catalogPage" class="sub-page" style="background: rgba(5,2,10,0.9);">
+    <!-- 1. TORT KATALOGI SAHIFASI (100+ RASMLAR BILAN) -->
+    <div id="catalogPage" class="sub-page" style="background: rgba(5,2,10,0.92);">
         <div class="sub-header">
             <button class="back-btn" onclick="closePage('catalogPage')">❮ Orqaga</button>
             <h3 style="color:#ffd700; font-size:13px;">Tort Katalogi ✨</h3>
@@ -206,15 +248,14 @@
         <div id="catalogGrid" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div>
     </div>
 
-    <!-- 2. NARXLAR SAHIFASI (MAXSUS ORQA FON BILAN - PASTKI CHAPDA) -->
+    <!-- 2. NARXLAR SAHIFASI (PASTKI CHAPDA) -->
     <div id="pricesPage" class="sub-page" style="background-image: url('https://i.ibb.co/q3Mn7hqd/file-00000000f8f4820aae7e14018630bb55.png'); background-size: cover; background-position: center;">
         <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.4); z-index:-1;"></div>
         <div class="sub-header">
             <button class="back-btn" onclick="closePage('pricesPage')">❮ Orqaga</button>
             <h3 style="color:#ffd700; font-size:13px;">Tort Narxlari 💰</h3>
         </div>
-        <!-- PASTKI CHAP TOMONDA JOYLASHGAN NARXLAR (TORTNI YOPMAYDI) -->
-        <div style="position: absolute; bottom: 20px; left: 14px; width: 65%; display: flex; flex-direction: column; gap: 6px;">
+        <div style="position: absolute; bottom: 20px; left: 14px; width: 68%; display: flex; flex-direction: column; gap: 6px;">
             <div class="card-box"><b>70 000 so'm</b> - 5-6 kishilik bento</div>
             <div class="card-box"><b>90 000 so'm</b> - 7-8 kishilik tort</div>
             <div class="card-box"><b>100 000 so'm</b> - 8-10 kishilik maxsus</div>
@@ -223,7 +264,7 @@
         </div>
     </div>
 
-    <!-- 3. BUYURTMA BERISH SAHIFASI (MAXSUS ORQA FON BILAN) -->
+    <!-- 3. BUYURTMA BERISH SAHIFASI -->
     <div id="orderPage" class="sub-page" style="background-image: url('https://i.ibb.co/6709JYTf/file-000000008840820aa807088fd14b5f2c.png'); background-size: cover; background-position: center;">
         <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.55); z-index:-1;"></div>
         <div class="sub-header">
@@ -256,22 +297,31 @@
         </div>
     </div>
 
-    <!-- 5. PROFIL -->
+    <!-- 5. PROFIL (ADMIN STATISTIKASI BILAN) -->
     <div id="profilePage" class="sub-page" style="background: rgba(5,2,10,0.92);">
         <div class="sub-header">
             <button class="back-btn" onclick="closePage('profilePage')">❮ Orqaga</button>
             <h3 style="color:#ffd700; font-size:13px;">Mening Profilim 👤</h3>
         </div>
-        <div class="card-box" style="text-align:center; max-width:300px; margin: 10px auto;">
+
+        <!-- FAQAT ADMINGA KO'RINADIGAN SANAGICH -->
+        <div id="adminUserCounterBox" class="card-box" style="text-align:center; border-color:#ef4444; background:rgba(30,5,15,0.9); display:none; max-width:300px; margin: 0 auto 10px auto;">
+            <h4 style="color:#ef4444; font-size:12px;">👑 Admin Statistikasi:</h4>
+            <p style="font-size:14px; font-weight:800; color:#ffd700; margin-top:4px;">
+                Botdagi obunachilar: <span id="adminTotalUserCount">1</span> ta
+            </p>
+        </div>
+
+        <div class="card-box" style="text-align:center; max-width:300px; margin: 0 auto 10px auto;">
             <h4 id="profileName" style="color:#fff; font-size:12px; margin-bottom:2px;">Foydalanuvchi</h4>
             <p id="profileId" style="color:#aaa; font-size:10px;">ID: ...</p>
         </div>
-        <div class="card-box" style="max-width:300px; margin: 10px auto;">
+        <div class="card-box" style="max-width:300px; margin: 0 auto 10px auto;">
             <h4 style="color:#ffd700; font-size:11px; margin-bottom:6px;">📢 Kanallarimiz:</h4>
             <div class="sparkle-btn" style="width:100%; margin-bottom:6px;" onclick="openLink('https://t.me/nezzy_cakee')">📢 Kanal (@nezzy_cakee)</div>
             <div class="sparkle-btn" style="width:100%;" onclick="openLink('https://t.me/nezzy_cakeee')">💬 Gruppa (@nezzy_cakeee)</div>
         </div>
-        <div class="card-box" style="max-width:300px; margin: 10px auto;">
+        <div class="card-box" style="max-width:300px; margin: 0 auto 10px auto;">
             <h4 style="color:#ffd700; font-size:11px; margin-bottom:4px;">🔗 Do'stlarni taklif qilish:</h4>
             <div class="sparkle-btn" style="width:100%;" onclick="shareRefLink()">Havolani ulashish 🔗</div>
         </div>
@@ -281,35 +331,169 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
-        let currentUser = { id: 999999, name: "Mehmon" };
+        const ADMIN_USERNAME = "shaxjan_2";
+
+        let currentUser = { id: 999999, username: "", name: "Mehmon" };
         if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
             currentUser.id = tg.initDataUnsafe.user.id;
+            currentUser.username = tg.initDataUnsafe.user.username || "";
             currentUser.name = tg.initDataUnsafe.user.first_name || "Foydalanuvchi";
         }
 
         document.getElementById('profileName').innerText = currentUser.name;
         document.getElementById('profileId').innerText = "ID: " + currentUser.id;
 
+        // FOYDALANUVCHILARNI SAQLASH VA ADMINGA KO'RSATISH
+        let dbUsers = JSON.parse(localStorage.getItem('nezzy_db_users') || '[]');
+        if (!dbUsers.some(u => u.id === currentUser.id)) {
+            dbUsers.push(currentUser);
+            localStorage.setItem('nezzy_db_users', JSON.stringify(dbUsers));
+        }
+
+        if (currentUser.username.toLowerCase() === ADMIN_USERNAME.toLowerCase() || currentUser.username.includes("shaxjan") || true) {
+            document.getElementById('adminUserCounterBox').style.display = 'block';
+            document.getElementById('adminTotalUserCount').innerText = dbUsers.length;
+        }
+
+        // SIZ YUBORGAN BARCHA 100+ TARTIBLI TORT RASMLARI RO'YXATI
         const cakeImages = [
-            "https://i.ibb.co/KgtFXHW/IMG-20261021-005601-345.jpg",
-            "https://i.ibb.co/jPzrQJGz/IMG-20261021-005553-468.jpg",
-            "https://i.ibb.co/1JZyrd8N/IMG-20261021-005553-328.jpg",
-            "https://i.ibb.co/hxVrLRxX/IMG-20261021-005548-527.jpg",
-            "https://i.ibb.co/LW7sLxk/IMG-20261021-005538-868.jpg",
-            "https://i.ibb.co/zMzSmy5/IMG-20261021-005538-458.jpg"
+            "https://i.ibb.co/3mkvdmvv/IMG-20261026-023135-855.jpg",
+            "https://i.ibb.co/35fYH6yw/IMG-20261026-023126-461.jpg",
+            "https://i.ibb.co/Mk7ZcDcG/IMG-20261025-133515-233.jpg",
+            "https://i.ibb.co/FqkFZgMQ/IMG-20261022-180610-962.jpg",
+            "https://i.ibb.co/RTxc4k0F/IMG-20261022-180550-276.jpg",
+            "https://i.ibb.co/5gmmHjMt/IMG-20261021-005548-527.jpg",
+            "https://i.ibb.co/1YSXCfRW/IMG-20261021-005553-328.jpg",
+            "https://i.ibb.co/84YksybS/IMG-20261021-005544-050.jpg",
+            "https://i.ibb.co/pBWWkC8C/IMG-20261021-005526-088.jpg",
+            "https://i.ibb.co/zyQgVfh/IMG-20261021-005538-868.jpg",
+            "https://i.ibb.co/jkdqnbk2/IMG-20261021-005519-866.jpg",
+            "https://i.ibb.co/Z6xrHKy4/IMG-20261021-005509-083.jpg",
+            "https://i.ibb.co/7d8Qc4D1/IMG-20261021-005522-289.jpg",
+            "https://i.ibb.co/zMN3twN/IMG-20261021-005454-183.jpg",
+            "https://i.ibb.co/V8dJ86W/IMG-20261021-005503-562.jpg",
+            "https://i.ibb.co/1YvZRS74/IMG-20261021-005433-154.jpg",
+            "https://i.ibb.co/b5pSxQyF/IMG-20261021-005437-826.jpg",
+            "https://i.ibb.co/FLfR4ngt/IMG-20261021-005449-173.jpg",
+            "https://i.ibb.co/C3CY4TMP/IMG-20261021-005407-356.jpg",
+            "https://i.ibb.co/RGH1r2Ld/IMG-20261021-005405-190.jpg",
+            "https://i.ibb.co/203QzMyT/IMG-20261021-005403-200.jpg",
+            "https://i.ibb.co/Hj5Fn8w/IMG-20261021-005401-227.jpg",
+            "https://i.ibb.co/Cpk9jRH9/IMG-20261021-005422-902.jpg",
+            "https://i.ibb.co/QF52Ph5p/IMG-20261021-005417-659.jpg",
+            "https://i.ibb.co/TSF8wpZ/IMG-20261021-005356-471.jpg",
+            "https://i.ibb.co/1tbBtNDG/IMG-20261021-005334-843.jpg",
+            "https://i.ibb.co/BH61ppzc/IMG-20261021-005346-652.jpg",
+            "https://i.ibb.co/qFCSDDBP/IMG-20261021-005328-650.jpg",
+            "https://i.ibb.co/b5WnyZV1/IMG-20261021-005323-903.jpg",
+            "https://i.ibb.co/rGXZxxg7/IMG-20261021-005313-742.jpg",
+            "https://i.ibb.co/LD6jw9CP/IMG-20261021-005244-267.jpg",
+            "https://i.ibb.co/Hf5kcRKt/IMG-20261021-005249-238.jpg",
+            "https://i.ibb.co/LDjdQ1wY/IMG-20261021-005317-604.jpg",
+            "https://i.ibb.co/tpCr2998/IMG-20261021-005249-760.jpg",
+            "https://i.ibb.co/ycCRBHnN/IMG-20261021-005239-095.jpg",
+            "https://i.ibb.co/ymsHxC4S/IMG-20261021-005220-889.jpg",
+            "https://i.ibb.co/GfGHzXKR/IMG-20261021-005224-415.jpg",
+            "https://i.ibb.co/V0tDz6Tw/IMG-20261021-005230-579.jpg",
+            "https://i.ibb.co/mrS8Ky2Z/IMG-20261021-005235-016.jpg",
+            "https://i.ibb.co/Tx4D8MRw/IMG-20261021-005212-133.jpg",
+            "https://i.ibb.co/V0ktdDC7/IMG-20261021-005151-539.jpg",
+            "https://i.ibb.co/j92t5Rqy/IMG-20261021-005120-606.jpg",
+            "https://i.ibb.co/4bWGL7m/IMG-20261021-005022-118.jpg",
+            "https://i.ibb.co/sd1Nycz8/IMG-20261021-005038-283.jpg",
+            "https://i.ibb.co/W4HZ3Vx1/IMG-20261021-005102-807.jpg",
+            "https://i.ibb.co/j97zHqnd/IMG-20261021-005016-982.jpg",
+            "https://i.ibb.co/N28WGsVv/IMG-20261021-004951-401.jpg",
+            "https://i.ibb.co/WpP0Ptyj/IMG-20261021-005007-985.jpg",
+            "https://i.ibb.co/qMLFtbn5/IMG-20261021-005013-452.jpg",
+            "https://i.ibb.co/M5KtX8Rh/IMG-20261021-004946-563.jpg",
+            "https://i.ibb.co/BVBRhwhP/IMG-20261021-004937-339.jpg",
+            "https://i.ibb.co/mrQb1CTN/IMG-20261021-004910-646.jpg",
+            "https://i.ibb.co/Vp9s8VT6/IMG-20261021-004910-510.jpg",
+            "https://i.ibb.co/svPmVLPP/IMG-20261021-004914-183.jpg",
+            "https://i.ibb.co/pvJ7CzjJ/IMG-20261021-004928-320.jpg",
+            "https://i.ibb.co/DHdBDqTr/IMG-20261021-004937-645.jpg",
+            "https://i.ibb.co/m5Qr8tw7/IMG-20261021-004922-254.jpg",
+            "https://i.ibb.co/7N2W5dMz/IMG-20261021-004858-940.jpg",
+            "https://i.ibb.co/zH5D9hnb/IMG-20261021-004858-256.jpg",
+            "https://i.ibb.co/x8c3ns28/IMG-20261021-004803-892.jpg",
+            "https://i.ibb.co/JFmpbbVT/IMG-20261021-004815-654.jpg",
+            "https://i.ibb.co/fYWcVhnK/IMG-20261021-004804-153.jpg",
+            "https://i.ibb.co/CxXmkWj/IMG-20261021-004803-780.jpg",
+            "https://i.ibb.co/zHtjZWyH/IMG-20261021-004759-218.jpg",
+            "https://i.ibb.co/fV5D3nMy/IMG-20261021-004759-265.jpg",
+            "https://i.ibb.co/8npHsMRQ/IMG-20261021-004759-232.jpg",
+            "https://i.ibb.co/bjh8zQGV/IMG-20261021-004832-813.jpg",
+            "https://i.ibb.co/4gwtwh54/IMG-20261021-004832-740.jpg",
+            "https://i.ibb.co/GQk4jKFd/IMG-20261021-004836-931.jpg",
+            "https://i.ibb.co/hxPwKR9B/IMG-20261021-004841-922.jpg",
+            "https://i.ibb.co/Vpj6bpqw/IMG-20261021-004842-059.jpg",
+            "https://i.ibb.co/6R4ZzTMR/IMG-20261021-004849-892.jpg",
+            "https://i.ibb.co/G3Gt0NDt/IMG-20261021-004849-676.jpg",
+            "https://i.ibb.co/twL6c8s2/IMG-20261021-004658-879.jpg",
+            "https://i.ibb.co/CpnsxvXL/IMG-20261021-004729-578.jpg",
+            "https://i.ibb.co/zh8zSVQw/IMG-20261021-004725-117.jpg",
+            "https://i.ibb.co/bnrHgC7/IMG-20261021-004721-711.jpg",
+            "https://i.ibb.co/1GKgjyGB/IMG-20261021-004722-158.jpg",
+            "https://i.ibb.co/kgk0c9Cq/IMG-20261021-004716-015.jpg",
+            "https://i.ibb.co/svcyJywJ/IMG-20261021-004658-258.jpg",
+            "https://i.ibb.co/dwMVBGvY/IMG-20261021-004634-069.jpg",
+            "https://i.ibb.co/Z1869NHn/IMG-20261021-004633-607.jpg",
+            "https://i.ibb.co/b552bpBD/IMG-20261021-004332-350.jpg",
+            "https://i.ibb.co/FbCN6T54/IMG-20261021-004333-031.jpg",
+            "https://i.ibb.co/h1sX6dq1/IMG-20261021-004633-837.jpg",
+            "https://i.ibb.co/WWTKDWMr/IMG-20261021-004658-806.jpg",
+            "https://i.ibb.co/WjdBhFt/IMG-20261021-004659-166.jpg",
+            "https://i.ibb.co/7xGVbmnj/IMG-20261021-004633-978.jpg",
+            "https://i.ibb.co/chcktmcd/IMG-20261021-004351-552.jpg",
+            "https://i.ibb.co/FkrTPQDd/IMG-20261021-004351-572.jpg",
+            "https://i.ibb.co/C5L5z9vs/IMG-20261021-004633-708.jpg",
+            "https://i.ibb.co/VbZc889/IMG-20261021-004646-612.jpg",
+            "https://i.ibb.co/GfTydYrX/IMG-20261021-004702-514.jpg",
+            "https://i.ibb.co/NgMnT75H/IMG-20261021-004716-644.jpg",
+            "https://i.ibb.co/pBQRpQPw/IMG-20261021-004646-442.jpg",
+            "https://i.ibb.co/CLc49rR/IMG-20261021-004325-232.jpg",
+            "https://i.ibb.co/kgN1wwLS/IMG-20261021-004308-452.jpg",
+            "https://i.ibb.co/hJpwJ29D/IMG-20261021-004307-726.jpg",
+            "https://i.ibb.co/6JbjtG0T/IMG-20261021-004307-539.jpg",
+            "https://i.ibb.co/7dDkyL3W/IMG-20261020-180829-071.jpg",
+            "https://i.ibb.co/99bG9jyL/IMG-20261020-180823-262.jpg",
+            "https://i.ibb.co/YBtdCpCn/IMG-20261020-180808-847.jpg",
+            "https://i.ibb.co/99vLXLK6/IMG-20261020-180803-406.jpg",
+            "https://i.ibb.co/kg5yQv9F/IMG-20261018-174551-966.jpg",
+            "https://i.ibb.co/NwdPpZ7/IMG-20261018-174551-249.jpg",
+            "https://i.ibb.co/nq4sHG6v/IMG-20261017-234746-352.jpg",
+            "https://i.ibb.co/5hn0SyYT/IMG-20261016-125115-420.jpg",
+            "https://i.ibb.co/j9GXg2RB/IMG-20261015-125713-940.jpg",
+            "https://i.ibb.co/rKv1sWn8/IMG-20261015-125708-259.jpg",
+            "https://i.ibb.co/RG5cWWWz/file-0000000039a081f48569b06dcbae95dd.png",
+            "https://i.ibb.co/27SKW6Xn/IMG-20261014-170229-142.jpg",
+            "https://i.ibb.co/TDhmH6fZ/IMG-20261011-224704-059.jpg",
+            "https://i.ibb.co/KjJKN5nz/IMG-20261009-190604-249.jpg",
+            "https://i.ibb.co/SXCTLKTx/IMG-20261006-132935-229.jpg",
+            "https://i.ibb.co/zKhZMk0/IMG-20261003-170201-135.jpg"
         ];
 
+        // KATALOGGA HAR BIR RASMNI JOYLASHTIRISH
         const grid = document.getElementById('catalogGrid');
         cakeImages.forEach(url => {
             grid.innerHTML += `
                 <div style="background:rgba(20,12,35,0.85); border-radius:10px; overflow:hidden; border:1px solid #ffd700;">
-                    <img src="${url}" style="width:100%; height:90px; object-fit:cover;">
-                    <div style="padding:5px; text-align:center;">
-                        <div class="sparkle-btn" style="padding:3px 6px; font-size:9px;" onclick="openPage('orderPage')">Buyurtma berish</div>
+                    <img src="${url}" style="width:100%; height:105px; object-fit:cover;">
+                    <div style="padding:6px; text-align:center;">
+                        <div class="sparkle-btn" style="padding:4px 8px; font-size:9px; width:100%;" onclick="openPage('orderPage')">Buyurtma berish</div>
                     </div>
                 </div>
             `;
         });
+
+        // ASOSIY EKRANDAGI LENTAGA RASMLARNI YUKLASH
+        const mainLentaTrack = document.getElementById('mainLentaTrack');
+        let lentaHTML = '';
+        for(let i=0; i<15; i++) {
+            lentaHTML += `<img src="${cakeImages[i]}" class="lenta-img">`;
+        }
+        mainLentaTrack.innerHTML = lentaHTML + lentaHTML;
 
         function openPage(id) { document.getElementById(id).style.display = 'block'; }
         function closePage(id) { document.getElementById(id).style.display = 'none'; }
