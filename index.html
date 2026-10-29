@@ -3,57 +3,349 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nezzy Cake</title>
+    <title>Nezzy_cake</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
-        body { background-color: #0f172a; color: #f8fafc; min-height: 100vh; padding-bottom: 70px; }
-        .tg-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; background: #1e293b; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #334155; }
-        .tg-header h1 { font-size: 18px; font-weight: 700; color: #fff; }
-        .search-box { padding: 10px 16px; background: #111827; }
-        .search-input { width: 100%; background: #1f2937; border: none; border-radius: 20px; padding: 10px 16px; color: #fff; font-size: 13px; outline: none; }
-        .chat-list { padding: 4px 0; }
-        .chat-item { display: flex; align-items: center; padding: 12px 16px; gap: 12px; border-bottom: 1px solid rgba(255,255,255,0.05); cursor: pointer; }
-        .chat-item:active { background: rgba(255,255,255,0.05); }
-        .chat-avatar { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 1px solid #334155; flex-shrink: 0; }
-        .chat-info { flex-grow: 1; min-width: 0; }
-        .chat-name { font-size: 14px; font-weight: 600; color: #f1f5f9; }
-        .chat-snippet { font-size: 12px; color: #94a3b8; margin-top: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .tg-bottom-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 60px; background: #1e293b; border-top: 1px solid #334155; display: flex; justify-content: space-around; align-items: center; z-index: 100; }
-        .nav-item { display: flex; flex-direction: column; align-items: center; color: #64748b; font-size: 11px; cursor: pointer; flex: 1; }
-        .nav-item.active { color: #3b82f6; }
-        .nav-icon { font-size: 20px; margin-bottom: 2px; }
+        
+        body {
+            background-color: #050505;
+            color: #f8fafc;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 50% 20%, #1a1500 0%, #050505 70%);
+            padding: 20px 16px 40px 16px;
+            overflow-x: hidden;
+        }
+
+        /* HEADER / BANNER SECTION */
+        .hero-banner {
+            background: linear-gradient(145deg, #161208, #0a0804);
+            border: 2px solid #d4af37;
+            border-radius: 20px;
+            padding: 24px 16px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .crown-icon {
+            font-size: 32px;
+            margin-bottom: 4px;
+            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.6));
+        }
+
+        .brand-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-style: italic;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+        }
+
+        .brand-subtitle {
+            font-size: 14px;
+            color: #d4af37;
+            font-style: italic;
+            opacity: 0.9;
+        }
+
+        /* MENU BUTTONS GRID */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .menu-btn {
+            background: linear-gradient(145deg, #141414, #080808);
+            border: 1.5px solid #d4af37;
+            border-radius: 16px;
+            padding: 18px 12px;
+            text-align: center;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 215, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100px;
+        }
+
+        .menu-btn:active {
+            transform: scale(0.96);
+        }
+
+        .menu-btn .icon {
+            font-size: 26px;
+            margin-bottom: 8px;
+        }
+
+        .menu-btn .text {
+            font-size: 13px;
+            font-weight: 700;
+            color: #f3f4f6;
+            line-height: 1.2;
+        }
+
+        /* FULL WIDTH BUTTON */
+        .menu-btn-full {
+            background: linear-gradient(145deg, #141414, #080808);
+            border: 1.5px solid #d4af37;
+            border-radius: 16px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            margin-bottom: 24px;
+        }
+
+        .menu-btn-full:active {
+            transform: scale(0.96);
+        }
+
+        .menu-btn-full .left-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .menu-btn-full .text {
+            font-size: 14px;
+            font-weight: 700;
+            color: #f3f4f6;
+        }
+
+        .arrow-icon {
+            color: #d4af37;
+            font-size: 18px;
+            font-weight: 800;
+        }
+
+        /* FOOTER BRAND INFO */
+        .footer-info {
+            text-align: center;
+            margin-top: 20px;
+            color: #9ca3af;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .footer-info span {
+            color: #d4af37;
+            font-weight: 600;
+        }
+
+        /* MODAL / SUB-PAGES */
+        .modal-page {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100vw; height: 100vh;
+            background: #080808;
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #d4af37;
+        }
+
+        .modal-header h2 {
+            color: #d4af37;
+            font-size: 18px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #d4af37;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .card-item {
+            background: #141414;
+            border: 1px solid #332700;
+            border-radius: 12px;
+            padding: 14px;
+            margin-bottom: 12px;
+        }
+
+        .card-item h3 {
+            color: #ffd700;
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+
+        .card-item p {
+            color: #d1d5db;
+            font-size: 13px;
+        }
+
+        .form-input {
+            width: 100%;
+            background: #121212;
+            border: 1px solid #d4af37;
+            border-radius: 10px;
+            padding: 12px;
+            color: #fff;
+            font-size: 14px;
+            margin-bottom: 12px;
+            outline: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(to right, #b38728, #fbf5b7);
+            border: none;
+            border-radius: 10px;
+            padding: 14px;
+            color: #000;
+            font-weight: 800;
+            font-size: 15px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
 
-    <div class="tg-header">
-        <h1>Nezzy Cake ✨</h1>
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+        <div class="crown-icon">👑</div>
+        <div class="brand-title">Nezzy_cake</div>
+        <div class="brand-subtitle">✨ Shirin lahzalar, baxtli onlar... ✨</div>
     </div>
 
-    <div class="search-box">
-        <input type="text" id="searchInput" class="search-input" placeholder="Tortlarni qidirish..." oninput="filterCakes(this.value)">
+    <!-- MAIN BUTTONS GRID -->
+    <div class="menu-grid">
+        <div class="menu-btn" onclick="openPage('catalogPage')">
+            <div class="icon">🍰</div>
+            <div class="text">Tortlar katalogi</div>
+        </div>
+        <div class="menu-btn" onclick="openPage('orderPage')">
+            <div class="icon">🛒</div>
+            <div class="text">Buyurtma berish</div>
+        </div>
+        <div class="menu-btn" onclick="openPage('locationPage')">
+            <div class="icon">📍</div>
+            <div class="text">Bizning manzilimiz</div>
+        </div>
+        <div class="menu-btn" onclick="openPage('discountPage')">
+            <div class="icon">🎁</div>
+            <div class="text">Aksiya va chegirmalar</div>
+        </div>
     </div>
 
-    <div class="chat-list" id="chatList"></div>
+    <!-- FULL WIDTH BUTTON -->
+    <div class="menu-btn-full" onclick="openPage('lotteryPage')">
+        <div class="left-content">
+            <span style="font-size: 24px;">📢</span>
+            <span class="text">Har oy yutuqli uyinlar!</span>
+        </div>
+        <span class="arrow-icon">›</span>
+    </div>
 
-    <div class="tg-bottom-nav">
-        <div class="nav-item active" onclick="alert('Chatlar sahifasi')">
-            <span class="nav-icon">💬</span>
-            <span>Chatlar</span>
+    <!-- FOOTER -->
+    <div class="footer-info">
+        <span>✈️ @nezzy_cake</span> | <span>📍 Jizzax shaxar</span>
+    </div>
+
+    <!-- 1. KATALOG SAHIFASI -->
+    <div id="catalogPage" class="modal-page">
+        <div class="modal-header">
+            <h2>🍰 Tortlar katalogi</h2>
+            <button class="close-btn" onclick="closePage('catalogPage')">✕</button>
         </div>
-        <div class="nav-item" onclick="alert('Admin: @shaxjan_2 \nTel: +998 94 026 80 01')">
-            <span class="nav-icon">👥</span>
-            <span>Kontaktlar</span>
+        <div class="card-item">
+            <h3>Bento Master Cake ✨</h3>
+            <p>Narxi: 70 000 so'm • 5-6 kishilik maxsus bento tort.</p>
         </div>
-        <div class="nav-item" onclick="alert('Narxlar: 70 000 so\'mdan boshlanadi')">
-            <span class="nav-icon">⚙️</span>
-            <span>Sozlamalar</span>
+        <div class="card-item">
+            <h3>Qulupnayli Bayram Torti 🍓</h3>
+            <p>Narxi: 125 000 so'm • Yangi mevalar bilan bezatilgan.</p>
         </div>
-        <div class="nav-item" onclick="alert('Profil: Shakhzodbek Ulmasov \nBio: Nezzy Cake mijoziman ✨')">
-            <span class="nav-icon">👤</span>
-            <span>Profil</span>
+        <div class="card-item">
+            <h3>Shokoladli Premium 🍫</h3>
+            <p>Narxi: 170 000 so'm • Haqiqiy Belgiya shokoladidan.</p>
+        </div>
+        <div class="card-item">
+            <h3>Tug'ilgan kun uchun maxsus 🎂</h3>
+            <p>Narxi: 100 000 so'm • Istalgan mavzuda bezatib beramiz.</p>
+        </div>
+    </div>
+
+    <!-- 2. BUYURTMA BERISH SAHIFASI -->
+    <div id="orderPage" class="modal-page">
+        <div class="modal-header">
+            <h2>🛒 Buyurtma berish</h2>
+            <button class="close-btn" onclick="closePage('orderPage')">✕</button>
+        </div>
+        <form onsubmit="submitOrder(event)">
+            <input type="text" class="form-control form-input" placeholder="Ismingizni kiriting" required>
+            <input type="tel" class="form-control form-input" placeholder="Telefon raqam: +998 94 026 80 01" required>
+            <input type="text" class="form-control form-input" placeholder="Qaysi tortni zakaz qilasiz?" required>
+            <textarea class="form-input" rows="3" placeholder="Qo'shimcha istaklar va dizayn..."></textarea>
+            <button type="submit" class="submit-btn">Buyurtmani tasdiqlash 🚀</button>
+        </form>
+    </div>
+
+    <!-- 3. MANZIL -->
+    <div id="locationPage" class="modal-page">
+        <div class="modal-header">
+            <h2>📍 Bizning manzilimiz</h2>
+            <button class="close-btn" onclick="closePage('locationPage')">✕</button>
+        </div>
+        <div class="card-item" style="text-align: center; padding: 20px;">
+            <h3 style="font-size: 18px; margin-bottom: 10px;">Jizzax shaxar, Uzbekistan</h3>
+            <p style="margin-bottom: 15px;">Mo'ljal: Markaziy hudud. Buyurtmalarni o'zingiz olib ketishingiz yoki yetkazib berish xizmatidan foydalanishingiz mumkin.</p>
+            <p style="color: #ffd700; font-weight: 700;">📞 Tel: +998 94 026 80 01</p>
+        </div>
+    </div>
+
+    <!-- 4. AKSIYA VA CHEGIRMALAR -->
+    <div id="discountPage" class="modal-page">
+        <div class="modal-header">
+            <h2>🎁 Aksiya va chegirmalar</h2>
+            <button class="close-btn" onclick="closePage('discountPage')">✕</button>
+        </div>
+        <div class="card-item">
+            <h3>🎉 Tug'ilgan kun chegirmasi!</h3>
+            <p>Tug'ilgan kuningizda barcha tortlarga 10% chegirma taqdim etamiz!</p>
+        </div>
+        <div class="card-item">
+            <h3>✨ Doimiy mijozlarga</h3>
+            <p>Har 3-buyurtmangiz bilan kichik bento sovg'a qilinadi.</p>
+        </div>
+    </div>
+
+    <!-- 5. YUTUQLI OYINLAR -->
+    <div id="lotteryPage" class="modal-page">
+        <div class="modal-header">
+            <h2>📢 Har oy yutuqli o'yinlar!</h2>
+            <button class="close-btn" onclick="closePage('lotteryPage')">✕</button>
+        </div>
+        <div class="card-item" style="text-align: center; padding: 20px;">
+            <h3 style="font-size: 18px; color: #ffd700; margin-bottom: 10px;">🏆 Har oy yakunida super tort yutib oling!</h3>
+            <p style="margin-bottom: 15px;">Botimizdagi faol mijozlar va buyurtma beruvchilar o'rtasida har oy avtomat tarzda yutuqli o'yinlar o'tkaziladi.</p>
+            <p style="color: #fff; font-size: 14px;">Kanalimizni kuzatib boring: <b>@nezzy_cakee</b></p>
         </div>
     </div>
 
@@ -61,36 +353,16 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
-        const cakes = [
-            { img: "https://i.ibb.co/3mkvdmvv/IMG-20261026-023135-855.jpg", title: "Bento Master Cake ✨", text: "Narxi: 70 000 so'm - 5-6 kishilik" },
-            { img: "https://i.ibb.co/35fYH6yw/IMG-20261026-023126-461.jpg", title: "Qulupnayli Tort 🍓", text: "Narxi: 125 000 so'm - Bayramona" },
-            { img: "https://i.ibb.co/Mk7ZcDcG/IMG-20261025-133515-233.jpg", title: "Tug'ilgan kun torti 🎂", text: "Narxi: 100 000 so'm - Maxsus dizayn" },
-            { img: "https://i.ibb.co/FqkFZgMQ/IMG-20261022-180610-962.jpg", title: "Shokoladli Premium 🍫", text: "Narxi: 170 000 so'm - Katta tort" },
-            { img: "https://i.ibb.co/RTxc4k0F/IMG-20261022-180550-276.jpg", title: "Meva bezakli yubiley torti 🍇", text: "Buyurtma berish uchun bosing" },
-            { img: "https://i.ibb.co/5gmmHjMt/IMG-20261021-005548-527.jpg", title: "Dizaynli to'y torti 💍", text: "Maxsus ko'p qavatli tort" }
-        ];
-
-        function renderCakes(list) {
-            const container = document.getElementById('chatList');
-            container.innerHTML = '';
-            list.forEach(c => {
-                container.innerHTML += `
-                    <div class="chat-item" onclick="tg.showAlert('Buyurtma berish uchun botga qayting!')">
-                        <img src="${c.img}" class="chat-avatar">
-                        <div class="chat-info">
-                            <div class="chat-name">${c.title}</div>
-                        <div class="chat-snippet">${c.text}</div>
-                        </div>
-                    </div>
-                `;
-            });
+        function openPage(id) {
+            document.getElementById(id).style.display = 'block';
         }
-
-        renderCakes(cakes);
-
-        function filterCakes(query) {
-            const filtered = cakes.filter(c => c.title.toLowerCase().includes(query.toLowerCase()));
-            renderCakes(filtered);
+        function closePage(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+        function submitOrder(e) {
+            e.preventDefault();
+            tg.showAlert("Buyurtmangiz muvaffaqiyatli qabul qilindi! Tez orada siz bilan bog'lanamiz.");
+            closePage('orderPage');
         }
     </script>
 </body>
