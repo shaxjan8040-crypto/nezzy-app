@@ -10,137 +10,71 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
         
         body {
-            /* Siz yuborgan rasm fonda turishi uchun */
-            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://i.ibb.co/zhytf6JB/file-00000000b35c82118a51667269dafd86-1.png');
+            /* Siz yuborgan yangi rasm fonda turadi */
+            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/vvmsYPwy/file-00000000c6ac820aa3dabcb7c40b65b0.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #f8fafc;
-            min-height: 100vh;
-            padding: 24px 16px;
+            height: 100vh;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* CHAP PASTKI QISMDAGI KICHIK OLBOS / YALTIROQ TUGMALAR CONTAINERI */
+        .bottom-left-buttons {
+            position: absolute;
+            bottom: 25px;
+            left: 16px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-        }
-
-        /* LOGO VA SLOGAN QISMI */
-        .hero-section {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .brand-title {
-            font-size: 38px;
-            font-weight: 800;
-            background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-style: italic;
-            letter-spacing: 1px;
-            margin-bottom: 6px;
-            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.8));
-        }
-
-        .brand-subtitle {
-            font-size: 14px;
-            color: #f3e5ab;
-            font-style: italic;
-            opacity: 0.95;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
-        }
-
-        /* TUGMALAR GRIDI */
-        .menu-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            margin-bottom: 14px;
-        }
-
-        .menu-btn {
-            background: linear-gradient(145deg, rgba(20,20,20,0.95), rgba(8,8,8,0.95));
-            border: 1.5px solid #d4af37;
-            border-radius: 16px;
-            padding: 18px 12px;
-            text-align: center;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 215, 0, 0.3);
-            transition: transform 0.2s;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 105px;
-        }
-
-        .menu-btn:active {
-            transform: scale(0.96);
-        }
-
-        .menu-btn .icon {
-            font-size: 26px;
-            margin-bottom: 8px;
-        }
-
-        .menu-btn .text {
-            font-size: 13px;
-            font-weight: 700;
-            color: #f3f4f6;
-            line-height: 1.2;
-        }
-
-        /* TO'LIQ ENLI TUGMA */
-        .menu-btn-full {
-            background: linear-gradient(145deg, rgba(20,20,20,0.95), rgba(8,8,8,0.95));
-            border: 1.5px solid #d4af37;
-            border-radius: 16px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            cursor: pointer;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
-            margin-bottom: 24px;
-        }
-
-        .menu-btn-full:active {
-            transform: scale(0.96);
-        }
-
-        .menu-btn-full .left-content {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .menu-btn-full .text {
-            font-size: 14px;
-            font-weight: 700;
-            color: #f3f4f6;
-        }
-
-        .arrow-icon {
-            color: #d4af37;
-            font-size: 18px;
-            font-weight: 800;
-        }
-
-        /* PASTKI MANZIL VA NIK */
-        .footer-info {
-            text-align: center;
-            color: #d1d5db;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             gap: 8px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+            max-width: 220px;
+            z-index: 10;
         }
 
-        .footer-info span {
-            color: #ffd700;
-            font-weight: 600;
+        /* OLMOS KABI PORLOQ VA NAQSHLI KICHIK TUGMALAR (#D4AF37) */
+        .diamond-btn {
+            background: linear-gradient(135deg, rgba(20,20,20,0.85) 0%, rgba(40,35,10,0.85) 100%);
+            border: 1.5px solid #D4AF37;
+            border-radius: 10px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5), inset 0 0 6px rgba(255, 215, 0, 0.4);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            animation: glowPulse 2.5s infinite alternate;
+        }
+
+        @keyframes glowPulse {
+            0% {
+                box-shadow: 0 0 8px rgba(212, 175, 55, 0.4), inset 0 0 4px rgba(255, 215, 0, 0.3);
+                border-color: #b38728;
+            }
+            100% {
+                box-shadow: 0 0 16px rgba(255, 215, 0, 0.8), inset 0 0 10px rgba(255, 235, 150, 0.7);
+                border-color: #fcf6ba;
+            }
+        }
+
+        .diamond-btn:active {
+            transform: scale(0.95);
+        }
+
+        .diamond-btn .icon {
+            font-size: 14px;
+        }
+
+        .diamond-btn .text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #fcf6ba;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+            white-space: nowrap;
         }
 
         /* OCHILADIGAN SAHIFALAR (MODAL) */
@@ -149,7 +83,7 @@
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(8, 8, 8, 0.96);
+            background: rgba(8, 8, 8, 0.95);
             z-index: 1000;
             overflow-y: auto;
             padding: 20px;
@@ -161,50 +95,50 @@
             justify-content: space-between;
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #d4af37;
+            border-bottom: 1px solid #D4AF37;
         }
 
         .modal-header h2 {
-            color: #ffd700;
-            font-size: 18px;
+            color: #D4AF37;
+            font-size: 16px;
         }
 
         .close-btn {
             background: none;
             border: none;
-            color: #ffd700;
-            font-size: 24px;
+            color: #D4AF37;
+            font-size: 22px;
             cursor: pointer;
         }
 
         .card-item {
             background: #141414;
             border: 1px solid #4d3900;
-            border-radius: 12px;
-            padding: 14px;
-            margin-bottom: 12px;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 10px;
         }
 
         .card-item h3 {
-            color: #ffd700;
-            font-size: 15px;
+            color: #D4AF37;
+            font-size: 14px;
             margin-bottom: 4px;
         }
 
         .card-item p {
             color: #d1d5db;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .form-input {
             width: 100%;
             background: #121212;
-            border: 1px solid #d4af37;
-            border-radius: 10px;
-            padding: 12px;
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            padding: 10px;
             color: #fff;
-            font-size: 14px;
-            margin-bottom: 12px;
+            font-size: 13px;
+            margin-bottom: 10px;
             outline: none;
         }
 
@@ -212,55 +146,39 @@
             width: 100%;
             background: linear-gradient(to right, #b38728, #fbf5b7);
             border: none;
-            border-radius: 10px;
-            padding: 14px;
+            border-radius: 8px;
+            padding: 12px;
             color: #000;
             font-weight: 800;
-            font-size: 15px;
+            font-size: 14px;
             cursor: pointer;
         }
     </style>
 </head>
 <body>
 
-    <!-- LOGO VA SLOGAN -->
-    <div class="hero-section">
-        <div class="brand-title">Nezzy_cake</div>
-        <div class="brand-subtitle">✨ Shirin lahzalar, baxtli onlar... ✨</div>
-    </div>
-
-    <!-- 4 TA ASOSIY TUGMA -->
-    <div class="menu-grid">
-        <div class="menu-btn" onclick="openPage('catalogPage')">
-            <div class="icon">🍰</div>
-            <div class="text">Tortlar katalogi</div>
+    <!-- CHAP PASTGI QISMDAGI KICHIK YALTIROQ TUGMALAR -->
+    <div class="bottom-left-buttons">
+        <div class="diamond-btn" onclick="openPage('catalogPage')">
+            <span class="icon">🍰</span>
+            <span class="text">Tortlar katalogi</span>
         </div>
-        <div class="menu-btn" onclick="openPage('orderPage')">
-            <div class="icon">🛒</div>
-            <div class="text">Buyurtma berish</div>
+        <div class="diamond-btn" onclick="openPage('orderPage')">
+            <span class="icon">🛒</span>
+            <span class="text">Buyurtma berish</span>
         </div>
-        <div class="menu-btn" onclick="openPage('locationPage')">
-            <div class="icon">📍</div>
-            <div class="text">Bizning manzilimiz</div>
+        <div class="diamond-btn" onclick="openPage('locationPage')">
+            <span class="icon">📍</span>
+            <span class="text">Bizning manzilimiz</span>
         </div>
-        <div class="menu-btn" onclick="openPage('discountPage')">
-            <div class="icon">🎁</div>
-            <div class="text">Aksiya va chegirmalar</div>
+        <div class="diamond-btn" onclick="openPage('discountPage')">
+            <span class="icon">🎁</span>
+            <span class="text">Aksiya va chegirmalar</span>
         </div>
-    </div>
-
-    <!-- PASTDAGI KATTA TUGMA -->
-    <div class="menu-btn-full" onclick="openPage('lotteryPage')">
-        <div class="left-content">
-            <span style="font-size: 24px;">📢</span>
-            <span class="text">Har oy yutuqli uyinlar!</span>
+        <div class="diamond-btn" onclick="openPage('lotteryPage')">
+            <span class="icon">📢</span>
+            <span class="text">Har oy yutuqli o'yinlar!</span>
         </div>
-        <span class="arrow-icon">›</span>
-    </div>
-
-    <!-- FOOTER -->
-    <div class="footer-info">
-        <span>✈️ Nezzy_cake</span> | <span>📍 Jizzax shaxar</span>
     </div>
 
     <!-- 1. KATALOG -->
@@ -293,7 +211,7 @@
             <input type="text" class="form-input" placeholder="Ismingizni kiriting" required>
             <input type="tel" class="form-input" placeholder="Telefon: +998 94 026 80 01" required>
             <input type="text" class="form-input" placeholder="Qaysi tortni zakaz qilasiz?" required>
-            <textarea class="form-input" rows="3" placeholder="Qo'shimcha istaklar..."></textarea>
+            <textarea class="form-input" rows="2" placeholder="Qo'shimcha istaklar..."></textarea>
             <button type="submit" class="submit-btn">Buyurtmani tasdiqlash 🚀</button>
         </form>
     </div>
@@ -304,10 +222,10 @@
             <h2>📍 Bizning manzilimiz</h2>
             <button class="close-btn" onclick="closePage('locationPage')">✕</button>
         </div>
-        <div class="card-item" style="text-align: center; padding: 20px;">
-            <h3 style="font-size: 18px; margin-bottom: 10px;">Jizzax shaxar, Uzbekistan</h3>
-            <p style="margin-bottom: 15px;">Mo'ljal: Markaziy hudud. Buyurtmalarni o'zingiz olib ketishingiz yoki yetkazib berish xizmatidan foydalanishingiz mumkin.</p>
-            <p style="color: #ffd700; font-weight: 700;">📞 Tel: +998 94 026 80 01</p>
+        <div class="card-item" style="text-align: center; padding: 15px;">
+            <h3 style="font-size: 16px; margin-bottom: 8px;">Jizzax shaxar, Uzbekistan</h3>
+            <p style="margin-bottom: 10px;">Mo'ljal: Markaziy hudud. Buyurtmalarni o'zingiz olib ketishingiz yoki yetkazib berish xizmatidan foydalanishingiz mumkin.</p>
+            <p style="color: #D4AF37; font-weight: 700;">📞 Tel: +998 94 026 80 01</p>
         </div>
     </div>
 
@@ -329,8 +247,8 @@
             <h2>📢 Har oy yutuqli o'yinlar!</h2>
             <button class="close-btn" onclick="closePage('lotteryPage')">✕</button>
         </div>
-        <div class="card-item" style="text-align: center; padding: 20px;">
-            <h3 style="font-size: 18px; color: #ffd700; margin-bottom: 10px;">🏆 Har oy yakunida super tort yutib oling!</h3>
+        <div class="card-item" style="text-align: center; padding: 15px;">
+            <h3 style="font-size: 16px; color: #D4AF37; margin-bottom: 8px;">🏆 Har oy yakunida super tort yutib oling!</h3>
             <p>Botimizdagi faol mijozlar va buyurtma beruvchilar o'rtasida har oy avtomat tarzda yutuqli o'yinlar o'tkaziladi.</p>
         </div>
     </div>
