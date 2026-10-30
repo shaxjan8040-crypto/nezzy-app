@@ -10,34 +10,28 @@
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
         
         body {
-            background-color: #050505;
+            /* Siz yuborgan rasm fonda turishi uchun */
+            background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('https://i.ibb.co/zhytf6JB/file-00000000b35c82118a51667269dafd86-1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: #f8fafc;
             min-height: 100vh;
-            background-image: radial-gradient(circle at 50% 20%, #1a1500 0%, #050505 70%);
-            padding: 20px 16px 40px 16px;
-            overflow-x: hidden;
-        }
-
-        /* HEADER / BANNER SECTION */
-        .hero-banner {
-            background: linear-gradient(145deg, #161208, #0a0804);
-            border: 2px solid #d4af37;
-            border-radius: 20px;
             padding: 24px 16px;
-            text-align: center;
-            position: relative;
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
-            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .crown-icon {
-            font-size: 32px;
-            margin-bottom: 4px;
-            filter: drop-shadow(0 2px 8px rgba(212, 175, 55, 0.6));
+        /* LOGO VA SLOGAN QISMI */
+        .hero-section {
+            text-align: center;
+            margin-bottom: 30px;
         }
 
         .brand-title {
-            font-size: 32px;
+            font-size: 38px;
             font-weight: 800;
             background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728, #fbf5b7);
             -webkit-background-clip: text;
@@ -45,16 +39,18 @@
             font-style: italic;
             letter-spacing: 1px;
             margin-bottom: 6px;
+            filter: drop-shadow(0 2px 10px rgba(0,0,0,0.8));
         }
 
         .brand-subtitle {
             font-size: 14px;
-            color: #d4af37;
+            color: #f3e5ab;
             font-style: italic;
-            opacity: 0.9;
+            opacity: 0.95;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
-        /* MENU BUTTONS GRID */
+        /* TUGMALAR GRIDI */
         .menu-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -63,19 +59,19 @@
         }
 
         .menu-btn {
-            background: linear-gradient(145deg, #141414, #080808);
+            background: linear-gradient(145deg, rgba(20,20,20,0.95), rgba(8,8,8,0.95));
             border: 1.5px solid #d4af37;
             border-radius: 16px;
             padding: 18px 12px;
             text-align: center;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 215, 0, 0.2);
-            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7), inset 0 1px 2px rgba(255, 215, 0, 0.3);
+            transition: transform 0.2s;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100px;
+            min-height: 105px;
         }
 
         .menu-btn:active {
@@ -94,9 +90,9 @@
             line-height: 1.2;
         }
 
-        /* FULL WIDTH BUTTON */
+        /* TO'LIQ ENLI TUGMA */
         .menu-btn-full {
-            background: linear-gradient(145deg, #141414, #080808);
+            background: linear-gradient(145deg, rgba(20,20,20,0.95), rgba(8,8,8,0.95));
             border: 1.5px solid #d4af37;
             border-radius: 16px;
             padding: 16px 20px;
@@ -104,7 +100,7 @@
             align-items: center;
             justify-content: space-between;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
             margin-bottom: 24px;
         }
 
@@ -130,30 +126,30 @@
             font-weight: 800;
         }
 
-        /* FOOTER BRAND INFO */
+        /* PASTKI MANZIL VA NIK */
         .footer-info {
             text-align: center;
-            margin-top: 20px;
-            color: #9ca3af;
+            color: #d1d5db;
             font-size: 13px;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
         }
 
         .footer-info span {
-            color: #d4af37;
+            color: #ffd700;
             font-weight: 600;
         }
 
-        /* MODAL / SUB-PAGES */
+        /* OCHILADIGAN SAHIFALAR (MODAL) */
         .modal-page {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: #080808;
+            background: rgba(8, 8, 8, 0.96);
             z-index: 1000;
             overflow-y: auto;
             padding: 20px;
@@ -169,21 +165,21 @@
         }
 
         .modal-header h2 {
-            color: #d4af37;
+            color: #ffd700;
             font-size: 18px;
         }
 
         .close-btn {
             background: none;
             border: none;
-            color: #d4af37;
+            color: #ffd700;
             font-size: 24px;
             cursor: pointer;
         }
 
         .card-item {
             background: #141414;
-            border: 1px solid #332700;
+            border: 1px solid #4d3900;
             border-radius: 12px;
             padding: 14px;
             margin-bottom: 12px;
@@ -227,14 +223,13 @@
 </head>
 <body>
 
-    <!-- HERO BANNER -->
-    <div class="hero-banner">
-        <div class="crown-icon">👑</div>
+    <!-- LOGO VA SLOGAN -->
+    <div class="hero-section">
         <div class="brand-title">Nezzy_cake</div>
         <div class="brand-subtitle">✨ Shirin lahzalar, baxtli onlar... ✨</div>
     </div>
 
-    <!-- MAIN BUTTONS GRID -->
+    <!-- 4 TA ASOSIY TUGMA -->
     <div class="menu-grid">
         <div class="menu-btn" onclick="openPage('catalogPage')">
             <div class="icon">🍰</div>
@@ -254,7 +249,7 @@
         </div>
     </div>
 
-    <!-- FULL WIDTH BUTTON -->
+    <!-- PASTDAGI KATTA TUGMA -->
     <div class="menu-btn-full" onclick="openPage('lotteryPage')">
         <div class="left-content">
             <span style="font-size: 24px;">📢</span>
@@ -265,10 +260,10 @@
 
     <!-- FOOTER -->
     <div class="footer-info">
-        <span>✈️ @nezzy_cake</span> | <span>📍 Jizzax shaxar</span>
+        <span>✈️ Nezzy_cake</span> | <span>📍 Jizzax shaxar</span>
     </div>
 
-    <!-- 1. KATALOG SAHIFASI -->
+    <!-- 1. KATALOG -->
     <div id="catalogPage" class="modal-page">
         <div class="modal-header">
             <h2>🍰 Tortlar katalogi</h2>
@@ -286,23 +281,19 @@
             <h3>Shokoladli Premium 🍫</h3>
             <p>Narxi: 170 000 so'm • Haqiqiy Belgiya shokoladidan.</p>
         </div>
-        <div class="card-item">
-            <h3>Tug'ilgan kun uchun maxsus 🎂</h3>
-            <p>Narxi: 100 000 so'm • Istalgan mavzuda bezatib beramiz.</p>
-        </div>
     </div>
 
-    <!-- 2. BUYURTMA BERISH SAHIFASI -->
+    <!-- 2. BUYURTMA BERISH -->
     <div id="orderPage" class="modal-page">
         <div class="modal-header">
             <h2>🛒 Buyurtma berish</h2>
             <button class="close-btn" onclick="closePage('orderPage')">✕</button>
         </div>
         <form onsubmit="submitOrder(event)">
-            <input type="text" class="form-control form-input" placeholder="Ismingizni kiriting" required>
-            <input type="tel" class="form-control form-input" placeholder="Telefon raqam: +998 94 026 80 01" required>
-            <input type="text" class="form-control form-input" placeholder="Qaysi tortni zakaz qilasiz?" required>
-            <textarea class="form-input" rows="3" placeholder="Qo'shimcha istaklar va dizayn..."></textarea>
+            <input type="text" class="form-input" placeholder="Ismingizni kiriting" required>
+            <input type="tel" class="form-input" placeholder="Telefon: +998 94 026 80 01" required>
+            <input type="text" class="form-input" placeholder="Qaysi tortni zakaz qilasiz?" required>
+            <textarea class="form-input" rows="3" placeholder="Qo'shimcha istaklar..."></textarea>
             <button type="submit" class="submit-btn">Buyurtmani tasdiqlash 🚀</button>
         </form>
     </div>
@@ -320,7 +311,7 @@
         </div>
     </div>
 
-    <!-- 4. AKSIYA VA CHEGIRMALAR -->
+    <!-- 4. AKSIYA -->
     <div id="discountPage" class="modal-page">
         <div class="modal-header">
             <h2>🎁 Aksiya va chegirmalar</h2>
@@ -329,10 +320,6 @@
         <div class="card-item">
             <h3>🎉 Tug'ilgan kun chegirmasi!</h3>
             <p>Tug'ilgan kuningizda barcha tortlarga 10% chegirma taqdim etamiz!</p>
-        </div>
-        <div class="card-item">
-            <h3>✨ Doimiy mijozlarga</h3>
-            <p>Har 3-buyurtmangiz bilan kichik bento sovg'a qilinadi.</p>
         </div>
     </div>
 
@@ -344,8 +331,7 @@
         </div>
         <div class="card-item" style="text-align: center; padding: 20px;">
             <h3 style="font-size: 18px; color: #ffd700; margin-bottom: 10px;">🏆 Har oy yakunida super tort yutib oling!</h3>
-            <p style="margin-bottom: 15px;">Botimizdagi faol mijozlar va buyurtma beruvchilar o'rtasida har oy avtomat tarzda yutuqli o'yinlar o'tkaziladi.</p>
-            <p style="color: #fff; font-size: 14px;">Kanalimizni kuzatib boring: <b>@nezzy_cakee</b></p>
+            <p>Botimizdagi faol mijozlar va buyurtma beruvchilar o'rtasida har oy avtomat tarzda yutuqli o'yinlar o'tkaziladi.</p>
         </div>
     </div>
 
@@ -353,15 +339,11 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
-        function openPage(id) {
-            document.getElementById(id).style.display = 'block';
-        }
-        function closePage(id) {
-            document.getElementById(id).style.display = 'none';
-        }
+        function openPage(id) { document.getElementById(id).style.display = 'block'; }
+        function closePage(id) { document.getElementById(id).style.display = 'none'; }
         function submitOrder(e) {
             e.preventDefault();
-            tg.showAlert("Buyurtmangiz muvaffaqiyatli qabul qilindi! Tez orada siz bilan bog'lanamiz.");
+            tg.showAlert("Buyurtmangiz qabul qilindi! Tez orada bog'lanamiz.");
             closePage('orderPage');
         }
     </script>
