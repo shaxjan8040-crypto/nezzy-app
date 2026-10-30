@@ -3,253 +3,400 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Nezzy_cake</title>
+    <title>Nezzy Cake Mini App</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; user-select: none; }
-        
+
         body {
-            /* Siz yuborgan yangi rasm fonda turadi */
-            background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.4)), url('https://i.ibb.co/vvmsYPwy/file-00000000c6ac820aa3dabcb7c40b65b0.png');
+            background-image: url('https://i.ibb.co/C5J9Crpn/file-000000007040820aade26c447ffe641b.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             background-attachment: fixed;
             color: #f8fafc;
             height: 100vh;
+            width: 100vw;
             position: relative;
             overflow: hidden;
         }
 
-        /* CHAP PASTKI QISMDAGI KICHIK OLBOS / YALTIROQ TUGMALAR CONTAINERI */
-        .bottom-left-buttons {
+        /* YUQORI O'NG TOMONDA 3 TA KICHIK TUGMA */
+        .top-right-nav {
             position: absolute;
-            bottom: 25px;
-            left: 16px;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            gap: 6px;
+            z-index: 50;
+        }
+
+        .top-btn {
+            background: linear-gradient(135deg, rgba(20,20,20,0.85), rgba(40,35,10,0.85));
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            padding: 5px 9px;
+            color: #FCF6BA;
+            font-size: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+            backdrop-filter: blur(4px);
+        }
+
+        .top-btn:active { transform: scale(0.95); }
+
+        /* CHAP PASTKI QISMDAGI KICHIK TUGMALAR */
+        .bottom-left-menu {
+            position: absolute;
+            bottom: 16px;
+            left: 14px;
             display: flex;
             flex-direction: column;
-            gap: 8px;
-            max-width: 220px;
-            z-index: 10;
+            gap: 6px;
+            z-index: 20;
+            max-width: 170px;
         }
 
-        /* OLMOS KABI PORLOQ VA NAQSHLI KICHIK TUGMALAR (#D4AF37) */
-        .diamond-btn {
-            background: linear-gradient(135deg, rgba(20,20,20,0.85) 0%, rgba(40,35,10,0.85) 100%);
-            border: 1.5px solid #D4AF37;
-            border-radius: 10px;
-            padding: 8px 12px;
+        .mini-btn {
+            background: linear-gradient(135deg, rgba(15,15,15,0.8), rgba(35,30,8,0.8));
+            border: 1px solid #D4AF37;
+            border-radius: 8px;
+            padding: 6px 10px;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
             cursor: pointer;
-            box-shadow: 0 0 12px rgba(212, 175, 55, 0.5), inset 0 0 6px rgba(255, 215, 0, 0.4);
-            transition: all 0.2s ease;
-            backdrop-filter: blur(4px);
-            animation: glowPulse 2.5s infinite alternate;
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4), inset 0 0 4px rgba(255, 215, 0, 0.3);
+            backdrop-filter: blur(3px);
+            animation: glow 2.5s infinite alternate;
         }
 
-        @keyframes glowPulse {
-            0% {
-                box-shadow: 0 0 8px rgba(212, 175, 55, 0.4), inset 0 0 4px rgba(255, 215, 0, 0.3);
-                border-color: #b38728;
-            }
-            100% {
-                box-shadow: 0 0 16px rgba(255, 215, 0, 0.8), inset 0 0 10px rgba(255, 235, 150, 0.7);
-                border-color: #fcf6ba;
-            }
+        @keyframes glow {
+            0% { box-shadow: 0 0 6px rgba(212, 175, 55, 0.4); border-color: #b38728; }
+            100% { box-shadow: 0 0 14px rgba(255, 215, 0, 0.8); border-color: #fcf6ba; }
         }
 
-        .diamond-btn:active {
-            transform: scale(0.95);
-        }
+        .mini-btn:active { transform: scale(0.95); }
+        .mini-btn .text { font-size: 10px; font-weight: 700; color: #FCF6BA; white-space: nowrap; }
 
-        .diamond-btn .icon {
-            font-size: 14px;
-        }
-
-        .diamond-btn .text {
-            font-size: 11px;
-            font-weight: 700;
-            color: #fcf6ba;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.8);
-            white-space: nowrap;
-        }
-
-        /* OCHILADIGAN SAHIFALAR (MODAL) */
-        .modal-page {
+        /* SAHIFALAR (MODAL) */
+        .page {
             display: none;
             position: fixed;
             top: 0; left: 0;
             width: 100vw; height: 100vh;
-            background: rgba(8, 8, 8, 0.95);
-            z-index: 1000;
+            z-index: 100;
             overflow-y: auto;
-            padding: 20px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 16px;
         }
 
-        .modal-header {
+        .page-header {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
+            align-items: center;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
             border-bottom: 1px solid #D4AF37;
-        }
-
-        .modal-header h2 {
-            color: #D4AF37;
-            font-size: 16px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            color: #D4AF37;
-            font-size: 22px;
-            cursor: pointer;
-        }
-
-        .card-item {
-            background: #141414;
-            border: 1px solid #4d3900;
+            background: rgba(0,0,0,0.6);
+            padding: 8px 12px;
             border-radius: 10px;
-            padding: 12px;
-            margin-bottom: 10px;
         }
 
-        .card-item h3 {
-            color: #D4AF37;
-            font-size: 14px;
-            margin-bottom: 4px;
+        .page-header h2 { font-size: 15px; color: #D4AF37; }
+        .close-btn { background: none; border: none; color: #D4AF37; font-size: 20px; cursor: pointer; }
+
+        /* 1. KATALOG SAHIFASI (2 QATOR) */
+        #catalogPage { background-image: url('https://i.ibb.co/Wpqd9jJ1/file-00000000d794820aa59db3bb61ee6428.png'); }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            padding-bottom: 20px;
         }
 
-        .card-item p {
-            color: #d1d5db;
-            font-size: 12px;
-        }
-
-        .form-input {
-            width: 100%;
-            background: #121212;
+        .cake-card {
+            background: rgba(15, 15, 15, 0.85);
             border: 1px solid #D4AF37;
-            border-radius: 8px;
-            padding: 10px;
-            color: #fff;
-            font-size: 13px;
-            margin-bottom: 10px;
-            outline: none;
+            border-radius: 10px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
-        .submit-btn {
+        .cake-img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .order-cake-btn {
             width: 100%;
             background: linear-gradient(to right, #b38728, #fbf5b7);
             border: none;
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 6px;
+            padding: 6px 0;
+            color: #000;
+            font-size: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* 2. NARXLAR SAHIFASI */
+        #pricesPage { background-image: url('https://i.ibb.co/4g4pRLw9/file-000000007fc48243811c0070c06b1f04.png'); }
+
+        .prices-container {
+            position: absolute;
+            bottom: 20px;
+            left: 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            max-width: 180px;
+        }
+
+        /* 3. BUYURTMA ANKETASI SAHIFASI */
+        #orderPage { background-image: url('https://i.ibb.co/VWpC7y1Q/file-000000003c2c81f480955ab9287ae8f6.png'); }
+
+        .form-box {
+            background: rgba(10, 10, 10, 0.85);
+            border: 1px solid #D4AF37;
+            border-radius: 12px;
+            padding: 14px;
+            margin: 0 auto;
+            max-width: 320px;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-box label { font-size: 11px; color: #D4AF37; margin-bottom: 2px; display: block; }
+        .form-input {
+            width: 100%;
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #D4AF37;
+            border-radius: 6px;
+            padding: 8px;
+            color: #fff;
+            font-size: 12px;
+            margin-bottom: 8px;
+            outline: none;
+        }
+
+        .form-btn {
+            width: 100%;
+            background: linear-gradient(to right, #b38728, #fbf5b7);
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
             color: #000;
             font-weight: 800;
-            font-size: 14px;
+            font-size: 12px;
             cursor: pointer;
+        }
+
+        /* 4. LOKATSIYA SAHIFASI */
+        #locationPage { background-image: url('https://i.ibb.co/dwRg9fV0/file-000000001bd8820aa0d335a24006d7b7.png'); }
+
+        .center-circle-btn {
+            position: absolute;
+            top: 55%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90px; height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #b38728, #fbf5b7);
+            border: 2px solid #fff;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            font-weight: 800;
+            font-size: 11px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        /* 5. ADMINGA MUROJAAT SAHIFASI */
+        #contactPage { background-image: url('https://i.ibb.co/93qxcM8j/file-00000000a2e8820ab3b1a81d6bf13b7b.png'); }
+
+        .contact-buttons {
+            position: absolute;
+            bottom: 20px; left: 14px;
+            display: flex; flex-direction: column;
+            gap: 6px; max-width: 200px;
+        }
+
+        /* PROFIL VA ADMIN PANEL MODALLARI */
+        .modal-box {
+            background: rgba(15,15,15,0.95);
+            border: 1px solid #D4AF37;
+            border-radius: 12px;
+            padding: 14px;
+            color: #fff;
         }
     </style>
 </head>
 <body>
 
-    <!-- CHAP PASTGI QISMDAGI KICHIK YALTIROQ TUGMALAR -->
-    <div class="bottom-left-buttons">
-        <div class="diamond-btn" onclick="openPage('catalogPage')">
-            <span class="icon">🍰</span>
-            <span class="text">Tortlar katalogi</span>
+    <!-- YUQORI O'NG TOMONDA 3 TA TUGMA -->
+    <div class="top-right-nav">
+        <button class="top-btn" onclick="openLink('https://t.me/nezzy_cakee')">📢 Kanal</button>
+        <button class="top-btn" onclick="openLink('https://t.me/nezzy_cakeee')">💬 Guruppa</button>
+        <button class="top-btn" onclick="openPage('profilePage')">👤 Profil</button>
+    </div>
+
+    <!-- GLAVNIY MENYU CHAP PASTKI TUGMALARI -->
+    <div class="bottom-left-menu">
+        <div class="mini-btn" onclick="openPage('catalogPage')">
+            <span class="text">🎂 Tort katalogi</span>
         </div>
-        <div class="diamond-btn" onclick="openPage('orderPage')">
-            <span class="icon">🛒</span>
-            <span class="text">Buyurtma berish</span>
+        <div class="mini-btn" onclick="openPage('pricesPage')">
+            <span class="text">💰 Tort Narxlari</span>
         </div>
-        <div class="diamond-btn" onclick="openPage('locationPage')">
-            <span class="icon">📍</span>
-            <span class="text">Bizning manzilimiz</span>
+        <div class="mini-btn" onclick="openPage('orderPage')">
+            <span class="text">🛒 Buyurtma berish</span>
         </div>
-        <div class="diamond-btn" onclick="openPage('discountPage')">
-            <span class="icon">🎁</span>
-            <span class="text">Aksiya va chegirmalar</span>
+        <div class="mini-btn" onclick="openPage('locationPage')">
+            <span class="text">📍 Lokatsiya</span>
         </div>
-        <div class="diamond-btn" onclick="openPage('lotteryPage')">
-            <span class="icon">📢</span>
-            <span class="text">Har oy yutuqli o'yinlar!</span>
+        <div class="mini-btn" onclick="openPage('contactPage')">
+            <span class="text">📞 Adminga murojaat</span>
+        </div>
+        <div id="adminPanelBtn" class="mini-btn" style="display:none; border-color:#ef4444;" onclick="openPage('adminPage')">
+            <span class="text" style="color:#ef4444;">👑 Admin Panel</span>
         </div>
     </div>
 
-    <!-- 1. KATALOG -->
-    <div id="catalogPage" class="modal-page">
-        <div class="modal-header">
-            <h2>🍰 Tortlar katalogi</h2>
+    <!-- 1. TORT KATALOGI SAHIFASI -->
+    <div id="catalogPage" class="page">
+        <div class="page-header">
+            <h2>🎂 Tortlar Katalogi</h2>
             <button class="close-btn" onclick="closePage('catalogPage')">✕</button>
         </div>
-        <div class="card-item">
-            <h3>Bento Master Cake ✨</h3>
-            <p>Narxi: 70 000 so'm • 5-6 kishilik maxsus bento tort.</p>
+        <div class="catalog-grid" id="catalogGrid"></div>
+    </div>
+
+    <!-- 2. TORT NARXLARI SAHIFASI -->
+    <div id="pricesPage" class="page">
+        <div class="page-header">
+            <h2>💰 Tort Narxlari</h2>
+            <button class="close-btn" onclick="closePage('pricesPage')">✕</button>
         </div>
-        <div class="card-item">
-            <h3>Qulupnayli Bayram Torti 🍓</h3>
-            <p>Narxi: 125 000 so'm • Yangi mevalar bilan bezatilgan.</p>
-        </div>
-        <div class="card-item">
-            <h3>Shokoladli Premium 🍫</h3>
-            <p>Narxi: 170 000 so'm • Haqiqiy Belgiya shokoladidan.</p>
+        <div class="prices-container">
+            <div class="mini-btn" onclick="selectPrice('70 000 so\'m (Bento)')"><span class="text">70 000 so'm (Bento)</span></div>
+            <div class="mini-btn" onclick="selectPrice('90 000 so\'m (Standart)')"><span class="text">90 000 so'm (Standart)</span></div>
+            <div class="mini-btn" onclick="selectPrice('100 000 so\'m (Maxsus)')"><span class="text">100 000 so'm (Maxsus)</span></div>
+            <div class="mini-btn" onclick="selectPrice('125 000 so\'m (Bayramona)')"><span class="text">125 000 so'm (Bayramona)</span></div>
+            <div class="mini-btn" onclick="selectPrice('170 000 so\'m (Katta tort)')"><span class="text">170 000 so'm (Katta)</span></div>
         </div>
     </div>
 
-    <!-- 2. BUYURTMA BERISH -->
-    <div id="orderPage" class="modal-page">
-        <div class="modal-header">
-            <h2>🛒 Buyurtma berish</h2>
+    <!-- 3. BUYURTMA BERISH SAHIFASI (ANKETA) -->
+    <div id="orderPage" class="page">
+        <div class="page-header">
+            <h2>🛒 Buyurtma Berish Anketasi</h2>
             <button class="close-btn" onclick="closePage('orderPage')">✕</button>
         </div>
-        <form onsubmit="submitOrder(event)">
-            <input type="text" class="form-input" placeholder="Ismingizni kiriting" required>
-            <input type="tel" class="form-input" placeholder="Telefon: +998 94 026 80 01" required>
-            <input type="text" class="form-input" placeholder="Qaysi tortni zakaz qilasiz?" required>
-            <textarea class="form-input" rows="2" placeholder="Qo'shimcha istaklar..."></textarea>
-            <button type="submit" class="submit-btn">Buyurtmani tasdiqlash 🚀</button>
-        </form>
+        <div class="form-box">
+            <form onsubmit="submitOrder(event)">
+                <label>Tort Rasmi (fayl yoki havola):</label>
+                <input type="text" id="orderImg" class="form-input" placeholder="Tanlangan tort rasmi">
+
+                <label>Tort Narxi:</label>
+                <input type="text" id="orderPrice" class="form-input" placeholder="Masalan: 100 000 so'm" required>
+
+                <label>Olib ketish sanasi:</label>
+                <input type="date" id="orderDate" class="form-input" required>
+
+                <label>Olib ketish vaqti:</label>
+                <input type="time" id="orderTime" class="form-input" required>
+
+                <label>Yozuvga joy (Tort ustidagi yozuv):</label>
+                <input type="text" id="orderText" class="form-input" placeholder="Masalan: Tug'ilgan kuning bilan!">
+
+                <label>Tavsif (Qo'shimcha istaklar):</label>
+                <textarea id="orderDesc" class="form-input" rows="2" placeholder="Shokoladli bo'lsin..."></textarea>
+
+                <label>Telefon raqamingiz:</label>
+                <input type="tel" id="orderPhone" class="form-input" placeholder="+998 90 123 45 67" required>
+
+                <button type="submit" class="form-btn">BUYURTMANI ADMINGA YUBORISH 🚀</button>
+            </form>
+        </div>
     </div>
 
-    <!-- 3. MANZIL -->
-    <div id="locationPage" class="modal-page">
-        <div class="modal-header">
-            <h2>📍 Bizning manzilimiz</h2>
+    <!-- 4. LOKATSIYA SAHIFASI -->
+    <div id="locationPage" class="page">
+        <div class="page-header">
+            <h2>📍 Nezzy Cake Lokatsiyasi</h2>
             <button class="close-btn" onclick="closePage('locationPage')">✕</button>
         </div>
-        <div class="card-item" style="text-align: center; padding: 15px;">
-            <h3 style="font-size: 16px; margin-bottom: 8px;">Jizzax shaxar, Uzbekistan</h3>
-            <p style="margin-bottom: 10px;">Mo'ljal: Markaziy hudud. Buyurtmalarni o'zingiz olib ketishingiz yoki yetkazib berish xizmatidan foydalanishingiz mumkin.</p>
-            <p style="color: #D4AF37; font-weight: 700;">📞 Tel: +998 94 026 80 01</p>
+        <div class="center-circle-btn" onclick="openLink('https://maps.app.goo.gl/rdFAKKAnrDstoDnW8?g_st=ac')">
+            📍<br>XARITADA<br>OCHISH
         </div>
     </div>
 
-    <!-- 4. AKSIYA -->
-    <div id="discountPage" class="modal-page">
-        <div class="modal-header">
-            <h2>🎁 Aksiya va chegirmalar</h2>
-            <button class="close-btn" onclick="closePage('discountPage')">✕</button>
+    <!-- 5. ADMINGA MUROJAAT SAHIFASI -->
+    <div id="contactPage" class="page">
+        <div class="page-header">
+            <h2>📞 Adminga Murojaat</h2>
+            <button class="close-btn" onclick="closePage('contactPage')">✕</button>
         </div>
-        <div class="card-item">
-            <h3>🎉 Tug'ilgan kun chegirmasi!</h3>
-            <p>Tug'ilgan kuningizda barcha tortlarga 10% chegirma taqdim etamiz!</p>
+        <div class="contact-buttons">
+            <div class="mini-btn" onclick="openLink('tel:+998945041599')"><span class="text">📞 +998 94 504 15 99</span></div>
+            <div class="mini-btn" onclick="openLink('tel:+998940268001')"><span class="text">📞 +998 94 026 80 01</span></div>
+            <div class="mini-btn" onclick="openLink('https://t.me/nezzy_cake_1')"><span class="text">✈️ @nezzy_cake_1</span></div>
+            <div class="mini-btn" onclick="openLink('https://t.me/shaxjan_2')"><span class="text">✈️ @shaxjan_2</span></div>
         </div>
     </div>
 
-    <!-- 5. YUTUQLI OYINLAR -->
-    <div id="lotteryPage" class="modal-page">
-        <div class="modal-header">
-            <h2>📢 Har oy yutuqli o'yinlar!</h2>
-            <button class="close-btn" onclick="closePage('lotteryPage')">✕</button>
+    <!-- 6. SHAXSIY PROFIL SAHIFASI -->
+    <div id="profilePage" class="page" style="background: rgba(5,5,5,0.95);">
+        <div class="page-header">
+            <h2>👤 Shaxsiy Profil</h2>
+            <button class="close-btn" onclick="closePage('profilePage')">✕</button>
         </div>
-        <div class="card-item" style="text-align: center; padding: 15px;">
-            <h3 style="font-size: 16px; color: #D4AF37; margin-bottom: 8px;">🏆 Har oy yakunida super tort yutib oling!</h3>
-            <p>Botimizdagi faol mijozlar va buyurtma beruvchilar o'rtasida har oy avtomat tarzda yutuqli o'yinlar o'tkaziladi.</p>
+        <div class="modal-box" style="text-align:center;">
+            <img id="profAvatar" src="https://i.ibb.co/C5J9Crpn/file-000000007040820aade26c447ffe641b.png" style="width:75px; height:75px; border-radius:50%; border:2px solid #D4AF37; margin-bottom:8px; object-fit:cover;">
+            <br>
+            <input type="file" id="avatarUpload" accept="image/*" style="display:none;" onchange="changeAvatar(event)">
+            <button class="top-btn" onclick="document.getElementById('avatarUpload').click()">Rasm o'zgartirish</button>
+            <br><br>
+            <p style="color:#D4AF37; font-weight:700;" id="profUsername">@username</p>
+            <div style="text-align:left; margin-top:10px;">
+                <label style="font-size:11px; color:#D4AF37;">BIO:</label>
+                <input type="text" id="profBio" class="form-input" value="Nezzy Cake mijoziman ✨" onchange="saveProfileData()">
+
+                <label style="font-size:11px; color:#D4AF37;">Telefon Nomer:</label>
+                <input type="tel" id="profPhone" class="form-input" value="+998 94 026 80 01" onchange="saveProfileData()">
+            </div>
+        </div>
+    </div>
+
+    <!-- 7. ADMIN PANEL (CHAPI PASTDAN KIRILADI) -->
+    <div id="adminPage" class="page" style="background: rgba(5,5,5,0.95);">
+        <div class="page-header">
+            <h2 style="color:#ef4444;">👑 Admin Panel</h2>
+            <button class="close-btn" onclick="closePage('adminPage')">✕</button>
+        </div>
+        <div class="modal-box">
+            <p style="color:#D4AF37; font-size:14px;">📊 Jami obunachilar: <b id="statUsersCount">1</b> ta</p>
+            <hr style="border-color:#333; margin:10px 0;">
+            <h4 style="color:#D4AF37; margin-bottom:8px;">🛍️ Kelib tushgan buyurtmalar:</h4>
+            <div id="ordersLogContainer" style="font-size:11px; max-height:300px; overflow-y:auto;">
+                <p style="color:#888;">Hozircha yangi buyurtmalar yo'q.</p>
+            </div>
         </div>
     </div>
 
@@ -257,11 +404,179 @@
         const tg = window.Telegram.WebApp;
         tg.ready(); tg.expand();
 
+        const ADMIN_USERNAME = "shaxjan_2";
+        let user = { username: "shaxjan_2", id: 123456 };
+        if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+            user = tg.initDataUnsafe.user;
+        }
+
+        document.getElementById('profUsername').innerText = user.username ? "@" + user.username : "ID: " + user.id;
+
+        // Adminni tekshirish (faqat @shaxjan_2 ga ko'rinadi)
+        if (user.username && user.username.toLowerCase() === ADMIN_USERNAME.toLowerCase()) {
+            document.getElementById('adminPanelBtn').style.display = 'flex';
+        }
+
+        // BARCHA TORT RASMLARI RO'YXATI
+        const cakeList = [
+            "https://i.ibb.co/2zTXfmD/IMG-20261030-104935.jpg",
+            "https://i.ibb.co/20jfz9DQ/IMG-20261027-124808-722.jpg",
+            "https://i.ibb.co/1GpR498z/IMG-20261027-124812-839.jpg",
+            "https://i.ibb.co/FqBw9Pyb/IMG-20261026-023126-461.jpg",
+            "https://i.ibb.co/7N0hLNqR/IMG-20261026-023135-855.jpg",
+            "https://i.ibb.co/3yy2jZBD/IMG-20261025-183357-039.jpg",
+            "https://i.ibb.co/xqQD64LR/IMG-20261025-133515-233.jpg",
+            "https://i.ibb.co/MyZYJ0M4/IMG-20261022-180604-832.jpg",
+            "https://i.ibb.co/FLC5nFKz/IMG-20261022-180554-236.jpg",
+            "https://i.ibb.co/B2pyGpXN/IMG-20261021-005538-868.jpg",
+            "https://i.ibb.co/ZzWBYK6W/IMG-20261021-005548-600.jpg",
+            "https://i.ibb.co/G4jXm3nY/IMG-20261021-005544-050.jpg",
+            "https://i.ibb.co/Q3YpwD2T/IMG-20261021-005526-088.jpg",
+            "https://i.ibb.co/wh72hv7p/IMG-20261021-005522-289.jpg",
+            "https://i.ibb.co/d4XmxFzy/IMG-20261021-005519-059.jpg",
+            "https://i.ibb.co/XwsQ7bh/IMG-20261021-005454-183.jpg",
+            "https://i.ibb.co/d0kTwjDr/IMG-20261021-005457-551.jpg",
+            "https://i.ibb.co/LdSdM8LZ/IMG-20261021-005503-562.jpg",
+            "https://i.ibb.co/Cs9xg1YQ/IMG-20261021-005449-173.jpg",
+            "https://i.ibb.co/LdkQQR8y/IMG-20261021-005445-592.jpg",
+            "https://i.ibb.co/GvTSknQd/IMG-20261021-005445-598.jpg",
+            "https://i.ibb.co/YF1X3k4k/IMG-20261021-005438-437.jpg",
+            "https://i.ibb.co/N2WNJp62/IMG-20261021-005433-154.jpg",
+            "https://i.ibb.co/3ybxMSzc/IMG-20261021-005433-377.jpg",
+            "https://i.ibb.co/yF4JJMYD/IMG-20261021-005427-818.jpg",
+            "https://i.ibb.co/6cpCz8jn/IMG-20261021-005411-073.jpg",
+            "https://i.ibb.co/y9fcD4S/IMG-20261021-005408-789.jpg",
+            "https://i.ibb.co/RkyMzRPn/IMG-20261021-005407-356.jpg",
+            "https://i.ibb.co/9mgPVKm0/IMG-20261021-005405-190.jpg",
+            "https://i.ibb.co/609PvsrB/IMG-20261021-005403-200.jpg",
+            "https://i.ibb.co/ynX3Lfp1/IMG-20261021-005401-227.jpg",
+            "https://i.ibb.co/3mHqWgTR/IMG-20261021-005351-328.jpg",
+            "https://i.ibb.co/x83pxRsN/IMG-20261021-005346-871.jpg",
+            "https://i.ibb.co/VcnFpLVQ/IMG-20261021-005346-652.jpg",
+            "https://i.ibb.co/mrpV8xRV/IMG-20261021-005339-978.jpg",
+            "https://i.ibb.co/XrR2h6Wh/IMG-20261021-005334-843.jpg",
+            "https://i.ibb.co/gFh29zWY/IMG-20261021-005356-471.jpg",
+            "https://i.ibb.co/VrC29Jr/IMG-20261021-005334-642.jpg",
+            "https://i.ibb.co/jPMPFPCR/IMG-20261021-005323-903.jpg",
+            "https://i.ibb.co/dszkLvmN/IMG-20261021-005313-248.jpg",
+            "https://i.ibb.co/jZT8QWDC/IMG-20261021-005313-742.jpg",
+            "https://i.ibb.co/kgZSpkJ0/IMG-20261021-005244-267.jpg",
+            "https://i.ibb.co/pBRw2cPy/IMG-20261021-005249-238.jpg",
+            "https://i.ibb.co/3mWRHNCT/IMG-20261021-005317-604.jpg",
+            "https://i.ibb.co/pjt4pCKd/IMG-20261021-005253-585.jpg",
+            "https://i.ibb.co/8D13DXdg/IMG-20261021-005328-186.jpg",
+            "https://i.ibb.co/GQBc4wQr/IMG-20261021-005317-786.jpg",
+            "https://i.ibb.co/n4kSLpj/IMG-20261021-005318-294.jpg",
+            "https://i.ibb.co/vCg5VRWZ/IMG-20261021-005235-334.jpg",
+            "https://i.ibb.co/gZHCZZdq/IMG-20261021-005230-629.jpg",
+            "https://i.ibb.co/0ppFvf4X/IMG-20261021-005235-016.jpg",
+            "https://i.ibb.co/jkqP7CPQ/IMG-20261021-005230-745.jpg",
+            "https://i.ibb.co/TDRsjhDf/IMG-20261021-005230-067.jpg",
+            "https://i.ibb.co/MDk9X3GP/IMG-20261021-005230-003.jpg",
+            "https://i.ibb.co/1G7N7m60/IMG-20261021-005224-415.jpg",
+            "https://i.ibb.co/WvHBS4hh/IMG-20261021-005220-889.jpg",
+            "https://i.ibb.co/1Gw5DWdV/IMG-20261021-005216-524.jpg",
+            "https://i.ibb.co/21y0jwB7/IMG-20261021-005212-133.jpg",
+            "https://i.ibb.co/mV861N9j/IMG-20261021-005230-579.jpg",
+            "https://i.ibb.co/chQwZVJg/IMG-20261021-005200-201.jpg",
+            "https://i.ibb.co/d42g3VcC/IMG-20261021-005139-730.jpg",
+            "https://i.ibb.co/kjP36v8/IMG-20261021-005131-424.jpg",
+            "https://i.ibb.co/Qj3VrvQy/IMG-20261021-005155-107.jpg",
+            "https://i.ibb.co/S4QncKQN/IMG-20261021-005151-596.jpg",
+            "https://i.ibb.co/TMWwvXM6/IMG-20261021-005120-606.jpg",
+            "https://i.ibb.co/7dFcGKrV/IMG-20261021-005122-289.jpg",
+            "https://i.ibb.co/mCzJT6JJ/IMG-20261021-005049-739.jpg",
+            "https://i.ibb.co/Z1hvBZT0/IMG-20261021-005022-076.jpg",
+            "https://i.ibb.co/Q3Wk64Q1/IMG-20261021-004959-091.jpg",
+            "https://i.ibb.co/pvJRKmBS/IMG-20261021-004946-563.jpg",
+            "https://i.ibb.co/v6VxwmGR/IMG-20261021-004832-740.jpg",
+            "https://i.ibb.co/Pf0m11m/IMG-20261021-004849-676.jpg",
+            "https://i.ibb.co/CKFhFgG6/IMG-20261021-004733-526.jpg",
+            "https://i.ibb.co/ccWVQp0Q/IMG-20261021-004815-654.jpg",
+            "https://i.ibb.co/bjdBnCqs/IMG-20261021-004804-153.jpg",
+            "https://i.ibb.co/6RQgSFXQ/IMG-20261021-004759-232.jpg",
+            "https://i.ibb.co/FbynRYxQ/IMG-20261021-004633-708.jpg",
+            "https://i.ibb.co/fVjrSKf0/IMG-20261021-004333-031.jpg",
+            "https://i.ibb.co/mr8hHXwW/IMG-20261021-004646-442.jpg",
+            "https://i.ibb.co/yFg33pQH/IMG-20261021-004658-258.jpg",
+            "https://i.ibb.co/rf1pqjms/IMG-20261020-180808-847.jpg",
+            "https://i.ibb.co/xtHN39qf/IMG-20261018-174551-966.jpg",
+            "https://i.ibb.co/6R3Tb9FH/IMG-20261015-125711-986.jpg",
+            "https://i.ibb.co/fVRK7zn7/IMG-20261015-133418-134.jpg",
+            "https://i.ibb.co/35hzpNCG/IMG-20261016-125115-420.jpg",
+            "https://i.ibb.co/6096hnbv/IMG-20261015-125705-771.jpg",
+            "https://i.ibb.co/99Pwv65T/IMG-20261015-125702-712.jpg",
+            "https://i.ibb.co/0jjN0m9b/file-0000000039a081f48569b06dcbae95dd.png",
+            "https://i.ibb.co/bgMtNQRw/file-000000007cbc81f4876c6cdbb5060b49.png",
+            "https://i.ibb.co/tTXdkM5y/IMG-20261014-165328-360.jpg",
+            "https://i.ibb.co/hFwqxnKJ/IMG-20261014-165301-836.jpg",
+            "https://i.ibb.co/1Jr5pk3r/IMG-20261014-154405-479.jpg",
+            "https://i.ibb.co/XkNr63dX/IMG-20261014-115601-795.jpg",
+            "https://i.ibb.co/MytNshX7/IMG-20261011-224704-059.jpg",
+            "https://i.ibb.co/4wq1V7xB/IMG-20261010-182527-588.jpg",
+            "https://i.ibb.co/35fd2XYy/IMG-20261021-004702-514.jpg",
+            "https://i.ibb.co/320TndJ/IMG-20261021-004729-578.jpg",
+            "https://i.ibb.co/k2fsNs7N/IMG-20261021-004725-117.jpg",
+            "https://i.ibb.co/VYW8Hs9g/IMG-20261021-004325-400.jpg",
+            "https://i.ibb.co/Z60S1DQT/IMG-20261021-004633-607.jpg"
+        ];
+
+        // KATALOGGA RASMLARNI 2 QATOR QILIB CHIQARISH
+        const catalogGrid = document.getElementById('catalogGrid');
+        cakeList.forEach((url, index) => {
+            catalogGrid.innerHTML += `
+                <div class="cake-card">
+                    <img src="${url}" class="cake-img">
+                    <button class="order-cake-btn" onclick="chooseCakeFromCatalog('${url}')">BUYURTMA BERISH 🛒</button>
+                </div>
+            `;
+        });
+
+        // KATALOGDAN TORT CHOSHMAGAN VAQTDA
+        function chooseCakeFromCatalog(url) {
+            document.getElementById('orderImg').value = url;
+            closePage('catalogPage');
+            openPage('pricesPage');
+        }
+
+        // NARX CHOSHMAGAN VAQTDA
+        function selectPrice(price) {
+            document.getElementById('orderPrice').value = price;
+            closePage('pricesPage');
+            openPage('orderPage');
+        }
+
+        // SAHIFALARNI OCHISH / YOPISH
         function openPage(id) { document.getElementById(id).style.display = 'block'; }
         function closePage(id) { document.getElementById(id).style.display = 'none'; }
+        function openLink(url) { tg.openTelegramLink(url); }
+
+        // PROFIL RASMINI O'ZGARTIRISH
+        function changeAvatar(event) {
+            const reader = new FileReader();
+            reader.onload = function() {
+                document.getElementById('profAvatar').src = reader.result;
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
+
+        // BUYURTMANI YUBORISH
         function submitOrder(e) {
             e.preventDefault();
-            tg.showAlert("Buyurtmangiz qabul qilindi! Tez orada bog'lanamiz.");
+            const data = {
+                img: document.getElementById('orderImg').value,
+                price: document.getElementById('orderPrice').value,
+                date: document.getElementById('orderDate').value,
+                time: document.getElementById('orderTime').value,
+                text: document.getElementById('orderText').value,
+                desc: document.getElementById('orderDesc').value,
+                phone: document.getElementById('orderPhone').value,
+                user: user
+            };
+
+            // Telegram Botga ma'lumot jo'natish
+            tg.sendData(JSON.stringify(data));
+            tg.showAlert(" Buyurtmangiz admin panelliga muvaffaqiyatli yuborildi!");
             closePage('orderPage');
         }
     </script>
